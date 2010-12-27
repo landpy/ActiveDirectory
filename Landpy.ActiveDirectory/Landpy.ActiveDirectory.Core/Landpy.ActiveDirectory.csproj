@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B3CA29C4-77CB-4A79-B7F5-66A3D4C3C0F1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Landpy.ActiveDirectory</RootNamespace>
+    <AssemblyName>Landpy.ActiveDirectory</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommonParam\AttributeNames.cs" />
+    <Compile Include="CommonParam\AttributeValues.cs" />
+    <Compile Include="CommonParam\Expressions.cs" />
+    <Compile Include="CommonParam\FilterStrings.cs" />
+    <Compile Include="Core\ADObjectWriter.cs" />
+    <Compile Include="Core\ADObjectReader.cs" />
+    <Compile Include="Entity\Attribute\AttributeProvider.cs" />
+    <Compile Include="Entity\Attribute\BaseAttribute.cs" />
+    <Compile Include="Entity\Attribute\ByteAttribute.cs" />
+    <Compile Include="Entity\Attribute\GuidAttribute.cs" />
+    <Compile Include="Entity\Attribute\MultipleValueAttribute.cs" />
+    <Compile Include="Entity\Attribute\SingleLineAttribute.cs" />
+    <Compile Include="Entity\Object\BaseADObject.cs" />
+    <Compile Include="Entity\Object\Computer.cs" />
+    <Compile Include="Entity\Object\Contact.cs" />
+    <Compile Include="Entity\Object\Group.cs" />
+    <Compile Include="Entity\Object\InetOrgPerson.cs" />
+    <Compile Include="Entity\Object\MsImaging-PSPs.cs" />
+    <Compile Include="Entity\Object\MSMQQueueAlias.cs" />
+    <Compile Include="Entity\Object\OrganizationalUnit.cs" />
+    <Compile Include="Entity\Object\Printer.cs" />
+    <Compile Include="Entity\Object\SharedFolder.cs" />
+    <Compile Include="Entity\Object\User.cs" />
+    <Compile Include="Exception\SearchResultOutOfBoundException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\BaseService.cs" />
+    <Compile Include="Service\UserService.cs" />
+    <Compile Include="ValueObject\OperatorSecurity.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,12 @@
+ 1) AuthenticationTypes:
+ None  相当于零，表示在 LDAP 提供程序中使用基本身份验证（简单绑定）。  
+ Secure  请求安全身份验证。 当设置此标记后，WinNT 提供程序将使用 NTLM 来对客户端进行身份验证。 Active Directory 域服务使用 Kerberos（并可能使用 NTLM）来对客户端进行身份验证。 当用户名和密码为 null 引用（Visual Basic 中为 Nothing）时，ADSI 将使用调用线程的安全上下文来绑定到对象，该上下文是应用程序运行的用户帐户的安全上下文或调用线程模拟的客户端用户帐户的安全上下文。  
+ Encryption  将加密签名附加到消息中，该签名既标识发送方，也确保消息未在传送中修改。  
+ SecureSocketsLayer  将加密签名附加到消息中，该签名既标识发送方，也确保消息未在传送中修改。 Active Directory 域服务要求安装证书服务器来支持安全套接字层 (SSL) 加密。  
+ ReadonlyServer  对于 WinNT 提供程序，ADSI 尝试连接到域控制器。 对于 Active Directory 域服务，此标记指示无服务器绑定不需要可写服务器。  
+ Anonymous  未执行任何身份验证。  
+ FastBind  指定 ADSI 将不会尝试查询 Active Directory 域服务 objectClass 属性。 因此，只有所有 ADSI 对象支持的基接口才会公开。 对象支持的其他接口将不可用。 用户可以使用此选项来提高仅涉及基接口方法的一系列对象操作的性能。 但是，ADSI 不验证服务器上是否实际存在任何请求对象。 有关更多信息，请参见位于 http://www.microsoft.com/china/msdn/library 的 MSDN Library 中的主题“Fast Binding Option for Batch Write/Modify Operations”（用于批写/修改操作的快速绑定选项）。 有关 objectClass 属性的更多信息，请参见位于 http://www.microsoft.com/china/msdn/library 的 MSDN Library 中的主题“Object-Class”（对象类）。  
+ Signing  验证数据完整性，以确保接收的数据与发送的数据相同。 Secure 标记还必须设置为使用签名。  
+ Sealing  使用 Kerberos 将数据加密。 Secure 标记也必须设置为使用密封。  
+ Delegation  启用 Active Directory 服务接口 (ADSI) 来委托用户的安全上下文，它是在各个域之间移动对象所必需的。  
+ ServerBind  如果 ADsPath 包含服务器名称，请在使用 LDAP 提供程序时指定此标记。 请勿将此标记用于包含域名的路径或无服务器的路径。 如果在指定服务器名称的同时没有指定此标记，则会导致不必要的网络通讯量。 

@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Landpy.ActiveDirectory", "Landpy.ActiveDirectory.Core\Landpy.ActiveDirectory.csproj", "{B3CA29C4-77CB-4A79-B7F5-66A3D4C3C0F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Landpy.ActiveDirectory.Tool", "Landpy.ActiveDirectory.Tool\Landpy.ActiveDirectory.Tool.csproj", "{474919BF-9DBF-4D60-9885-1FFB2EABEB2B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reference", "Reference", "{366988A8-0E5F-4C73-9FD1-149CB8B8194B}"
+	ProjectSection(SolutionItems) = preProject
+		Reference\Help.txt = Reference\Help.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Landpy.ActiveDirectory.ConsoleTest", "Landpy.ActiveDirectory.ConsoleTest\Landpy.ActiveDirectory.ConsoleTest.csproj", "{1FDC8E86-E795-4B35-94BA-B10848D49FE2}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/TFS18
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Landpy.ActiveDirectory.ConsoleTest\\Landpy.ActiveDirectory.ConsoleTest.csproj
+		SccProjectName1 = Landpy.ActiveDirectory.ConsoleTest
+		SccLocalPath1 = Landpy.ActiveDirectory.ConsoleTest
+		SccProjectUniqueName2 = Landpy.ActiveDirectory.Core\\Landpy.ActiveDirectory.csproj
+		SccProjectName2 = Landpy.ActiveDirectory.Core
+		SccLocalPath2 = Landpy.ActiveDirectory.Core
+		SccProjectUniqueName3 = Landpy.ActiveDirectory.Tool\\Landpy.ActiveDirectory.Tool.csproj
+		SccProjectName3 = Landpy.ActiveDirectory.Tool
+		SccLocalPath3 = Landpy.ActiveDirectory.Tool
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B3CA29C4-77CB-4A79-B7F5-66A3D4C3C0F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3CA29C4-77CB-4A79-B7F5-66A3D4C3C0F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3CA29C4-77CB-4A79-B7F5-66A3D4C3C0F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3CA29C4-77CB-4A79-B7F5-66A3D4C3C0F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{474919BF-9DBF-4D60-9885-1FFB2EABEB2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{474919BF-9DBF-4D60-9885-1FFB2EABEB2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{474919BF-9DBF-4D60-9885-1FFB2EABEB2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{474919BF-9DBF-4D60-9885-1FFB2EABEB2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FDC8E86-E795-4B35-94BA-B10848D49FE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FDC8E86-E795-4B35-94BA-B10848D49FE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FDC8E86-E795-4B35-94BA-B10848D49FE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FDC8E86-E795-4B35-94BA-B10848D49FE2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
