@@ -12,9 +12,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reference", "Reference", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Landpy.ActiveDirectory.ConsoleTest", "Landpy.ActiveDirectory.ConsoleTest\Landpy.ActiveDirectory.ConsoleTest.csproj", "{1FDC8E86-E795-4B35-94BA-B10848D49FE2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Landpy.ActiveDirectory.UnitTest", "Landpy.ActiveDirectory.UnitTest\Landpy.ActiveDirectory.UnitTest.csproj", "{D7AE1964-50CE-4D67-BC77-5961DB9CC84E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A1CD4CC0-1B1E-4591-B4F6-7043C6D472ED}"
+	ProjectSection(SolutionItems) = preProject
+		Landpy.ActiveDirectory.vsmdi = Landpy.ActiveDirectory.vsmdi
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
+		SccNumberOfProjects = 5
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/TFS18
 		SccLocalPath0 = .
@@ -27,6 +35,12 @@ Global
 		SccProjectUniqueName3 = Landpy.ActiveDirectory.Tool\\Landpy.ActiveDirectory.Tool.csproj
 		SccProjectName3 = Landpy.ActiveDirectory.Tool
 		SccLocalPath3 = Landpy.ActiveDirectory.Tool
+		SccProjectUniqueName4 = Landpy.ActiveDirectory.UnitTest\\Landpy.ActiveDirectory.UnitTest.csproj
+		SccProjectName4 = Landpy.ActiveDirectory.UnitTest
+		SccLocalPath4 = Landpy.ActiveDirectory.UnitTest
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Landpy.ActiveDirectory.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +59,10 @@ Global
 		{1FDC8E86-E795-4B35-94BA-B10848D49FE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FDC8E86-E795-4B35-94BA-B10848D49FE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FDC8E86-E795-4B35-94BA-B10848D49FE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7AE1964-50CE-4D67-BC77-5961DB9CC84E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7AE1964-50CE-4D67-BC77-5961DB9CC84E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7AE1964-50CE-4D67-BC77-5961DB9CC84E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7AE1964-50CE-4D67-BC77-5961DB9CC84E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
