@@ -48,6 +48,7 @@
     <Compile Include="CommonParam\FilterStrings.cs" />
     <Compile Include="Core\ADObjectWriter.cs" />
     <Compile Include="Core\ADObjectReader.cs" />
+    <Compile Include="Core\IADObjectWriter.cs" />
     <Compile Include="Entity\Attribute\AttributeProvider.cs" />
     <Compile Include="Entity\Attribute\BaseAttribute.cs" />
     <Compile Include="Entity\Attribute\ByteAttribute.cs" />
@@ -66,10 +67,15 @@
     <Compile Include="Entity\Object\SharedFolder.cs" />
     <Compile Include="Entity\Object\User.cs" />
     <Compile Include="Exception\SearchResultOutOfBoundException.cs" />
+    <Compile Include="Core\IADObjectReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\BaseService.cs" />
     <Compile Include="Service\UserService.cs" />
-    <Compile Include="ValueObject\OperatorSecurity.cs" />
+    <Compile Include="Core\OperatorSecurity.cs" />
+    <Compile Include="Entity\Attribute\AttributeSet.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ValueObject\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

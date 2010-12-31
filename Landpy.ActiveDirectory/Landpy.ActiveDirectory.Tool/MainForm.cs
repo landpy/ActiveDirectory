@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Landpy.ActiveDirectory.Entity.Attribute;
-using Landpy.ActiveDirectory.Core;
 using Landpy.ActiveDirectory.CommonParam;
 using Landpy.ActiveDirectory.Service;
 using Landpy.ActiveDirectory.Entity;

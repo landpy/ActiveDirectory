@@ -3,7 +3,7 @@ using System.DirectoryServices;
 
 namespace Landpy.ActiveDirectory.Entity.Attribute
 {
-    public class ByteAttribute : BaseAttribute<byte[]>
+    public class ByteAttribute : BaseAttribute
     {
         public ByteAttribute(ResultPropertyValueCollection resultPropertyValueCollection)
             : base(resultPropertyValueCollection)

@@ -30,10 +30,10 @@ namespace Landpy.ActiveDirectory.Entity
             {
                 if (String.IsNullOrEmpty(this.objectSid))
                 {
-                    BaseAttribute<byte[]> sidAttribute = this.attributeProvider.GetSidAttribute();
+                    BaseAttribute sidAttribute = this.attributeProvider.GetSidAttribute();
                     if (sidAttribute.Value != null)
                     {
-                        this.objectSid = new SecurityIdentifier(sidAttribute.Value, 0).ToString();
+                        this.objectSid = new SecurityIdentifier(sidAttribute.Value as byte[], 0).ToString();
                     }
                 }
                 return this.objectSid;
@@ -53,8 +53,8 @@ namespace Landpy.ActiveDirectory.Entity
             {
                 if (this.objectGUID == Guid.Empty)
                 {
-                    BaseAttribute<Guid> guidAttribute = this.attributeProvider.GetGuidAttribute();
-                    this.objectGUID = guidAttribute.Value;
+                    BaseAttribute guidAttribute = this.attributeProvider.GetGuidAttribute();
+                    this.objectGUID = (Guid)guidAttribute.Value;
                 }
                 return this.objectGUID;
             }
@@ -73,8 +73,8 @@ namespace Landpy.ActiveDirectory.Entity
             {
                 if (String.IsNullOrEmpty(this.cn))
                 {
-                    BaseAttribute<string> cnAttribute = this.attributeProvider.GetCNAttribute();
-                    this.cn = cnAttribute.Value;
+                    BaseAttribute cnAttribute = this.attributeProvider.GetCNAttribute();
+                    this.cn = cnAttribute.Value.ToString();
                 }
                 return this.cn;
             }
@@ -93,8 +93,8 @@ namespace Landpy.ActiveDirectory.Entity
             {
                 if (this.thumbnailPhoto == null)
                 {
-                    BaseAttribute<byte[]> thumbnailPhotoAttribute = this.attributeProvider.GetThumbnailPhotoAttribute();
-                    this.thumbnailPhoto = thumbnailPhotoAttribute.Value;
+                    BaseAttribute thumbnailPhotoAttribute = this.attributeProvider.GetThumbnailPhotoAttribute();
+                    this.thumbnailPhoto = thumbnailPhotoAttribute.Value as byte[];
                 }
                 return this.thumbnailPhoto;
             }

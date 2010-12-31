@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using System.DirectoryServices;
 
-namespace Landpy.ActiveDirectory.Core
+namespace Landpy.ActiveDirectory
 {
     /// <summary>
     /// The proxy of directory entry.
     /// </summary>
-    public class ADObjectReader : IDisposable
+    public class ADObjectReader : IADObjectReader
     {
         #region Field And Property
 
@@ -40,18 +40,6 @@ namespace Landpy.ActiveDirectory.Core
             this.operatorSecurity = operatorSecurity;
         }
 
-        public SearchResult GetSearchResultByFilter(string filter)
-        {
-            DirectorySearcher directorySearcher = this.GetDirectorySearcher(filter);
-            return directorySearcher.FindOne();
-        }
-
-        public SearchResultCollection GetSearchResultsByFilter(string filter)
-        {
-            DirectorySearcher directorySearcher = this.GetDirectorySearcher(filter);
-            return directorySearcher.FindAll();
-        }
-
         public void Close()
         {
             if (searchRoot != null)
@@ -60,15 +48,6 @@ namespace Landpy.ActiveDirectory.Core
             }
         }
 
-        #region IDisposable Members
-
-        public void Dispose()
-        {
-            this.Close();
-        }
-
-        #endregion
-
         #endregion
 
         #region Custom Method
@@ -76,6 +55,31 @@ namespace Landpy.ActiveDirectory.Core
         private DirectorySearcher GetDirectorySearcher(string filter)
         {
             return new DirectorySearcher(this.SearchRoot, filter);
+        }
+
+        #endregion
+
+        #region IADObjectReader Members
+
+        SearchResult IADObjectReader.ReadSearchResultByFilter(string filter)
+        {
+            DirectorySearcher directorySearcher = this.GetDirectorySearcher(filter);
+            return directorySearcher.FindOne();
+        }
+
+        SearchResultCollection IADObjectReader.ReadSearchResultsByFilter(string filter)
+        {
+            DirectorySearcher directorySearcher = this.GetDirectorySearcher(filter);
+            return directorySearcher.FindAll();
+        }
+
+        #endregion
+
+        #region IDisposable Members
+
+        void IDisposable.Dispose()
+        {
+            this.Close();
         }
 
         #endregion

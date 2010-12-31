@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
 using System.DirectoryServices;
-using Landpy.ActiveDirectory.Core;
 using System.Text;
 using Landpy.ActiveDirectory.Entity;
 using System.Reflection;
@@ -68,9 +67,9 @@ namespace Landpy.ActiveDirectory.Service
         protected SearchResult GetSearchResultByFilter(string filter)
         {
             SearchResult searchResult = null;
-            using (ADObjectReader directoryEntryProxy = new ADObjectReader(this.operatorSecurity))
+            using (IADObjectReader adObjectReader = new ADObjectReader(this.operatorSecurity))
             {
-                searchResult = directoryEntryProxy.GetSearchResultByFilter(filter);
+                searchResult = adObjectReader.ReadSearchResultByFilter(filter);
             }
             return searchResult;
         }
@@ -78,9 +77,9 @@ namespace Landpy.ActiveDirectory.Service
         protected SearchResultCollection GetSearchResultsByFilter(string filter)
         {
             SearchResultCollection searchResultCollection = null;
-            using (ADObjectReader directoryEntryProxy = new ADObjectReader(this.operatorSecurity))
+            using (IADObjectReader adObjectReader = new ADObjectReader(this.operatorSecurity))
             {
-                searchResultCollection = directoryEntryProxy.GetSearchResultsByFilter(filter);
+                searchResultCollection = adObjectReader.ReadSearchResultsByFilter(filter);
             }
             return searchResultCollection;
         }

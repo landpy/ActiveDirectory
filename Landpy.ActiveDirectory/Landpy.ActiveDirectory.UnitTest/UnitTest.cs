@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
+using Landpy.ActiveDirectory;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -10,16 +11,18 @@ namespace Landpy.ActiveDirectory.UnitTest
     /// Summary description for UnitTest1
     /// </summary>
     [TestClass]
-    public class UnitTest1
+    public class UnitTest
     {
-        public UnitTest1()
+        public UnitTest()
         {
-            //
-            // TODO: Add constructor logic here
-            //
+            OperatorSecurity operatorSecurity = new OperatorSecurity("","","");
+            this.adObjectReader = new ADObjectReader(operatorSecurity);
+            //this.adObjectReader;
         }
 
         private TestContext testContextInstance;
+        private IADObjectReader adObjectReader;
+        private IADObjectWriter adObjectWriter;
 
         /// <summary>
         ///Gets or sets the test context which provides

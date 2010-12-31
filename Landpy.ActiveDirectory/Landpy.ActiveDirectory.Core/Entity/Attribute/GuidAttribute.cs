@@ -3,7 +3,7 @@ using System.DirectoryServices;
 
 namespace Landpy.ActiveDirectory.Entity.Attribute
 {
-    public class GuidAttribute : BaseAttribute<Guid>
+    public class GuidAttribute : BaseAttribute
     {
         public GuidAttribute(ResultPropertyValueCollection resultPropertyValueCollection)
             : base(resultPropertyValueCollection)

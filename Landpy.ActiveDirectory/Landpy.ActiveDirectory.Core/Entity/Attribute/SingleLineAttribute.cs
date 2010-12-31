@@ -3,7 +3,7 @@ using System.DirectoryServices;
 
 namespace Landpy.ActiveDirectory.Entity.Attribute
 {
-    public class SingleLineAttribute : BaseAttribute<string>
+    public class SingleLineAttribute : BaseAttribute
     {
         public SingleLineAttribute(ResultPropertyValueCollection resultPropertyValueCollection)
             : base(resultPropertyValueCollection)

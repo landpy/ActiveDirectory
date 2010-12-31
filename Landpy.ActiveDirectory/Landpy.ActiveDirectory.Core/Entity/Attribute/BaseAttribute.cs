@@ -3,14 +3,20 @@ using System.DirectoryServices;
 
 namespace Landpy.ActiveDirectory.Entity.Attribute
 {
-    public abstract class BaseAttribute<T>
+    public abstract class BaseAttribute
     {
-        protected T value;
+        protected string name;
+        protected object value;
         protected ResultPropertyValueCollection resultPropertyValueCollection;
 
-        public T Value
+        public object Value
         {
             get { return value; }
+        }
+
+        public string Name
+        {
+            get { return name; }
         }
 
         protected BaseAttribute(ResultPropertyValueCollection resultPropertyValueCollection)

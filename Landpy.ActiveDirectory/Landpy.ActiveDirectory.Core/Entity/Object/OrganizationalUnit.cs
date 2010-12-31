@@ -19,8 +19,8 @@ namespace Landpy.ActiveDirectory.Entity
         {
             get
             {
-                BaseAttribute<Guid> guidAttribute = this.attributeProvider.GetGuidAttribute();
-                return guidAttribute.Value;
+                BaseAttribute guidAttribute = this.attributeProvider.GetGuidAttribute();
+                return (Guid)guidAttribute.Value;
             }
         }
 
@@ -31,8 +31,8 @@ namespace Landpy.ActiveDirectory.Entity
         {
             get
             {
-                BaseAttribute<string> cnAttribute = this.attributeProvider.GetCNAttribute();
-                return cnAttribute.Value;
+                BaseAttribute cnAttribute = this.attributeProvider.GetCNAttribute();
+                return cnAttribute.Value.ToString();
             }
         }
 
@@ -43,8 +43,8 @@ namespace Landpy.ActiveDirectory.Entity
         {
             get
             {
-                BaseAttribute<byte[]> thumbnailPhotoAttribute = this.attributeProvider.GetThumbnailPhotoAttribute();
-                return thumbnailPhotoAttribute.Value;
+                BaseAttribute thumbnailPhotoAttribute = this.attributeProvider.GetThumbnailPhotoAttribute();
+                return thumbnailPhotoAttribute.Value as byte[];
             }
         }
     }
