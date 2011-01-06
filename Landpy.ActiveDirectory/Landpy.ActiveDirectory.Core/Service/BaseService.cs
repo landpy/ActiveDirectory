@@ -2,8 +2,7 @@
 using System;
 using System.DirectoryServices;
 using System.Text;
-using Landpy.ActiveDirectory.Entity;
-using System.Reflection;
+using Landpy.ActiveDirectory.Entity.Object;
 
 namespace Landpy.ActiveDirectory.Service
 {

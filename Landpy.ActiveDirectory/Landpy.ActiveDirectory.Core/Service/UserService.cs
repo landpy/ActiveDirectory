@@ -1,4 +1,4 @@
-﻿using Landpy.ActiveDirectory.Entity;
+﻿using Landpy.ActiveDirectory.Entity.Object;
 using System.Collections.Generic;
 using System.DirectoryServices;
 using System;

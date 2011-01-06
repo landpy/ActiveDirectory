@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Landpy.ActiveDirectory.Service;
-using Landpy.ActiveDirectory.Entity;
+using Landpy.ActiveDirectory.Entity.Object;
 using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
@@ -16,7 +16,7 @@ namespace Landpy.ActiveDirectory.ConsoleTest
             OperatorSecurity operatorSecurity = new OperatorSecurity();
             operatorSecurity.LdapPath = "LDAP://192.168.6.67";
             operatorSecurity.UserName = "Administrator";
-            operatorSecurity.Password = "liu=pxl821102";
+            operatorSecurity.Password = "liu-pxl821102";
 
             UserService userService = new UserService(operatorSecurity);
             User user = userService.FindObjectByCN("pangxiaoliang");

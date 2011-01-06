@@ -4,7 +4,7 @@ using Landpy.ActiveDirectory.Entity.Attribute;
 using Landpy.ActiveDirectory.CommonParam;
 using System.Security.Principal;
 
-namespace Landpy.ActiveDirectory.Entity
+namespace Landpy.ActiveDirectory.Entity.Object
 {
     /// <summary>
     /// The user AD object.

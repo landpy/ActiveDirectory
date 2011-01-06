@@ -3,9 +3,9 @@ using System.DirectoryServices;
 using Landpy.ActiveDirectory.Entity.Attribute;
 using Landpy.ActiveDirectory.CommonParam;
 
-namespace Landpy.ActiveDirectory.Entity
+namespace Landpy.ActiveDirectory.Entity.Object
 {
-    class OrganizationalUnit : BaseADObject
+    public class OrganizationalUnit : BaseADObject
     {
         public OrganizationalUnit(SearchResult searchResult)
             : base(searchResult)

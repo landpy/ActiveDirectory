@@ -1,7 +1,7 @@
 ﻿using System.DirectoryServices;
 using Landpy.ActiveDirectory.Entity.Attribute;
 
-namespace Landpy.ActiveDirectory.Entity
+namespace Landpy.ActiveDirectory.Entity.Object
 {
     public abstract class BaseADObject
     {
