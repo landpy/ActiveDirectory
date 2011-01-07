@@ -48,6 +48,9 @@
     <Compile Include="CommonParam\FilterStrings.cs" />
     <Compile Include="Core\ADObjectWriter.cs" />
     <Compile Include="Core\ADObjectReader.cs" />
+    <Compile Include="Core\ConvertUtility.cs" />
+    <Compile Include="Core\IADObjectCreator.cs" />
+    <Compile Include="Core\IADObjectDeletor.cs" />
     <Compile Include="Core\IADObjectWriter.cs" />
     <Compile Include="Entity\Attribute\AttributeProvider.cs" />
     <Compile Include="Entity\Attribute\BaseAttribute.cs" />

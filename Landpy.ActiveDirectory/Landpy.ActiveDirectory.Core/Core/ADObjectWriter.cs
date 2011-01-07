@@ -42,33 +42,13 @@ namespace Landpy.ActiveDirectory
 
         void IDisposable.Dispose()
         {
-            throw new NotImplementedException();
-        }
-
-        #endregion
-
-        #region IADObjectWriter Members
-
-        bool IADObjectWriter.WriteSearchResult(SearchResult searchResult, string name, string schemaClassName, AttributeSet attributeSet)
-        {
-            bool isSuccessful = false;
-            using (DirectoryEntry directoryEntry = searchResult.GetDirectoryEntry())
+            if (this.searchRoot != null)
             {
-                using (DirectoryEntry newDirectoryEntry = directoryEntry.Children.Add(name, schemaClassName))
-                {
-                    foreach (BaseAttribute attribute in attributeSet)
-                    {
-                        if (attribute is SingleLineAttribute)
-                        {
-                            newDirectoryEntry.Properties[attribute.Name].Value = attribute.Value;
-                        }
-                    }
-                    newDirectoryEntry.CommitChanges();
-                }
+                this.searchRoot.Close();
             }
-            return isSuccessful;
         }
 
         #endregion
+
     }
 }

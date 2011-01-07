@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Text;
 using System.Collections.Generic;
+using System.DirectoryServices;
+using System.Text;
 using Landpy.ActiveDirectory;
-
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Landpy.ActiveDirectory.UnitTest
@@ -15,9 +15,9 @@ namespace Landpy.ActiveDirectory.UnitTest
     {
         public UnitTest()
         {
-            OperatorSecurity operatorSecurity = new OperatorSecurity("","","");
+            OperatorSecurity operatorSecurity = new OperatorSecurity("LDAP://192.168.6.67", "Administrator", "liu-pxl821102");
             this.adObjectReader = new ADObjectReader(operatorSecurity);
-            //this.adObjectReader;
+            this.adObjectWriter = new ADObjectWriter(operatorSecurity);
         }
 
         private TestContext testContextInstance;
@@ -63,11 +63,22 @@ namespace Landpy.ActiveDirectory.UnitTest
         #endregion
 
         [TestMethod]
-        public void TestMethod1()
+        public void TestADObjectReader()
         {
-            //
-            // TODO: Add test logic	here
-            //
+            string filter = "cn=pangxiaoliang";
+            SearchResult searchResult = this.adObjectReader.ReadSearchResultByFilter(filter);
+            if (searchResult != null)
+            {
+                string inputDescription = "Landpy Test Description";
+                //this.adObjectWriter.WriteSearchResult(searchResult,"description",""
+                //SearchResult searchResult = this.adObjectReader.ReadSearchResultByFilter("cn=pangxiaoliang");
+                //string description = searchResult.Properties["Description"][0].ToString();
+                //Assert.AreEqual<string>(inputDescription, description);
+            }
+            else
+            {
+                Assert.Fail("Please check the filter string which get the SearchResult. (filter string: {0})", filter);
+            }
         }
     }
 }
