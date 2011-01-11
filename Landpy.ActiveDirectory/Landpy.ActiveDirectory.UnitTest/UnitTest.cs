@@ -15,7 +15,7 @@ namespace Landpy.ActiveDirectory.UnitTest
     {
         public UnitTest()
         {
-            OperatorSecurity operatorSecurity = new OperatorSecurity("LDAP://192.168.190.128", "Administrator", "liu-pxl821102");
+            OperatorSecurity operatorSecurity = new OperatorSecurity("LDAP://192.168.6.67", "Administrator", "liu-pxl821102");
             this.adObjectReader = new ADObjectReader(operatorSecurity);
             this.adObjectWriter = new ADObjectWriter(operatorSecurity);
         }

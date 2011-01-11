@@ -61,7 +61,7 @@
   <ItemGroup>
     <Compile Include="CommonParam\AttributeNames.cs" />
     <Compile Include="CommonParam\AttributeValues.cs" />
-    <Compile Include="CommonParam\Expressions.cs" />
+    <Compile Include="CommonParam\ExpressionTemplates.cs" />
     <Compile Include="CommonParam\FilterStrings.cs" />
     <Compile Include="Core\ADObjectWriter.cs" />
     <Compile Include="Core\ADObjectReader.cs" />
@@ -69,6 +69,7 @@
     <Compile Include="Core\IADObjectCreator.cs" />
     <Compile Include="Core\IADObjectDeletor.cs" />
     <Compile Include="Core\IADObjectWriter.cs" />
+    <Compile Include="Core\XMLSerializeManager.cs" />
     <Compile Include="Entity\Attribute\AttributeProvider.cs" />
     <Compile Include="Entity\Attribute\BaseAttribute.cs" />
     <Compile Include="Entity\Attribute\ByteAttribute.cs" />
@@ -89,6 +90,10 @@
     <Compile Include="Entity\Object\User.cs" />
     <Compile Include="Exception\SearchResultOutOfBoundException.cs" />
     <Compile Include="Core\IADObjectReader.cs" />
+    <Compile Include="LQL\Attribute.cs" />
+    <Compile Include="LQL\LandpyQuery.cs" />
+    <Compile Include="LQL\Query.cs" />
+    <Compile Include="LQL\Where.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\BaseService.cs" />
     <Compile Include="Service\OrganizationalUnitService.cs" />
@@ -97,7 +102,6 @@
     <Compile Include="Entity\Attribute\AttributeSet.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="LQL\" />
     <Folder Include="ValueObject\" />
   </ItemGroup>
   <ItemGroup>

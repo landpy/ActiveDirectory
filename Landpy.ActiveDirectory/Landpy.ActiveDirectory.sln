@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Landpy.ActiveDirectory.Cons
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Landpy.ActiveDirectory.UnitTest", "Landpy.ActiveDirectory.UnitTest\Landpy.ActiveDirectory.UnitTest.csproj", "{D7AE1964-50CE-4D67-BC77-5961DB9CC84E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schema", "Schema", "{2694BB59-08F7-4DC2-B54B-1B898F5AADBC}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 5
