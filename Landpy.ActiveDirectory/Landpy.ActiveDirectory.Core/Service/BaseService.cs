@@ -106,6 +106,7 @@ namespace Landpy.ActiveDirectory.Service
             }
             return searchResultCollection;
         }
+
         #endregion
     }
 }

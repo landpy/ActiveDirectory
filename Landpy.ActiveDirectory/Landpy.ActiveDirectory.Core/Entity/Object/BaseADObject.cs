@@ -9,7 +9,10 @@ namespace Landpy.ActiveDirectory.Entity.Object
 
         protected BaseADObject(SearchResult searchResult)
         {
-            this.attributeProvider = new AttributeProvider(searchResult);
+            if (searchResult != null)
+            {
+                this.attributeProvider = new AttributeProvider(searchResult);
+            }
         }
     }
 }
