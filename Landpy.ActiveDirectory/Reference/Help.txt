@@ -11,3 +11,10 @@
  Delegation  启用 Active Directory 服务接口 (ADSI) 来委托用户的安全上下文，它是在各个域之间移动对象所必需的。  
  ServerBind  如果 ADsPath 包含服务器名称，请在使用 LDAP 提供程序时指定此标记。 请勿将此标记用于包含域名的路径或无服务器的路径。 如果在指定服务器名称的同时没有指定此标记，则会导致不必要的网络通讯量。
  2) LQL中FilterBuilder使用装饰者 
+ 3) 查询：
+    1. "User, Contact, Group" in "OU" by "Name, Description"
+	2. "Computer" in "OU" by "Computer name, Owner, Role"
+	3. "Printer" in "OU" by "Name, Location, Model"
+	4. "Share Folder" in "OU" by "Name, Keyword"
+	5. "Organizational Unit" in "OU" by "Name"
+	6. "Message Queuing Queue" in "OU" by "Label, Type ID"
