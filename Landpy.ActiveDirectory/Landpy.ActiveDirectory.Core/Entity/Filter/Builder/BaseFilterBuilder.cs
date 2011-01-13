@@ -2,26 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using Landpy.ActiveDirectory.CommonParam;
+using Landpy.ActiveDirectory.Core;
 
 namespace Landpy.ActiveDirectory.Entity.Filter
 {
-    abstract class BaseFilterBuilder
+    abstract class BaseFilterBuilder : IFilter
     {
-        protected string filter;
-
-        public string Filter
-        {
-            get
-            {
-                return filter;
-            }
-        }
-
-        protected BaseFilterBuilder()
-        {
-        }
-
-        protected abstract string BuildFilter();
+        public abstract string BuildFilter();
 
         protected string Is(string attributeName, string attributeValue)
         {
@@ -38,7 +25,7 @@ namespace Landpy.ActiveDirectory.Entity.Filter
             return String.Format(ExpressionTemplates.StartWithExpression, attributeName, attributeValue);
         }
 
-        protected string EndWith(string attributeName,string attributeValue)
+        protected string EndWith(string attributeName, string attributeValue)
         {
             return String.Format(ExpressionTemplates.EndWithExpression, attributeName, attributeValue);
         }
@@ -56,7 +43,7 @@ namespace Landpy.ActiveDirectory.Entity.Filter
         protected string And(params string[] expressions)
         {
             StringBuilder filter = new StringBuilder();
-            filter.AppendFormat("({0}",ExpressionTemplates.And);
+            filter.AppendFormat("({0}", ExpressionTemplates.And);
             foreach (string expression in expressions)
             {
                 filter.AppendFormat("({0})", expression);

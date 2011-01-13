@@ -19,5 +19,6 @@ namespace Landpy.ActiveDirectory.CommonParam
         public readonly static string ThumbnailPhoto = "thumbnailPhoto";
         public readonly static string ThumbnailLogo = "thumbnailLogo";
         public readonly static string CO = "co";
+        public readonly static string Name = "name";
     }
 }

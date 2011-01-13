@@ -69,6 +69,7 @@
     <Compile Include="Core\IADObjectCreator.cs" />
     <Compile Include="Core\IADObjectDeletor.cs" />
     <Compile Include="Core\IADObjectWriter.cs" />
+    <Compile Include="Core\IFilter.cs" />
     <Compile Include="Core\XMLSerializeManager.cs" />
     <Compile Include="Entity\Attribute\AttributeProvider.cs" />
     <Compile Include="Entity\Attribute\BaseAttribute.cs" />
@@ -76,7 +77,16 @@
     <Compile Include="Entity\Attribute\GuidAttribute.cs" />
     <Compile Include="Entity\Attribute\MultipleValueAttribute.cs" />
     <Compile Include="Entity\Attribute\SingleLineAttribute.cs" />
-    <Compile Include="Entity\Filter\BaseFilterBuilder.cs" />
+    <Compile Include="Entity\Filter\Data\AllFilter.cs" />
+    <Compile Include="Entity\Filter\Data\OrganizationalUnitFilter.cs" />
+    <Compile Include="Entity\Filter\Decorator\IsFilterDecorator.cs" />
+    <Compile Include="Entity\Filter\Decorator\AndFilterDecorator.cs" />
+    <Compile Include="Entity\Filter\Data\BaseFilter.cs" />
+    <Compile Include="Entity\Filter\Builder\BaseFilterBuilder.cs" />
+    <Compile Include="Entity\Filter\Decorator\BaseFilterDecorator.cs" />
+    <Compile Include="Entity\Filter\Data\UserFilter.cs" />
+    <Compile Include="Entity\Filter\Builder\UserFilterBuilder.cs" />
+    <Compile Include="Entity\Filter\Decorator\OrFilterDecorator.cs" />
     <Compile Include="Entity\Object\BaseADObject.cs" />
     <Compile Include="Entity\Object\Computer.cs" />
     <Compile Include="Entity\Object\Contact.cs" />

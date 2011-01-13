@@ -1,32 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.DirectoryServices;
 using System.Text;
-using Landpy.ActiveDirectory;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Landpy.ActiveDirectory.Core;
-using Landpy.ActiveDirectory.Entity.Filter;
-using Landpy.ActiveDirectory.CommonParam;
+using Landpy.ActiveDirectory.Service;
+using Landpy.ActiveDirectory.Entity.Object;
 
 namespace Landpy.ActiveDirectory.UnitTest
 {
     /// <summary>
-    /// Summary description for UnitTest1
+    /// Summary description for ServiceUnitTest
     /// </summary>
     [TestClass]
-    public class UnitTest
+    public class ServiceUnitTest
     {
-        public UnitTest()
+        public ServiceUnitTest()
         {
             OperatorSecurity operatorSecurity = new OperatorSecurity("LDAP://192.168.6.67", "Administrator", "liu-pxl821102");
-            this.adObjectReader = new ADObjectReader(operatorSecurity);
-            this.adObjectWriter = new ADObjectWriter(operatorSecurity);
+            this.userService = new UserService(operatorSecurity);
+            this.organizationalUnitService = new OrganizationalUnitService(operatorSecurity);
         }
 
         private TestContext testContextInstance;
-        private IADObjectReader adObjectReader;
-        private IADObjectWriter adObjectWriter;
-        private IFilter filter;
+        private UserService userService;
+        private OrganizationalUnitService organizationalUnitService;
 
         /// <summary>
         ///Gets or sets the test context which provides
@@ -67,12 +64,12 @@ namespace Landpy.ActiveDirectory.UnitTest
         #endregion
 
         [TestMethod]
-        public void TestADObjectReader()
+        public void TestUserService()
         {
-            //filter = new AllFilter();
-            //filter = new IsFilterDecorator(filter, AttributeNames.CN, "Administrator");
-            //SearchResult searchResult = this.adObjectReader.ReadSearchResultByFilter(filter.BuildFilter());
-            //Assert.IsNotNull(searchResult);
+            User user = this.userService.FindObjectByName("pangxiaoliang");
+            Assert.AreEqual<Guid>(new Guid("325d590f-f344-4575-8362-569f47a108ff"), user.ObjectGUID);
+            OrganizationalUnit ou = this.organizationalUnitService.FindObjectByName("LandpyTest");
+            Assert.AreEqual<Guid>(new Guid("b23f6bf4-b4ad-40bc-8593-3629c5475f49"), ou.ObjectGUID);
         }
     }
 }

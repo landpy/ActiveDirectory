@@ -18,5 +18,16 @@ namespace Landpy.ActiveDirectory.Core
             sid = new SecurityIdentifier(sidBytes, 0).ToString();
             return sid;
         }
+
+        public static string ConvertGuidToGuidBinaryString(Guid guid)
+        {
+            byte[] guidBytes = guid.ToByteArray();
+            StringBuilder guidBinary = new StringBuilder();
+            foreach (byte guidByte in guidBytes)
+            {
+                guidBinary.AppendFormat(@"\{0}", guidByte.ToString("x2"));
+            }
+            return guidBinary.ToString();
+        }
     }
 }

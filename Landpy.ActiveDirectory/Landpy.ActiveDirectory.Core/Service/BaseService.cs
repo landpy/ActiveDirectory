@@ -3,6 +3,9 @@ using System;
 using System.DirectoryServices;
 using System.Text;
 using Landpy.ActiveDirectory.Entity.Object;
+using Landpy.ActiveDirectory.Core;
+using Landpy.ActiveDirectory.Entity.Filter;
+using Landpy.ActiveDirectory.CommonParam;
 
 namespace Landpy.ActiveDirectory.Service
 {
@@ -11,6 +14,7 @@ namespace Landpy.ActiveDirectory.Service
         #region Member Data
 
         protected OperatorSecurity operatorSecurity;
+        protected IFilter filter;
 
         #endregion
 
@@ -51,13 +55,33 @@ namespace Landpy.ActiveDirectory.Service
             return adObject;
         }
 
-        public abstract ADObject FindObjectByCN(string cn);
+        public ADObject FindObjectByCN(string cn)
+        {
+            filter = new IsFilterDecorator(filter, AttributeNames.CN, cn);
+            filter = new AndFilterDecorator(filter);
+            return this.FindOne(filter.BuildFilter());
+        }
 
-        public abstract ADObject FindObjectByObjectGuid(Guid guid);
+        public ADObject FindObjectByObjectGuid(Guid guid)
+        {
+            filter = new IsFilterDecorator(filter, AttributeNames.ObjectGUID, ConvertUtility.ConvertGuidToGuidBinaryString(guid));
+            filter = new AndFilterDecorator(filter);
+            return this.FindOne(filter.BuildFilter());
+        }
 
-        public abstract ICollection<ADObject> FindObjectsByObjectClass(string objectClass);
+        public ADObject FindObjectByName(string name)
+        {
+            filter = new IsFilterDecorator(filter, AttributeNames.Name, name);
+            filter = new AndFilterDecorator(filter);
+            return this.FindOne(filter.BuildFilter());
+        }
 
-        public abstract bool Save(ADObject adObject);
+        public ICollection<ADObject> FindObjectsByObjectClass(string objectClass)
+        {
+            filter = new IsFilterDecorator(filter, AttributeNames.ObjectClass, objectClass);
+            filter = new AndFilterDecorator(filter);
+            return this.FindAll(filter.BuildFilter());
+        }
 
         #endregion
 
@@ -82,18 +106,6 @@ namespace Landpy.ActiveDirectory.Service
             }
             return searchResultCollection;
         }
-
-        protected string GetGUIDBinaryString(Guid guid)
-        {
-            byte[] guidBytes = guid.ToByteArray();
-            StringBuilder guidBinary = new StringBuilder();
-            foreach (byte guidByte in guidBytes)
-            {
-                guidBinary.AppendFormat(@"\{0}", guidByte.ToString("x2"));
-            }
-            return guidBinary.ToString();
-        }
-
         #endregion
     }
 }

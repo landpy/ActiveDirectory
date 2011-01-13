@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.DirectoryServices;
 
 namespace Landpy.ActiveDirectory.Core
 {
-    interface IADObjectCreator
+    public interface IFilter
     {
-        void CreateADObject(SearchResult searchResult);
+        string BuildFilter();
     }
 }
