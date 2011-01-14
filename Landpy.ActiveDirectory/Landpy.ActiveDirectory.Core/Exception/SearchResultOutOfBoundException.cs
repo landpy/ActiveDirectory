@@ -18,8 +18,7 @@ namespace Landpy.ActiveDirectory.Exception
         {
             get
             {
-                string message = String.Format("The count of search result({0}) is more than one.", this.searchResultCount);
-                return message;
+                return String.Format("The count of search result({0}) is more than one.", this.searchResultCount);
             }
         }
     }

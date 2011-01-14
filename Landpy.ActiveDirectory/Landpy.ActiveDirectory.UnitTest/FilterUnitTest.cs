@@ -42,6 +42,15 @@ namespace Landpy.ActiveDirectory.UnitTest
             filter = new AndFilterDecorator(filter);
             System.DirectoryServices.SearchResult searchResutl = this.adObjectReader.ReadSearchResultByFilter(filter.BuildFilter());
             Assert.IsNotNull(searchResutl);
+
+            filter = new UserFilter();
+            Dictionary<string,string> dictionary = new Dictionary<string,string>();
+            dictionary.Add(AttributeNames.CN, "pangxiaoliang");
+            dictionary.Add(AttributeNames.CO, "China");
+            filter = new IsFilterDecorator(filter, dictionary);
+            filter = new AndFilterDecorator(filter);
+            searchResutl = this.adObjectReader.ReadSearchResultByFilter(filter.BuildFilter());
+            Assert.IsNotNull(searchResutl);
         }
     }
 }

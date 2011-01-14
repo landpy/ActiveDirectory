@@ -102,6 +102,7 @@
     <Compile Include="Entity\Object\Printer.cs" />
     <Compile Include="Entity\Object\SharedFolder.cs" />
     <Compile Include="Entity\Object\User.cs" />
+    <Compile Include="Exception\DataMissingException.cs" />
     <Compile Include="Exception\SearchResultOutOfBoundException.cs" />
     <Compile Include="Core\IADObjectReader.cs" />
     <Compile Include="LQL\Attribute.cs" />
