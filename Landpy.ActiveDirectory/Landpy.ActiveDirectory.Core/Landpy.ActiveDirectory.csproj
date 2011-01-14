@@ -90,6 +90,7 @@
     <Compile Include="Entity\Filter\Decorator\BaseFilterDecorator.cs" />
     <Compile Include="Entity\Filter\Data\UserFilter.cs" />
     <Compile Include="Entity\Filter\Builder\UserFilterBuilder.cs" />
+    <Compile Include="Entity\Filter\Decorator\IsNotFilterDecorator.cs" />
     <Compile Include="Entity\Filter\Decorator\OrFilterDecorator.cs" />
     <Compile Include="Entity\Object\BaseADObject.cs" />
     <Compile Include="Entity\Object\Computer.cs" />

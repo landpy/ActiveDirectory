@@ -6,6 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Landpy.ActiveDirectory.Core;
 using Landpy.ActiveDirectory.CommonParam;
 using Landpy.ActiveDirectory.Entity.Filter;
+using Landpy.ActiveDirectory.Entity.Object;
 
 namespace Landpy.ActiveDirectory.UnitTest
 {
@@ -40,17 +41,31 @@ namespace Landpy.ActiveDirectory.UnitTest
             filter = new UserFilter();
             filter = new IsFilterDecorator(filter, AttributeNames.CN, "pangxiaoliang");
             filter = new AndFilterDecorator(filter);
-            System.DirectoryServices.SearchResult searchResutl = this.adObjectReader.ReadSearchResultByFilter(filter.BuildFilter());
-            Assert.IsNotNull(searchResutl);
+            System.DirectoryServices.SearchResult searchResult = this.adObjectReader.ReadSearchResultByFilter(filter.BuildFilter());
+            Assert.IsNotNull(searchResult);
 
             filter = new UserFilter();
-            Dictionary<string,string> dictionary = new Dictionary<string,string>();
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
             dictionary.Add(AttributeNames.CN, "pangxiaoliang");
             dictionary.Add(AttributeNames.CO, "China");
             filter = new IsFilterDecorator(filter, dictionary);
             filter = new AndFilterDecorator(filter);
-            searchResutl = this.adObjectReader.ReadSearchResultByFilter(filter.BuildFilter());
-            Assert.IsNotNull(searchResutl);
+            searchResult = this.adObjectReader.ReadSearchResultByFilter(filter.BuildFilter());
+            Assert.IsNotNull(searchResult);
+
+            filter = new UserFilter();
+            filter = new IsNotFilterDecorator(filter, AttributeNames.CN, "pangxiaoliang");
+            filter = new AndFilterDecorator(filter);
+            System.DirectoryServices.SearchResultCollection searchResults = this.adObjectReader.ReadSearchResultsByFilter(filter.BuildFilter());
+
+            foreach (System.DirectoryServices.SearchResult result in searchResults)
+            {
+                User user = new User(result);
+                if (user.CN == "pangxiaoliang")
+                {
+                    Assert.Fail("The IsFilterDecorator has some issue.");
+                }
+            }
         }
     }
 }
