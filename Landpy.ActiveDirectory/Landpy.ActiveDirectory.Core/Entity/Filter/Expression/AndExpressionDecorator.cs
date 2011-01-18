@@ -6,9 +6,9 @@ using Landpy.ActiveDirectory.Core;
 
 namespace Landpy.ActiveDirectory.Entity.Filter
 {
-    class AndFilterDecorator : BaseFilterDecorator
+    class AndExpressionDecorator : BaseExpressionDecorator
     {
-        public AndFilterDecorator(IFilter filter)
+        public AndExpressionDecorator(IFilter filter)
             : base(filter)
         {
         }

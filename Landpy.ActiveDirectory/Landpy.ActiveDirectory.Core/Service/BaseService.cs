@@ -57,29 +57,29 @@ namespace Landpy.ActiveDirectory.Service
 
         public ADObject FindObjectByCN(string cn)
         {
-            filter = new IsFilterDecorator(filter, AttributeNames.CN, cn);
-            filter = new AndFilterDecorator(filter);
+            filter = new IsExpressionDecorator(filter, AttributeNames.CN, cn);
+            filter = new AndExpressionDecorator(filter);
             return this.FindOne(filter.BuildFilter());
         }
 
         public ADObject FindObjectByObjectGuid(Guid guid)
         {
-            filter = new IsFilterDecorator(filter, AttributeNames.ObjectGUID, ConvertUtility.ConvertGuidToGuidBinaryString(guid));
-            filter = new AndFilterDecorator(filter);
+            filter = new IsExpressionDecorator(filter, AttributeNames.ObjectGUID, ConvertUtility.ConvertGuidToGuidBinaryString(guid));
+            filter = new AndExpressionDecorator(filter);
             return this.FindOne(filter.BuildFilter());
         }
 
         public ADObject FindObjectByName(string name)
         {
-            filter = new IsFilterDecorator(filter, AttributeNames.Name, name);
-            filter = new AndFilterDecorator(filter);
+            filter = new IsExpressionDecorator(filter, AttributeNames.Name, name);
+            filter = new AndExpressionDecorator(filter);
             return this.FindOne(filter.BuildFilter());
         }
 
         public ICollection<ADObject> FindObjectsByObjectClass(string objectClass)
         {
-            filter = new IsFilterDecorator(filter, AttributeNames.ObjectClass, objectClass);
-            filter = new AndFilterDecorator(filter);
+            filter = new IsExpressionDecorator(filter, AttributeNames.ObjectClass, objectClass);
+            filter = new AndExpressionDecorator(filter);
             return this.FindAll(filter.BuildFilter());
         }
 

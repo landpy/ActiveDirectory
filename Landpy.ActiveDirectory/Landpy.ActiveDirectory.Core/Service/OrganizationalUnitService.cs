@@ -12,7 +12,7 @@ namespace Landpy.ActiveDirectory.Service
         public OrganizationalUnitService(OperatorSecurity operatorSecurity)
             : base(operatorSecurity)
         {
-            this.filter = new OrganizationalUnitFilter();
+            this.filter = new OrganizationalUnitExpression();
         }
     }
 }

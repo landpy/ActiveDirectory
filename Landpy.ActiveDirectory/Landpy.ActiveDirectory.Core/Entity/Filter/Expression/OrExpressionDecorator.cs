@@ -4,11 +4,11 @@ using System.Text;
 using Landpy.ActiveDirectory.Core;
 using Landpy.ActiveDirectory.CommonParam;
 
-namespace Landpy.ActiveDirectory.Entity.Filter.Decorator
+namespace Landpy.ActiveDirectory.Entity.Filter
 {
-    class OrFilterDecorator : BaseFilterDecorator
+    class OrExpressionDecorator : BaseExpressionDecorator
     {
-        public OrFilterDecorator(IFilter filter)
+        public OrExpressionDecorator(IFilter filter)
             : base(filter)
         {
         }

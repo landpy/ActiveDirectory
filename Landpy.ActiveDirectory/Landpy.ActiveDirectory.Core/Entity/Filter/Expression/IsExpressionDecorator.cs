@@ -7,14 +7,14 @@ using Landpy.ActiveDirectory.Exception;
 
 namespace Landpy.ActiveDirectory.Entity.Filter
 {
-    class IsNotFilterDecorator : BaseFilterDecorator
+    class IsExpressionDecorator : BaseExpressionDecorator
     {
-        public IsNotFilterDecorator(IFilter filter, string attributeName, string attributeValue)
+        public IsExpressionDecorator(IFilter filter, string attributeName, string attributeValue)
             : base(filter, attributeName, attributeValue)
         {
         }
 
-        public IsNotFilterDecorator(IFilter filter, IDictionary<string, string> attributeDictionary)
+        public IsExpressionDecorator(IFilter filter, IDictionary<string, string> attributeDictionary)
             : base(filter, attributeDictionary)
         {
         }
@@ -26,14 +26,14 @@ namespace Landpy.ActiveDirectory.Entity.Filter
             bool isCollectionAttribute = (attributeDictionary != null && attributeDictionary.Count != 0);
             if (isSingleAttribute)
             {
-                newExpression = String.Format(ExpressionTemplates.IsNotExpression, this.attributeName, this.attributeValue);
+                newExpression = String.Format(ExpressionTemplates.IsExpression, this.attributeName, this.attributeValue);
             }
             else if (isCollectionAttribute)
             {
                 StringBuilder filterStringBuilder = new StringBuilder();
                 foreach (string key in this.attributeDictionary.Keys)
                 {
-                    string expression = String.Format(ExpressionTemplates.IsNotExpression, key, this.attributeDictionary[key]);
+                    string expression = String.Format(ExpressionTemplates.IsExpression, key, this.attributeDictionary[key]);
                     filterStringBuilder.Append(expression);
                 }
                 newExpression = filterStringBuilder.ToString();

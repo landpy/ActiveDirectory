@@ -36,26 +36,26 @@ namespace Landpy.ActiveDirectory.UnitTest
         }
 
         [TestMethod]
-        public void TestFilter()
+        public void TestExpressionFilter()
         {
-            filter = new UserFilter();
-            filter = new IsFilterDecorator(filter, AttributeNames.CN, "pangxiaoliang");
-            filter = new AndFilterDecorator(filter);
+            filter = new UserExpression();
+            filter = new IsExpressionDecorator(filter, AttributeNames.CN, "pangxiaoliang");
+            filter = new AndExpressionDecorator(filter);
             System.DirectoryServices.SearchResult searchResult = this.adObjectReader.ReadSearchResultByFilter(filter.BuildFilter());
             Assert.IsNotNull(searchResult);
 
-            filter = new UserFilter();
+            filter = new UserExpression();
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
             dictionary.Add(AttributeNames.CN, "pangxiaoliang");
             dictionary.Add(AttributeNames.CO, "China");
-            filter = new IsFilterDecorator(filter, dictionary);
-            filter = new AndFilterDecorator(filter);
+            filter = new IsExpressionDecorator(filter, dictionary);
+            filter = new AndExpressionDecorator(filter);
             searchResult = this.adObjectReader.ReadSearchResultByFilter(filter.BuildFilter());
             Assert.IsNotNull(searchResult);
 
-            filter = new UserFilter();
-            filter = new IsNotFilterDecorator(filter, AttributeNames.CN, "pangxiaoliang");
-            filter = new AndFilterDecorator(filter);
+            filter = new UserExpression();
+            filter = new IsNotExpressionDecorator(filter, AttributeNames.CN, "pangxiaoliang");
+            filter = new AndExpressionDecorator(filter);
             System.DirectoryServices.SearchResultCollection searchResults = this.adObjectReader.ReadSearchResultsByFilter(filter.BuildFilter());
 
             foreach (System.DirectoryServices.SearchResult result in searchResults)
@@ -66,6 +66,26 @@ namespace Landpy.ActiveDirectory.UnitTest
                     Assert.Fail("The IsFilterDecorator has some issue.");
                 }
             }
+        }
+
+        [TestMethod]
+        public void TestCombinationFilter()
+        {
+            IFilter filter1 = new UserExpression();
+            filter1 = new IsExpressionDecorator(filter1, AttributeNames.CN, "pangxiaoliang");
+            filter1 = new IsNotExpressionDecorator(filter1, AttributeNames.CN, "Landpy");
+            filter1 = new AndExpressionDecorator(filter1);
+
+            IFilter filter2 = new AllExpression();
+            filter2 = new IsExpressionDecorator(filter2, AttributeNames.CO, "China");
+            filter2 = new IsExpressionDecorator(filter2, AttributeNames.CO, "England");
+            filter2 = new OrExpressionDecorator(filter2);
+
+            IFilter filter = new AndFilter();
+            filter.Add(filter1);
+            filter.Add(filter2);
+
+            Assert.AreEqual<string>("(&(&(objectCategory=person)(cn=pangxiaoliang)(!cn=Landpy))(|(co=China)(co=England)))", filter.BuildFilter());
         }
     }
 }

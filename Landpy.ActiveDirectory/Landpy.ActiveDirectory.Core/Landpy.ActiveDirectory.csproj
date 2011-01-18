@@ -81,17 +81,19 @@
     <Compile Include="Entity\Attribute\GuidAttribute.cs" />
     <Compile Include="Entity\Attribute\MultipleValueAttribute.cs" />
     <Compile Include="Entity\Attribute\SingleLineAttribute.cs" />
-    <Compile Include="Entity\Filter\Data\AllFilter.cs" />
-    <Compile Include="Entity\Filter\Data\OrganizationalUnitFilter.cs" />
-    <Compile Include="Entity\Filter\Decorator\IsFilterDecorator.cs" />
-    <Compile Include="Entity\Filter\Decorator\AndFilterDecorator.cs" />
-    <Compile Include="Entity\Filter\Data\BaseFilter.cs" />
+    <Compile Include="Entity\Filter\Combination\AndFilter.cs" />
+    <Compile Include="Entity\Filter\Combination\OrFilter.cs" />
+    <Compile Include="Entity\Filter\Expression\AllExpression.cs" />
+    <Compile Include="Entity\Filter\Expression\OrganizationalUnitExpression.cs" />
+    <Compile Include="Entity\Filter\Expression\IsExpressionDecorator.cs" />
+    <Compile Include="Entity\Filter\Expression\AndExpressionDecorator.cs" />
+    <Compile Include="Entity\Filter\Combination\BaseFilter.cs" />
     <Compile Include="Entity\Filter\Builder\BaseFilterBuilder.cs" />
-    <Compile Include="Entity\Filter\Decorator\BaseFilterDecorator.cs" />
-    <Compile Include="Entity\Filter\Data\UserFilter.cs" />
+    <Compile Include="Entity\Filter\Expression\BaseExpressionDecorator.cs" />
+    <Compile Include="Entity\Filter\Expression\UserExpression.cs" />
     <Compile Include="Entity\Filter\Builder\UserFilterBuilder.cs" />
-    <Compile Include="Entity\Filter\Decorator\IsNotFilterDecorator.cs" />
-    <Compile Include="Entity\Filter\Decorator\OrFilterDecorator.cs" />
+    <Compile Include="Entity\Filter\Expression\IsNotExpressionDecorator.cs" />
+    <Compile Include="Entity\Filter\Expression\OrExpressionDecorator.cs" />
     <Compile Include="Entity\Object\BaseADObject.cs" />
     <Compile Include="Entity\Object\Computer.cs" />
     <Compile Include="Entity\Object\Contact.cs" />
@@ -118,6 +120,7 @@
     <Compile Include="Entity\Attribute\AttributeSet.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Entity\Filter\Data\" />
     <Folder Include="ValueObject\" />
   </ItemGroup>
   <ItemGroup>

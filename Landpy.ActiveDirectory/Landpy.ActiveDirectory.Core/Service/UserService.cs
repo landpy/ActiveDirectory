@@ -11,7 +11,7 @@ namespace Landpy.ActiveDirectory.Service
         public UserService(OperatorSecurity operatorSecurity)
             : base(operatorSecurity)
         {
-            filter = new UserFilter();
+            filter = new UserExpression();
         }
     }
 }

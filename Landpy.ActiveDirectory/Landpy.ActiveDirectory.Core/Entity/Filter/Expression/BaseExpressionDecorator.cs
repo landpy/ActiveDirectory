@@ -5,7 +5,7 @@ using Landpy.ActiveDirectory.Core;
 
 namespace Landpy.ActiveDirectory.Entity.Filter
 {
-    abstract class BaseFilterDecorator : IFilter
+    abstract class BaseExpressionDecorator : IFilter
     {
         protected IFilter filter;
         protected string attributeName;
@@ -33,39 +33,49 @@ namespace Landpy.ActiveDirectory.Entity.Filter
             set { this.attributeNames = value; }
         }
 
-        public BaseFilterDecorator()
+        public BaseExpressionDecorator()
         {
         }
 
-        protected BaseFilterDecorator(IFilter filter)
+        protected BaseExpressionDecorator(IFilter filter)
         {
             this.filter = filter;
         }
 
-        protected BaseFilterDecorator(IFilter filter, string attributeName)
+        protected BaseExpressionDecorator(IFilter filter, string attributeName)
             : this(filter)
         {
             this.AttributeName = attributeName;
         }
 
-        protected BaseFilterDecorator(IFilter filter, string attributeName, string attributeValue)
+        protected BaseExpressionDecorator(IFilter filter, string attributeName, string attributeValue)
             : this(filter, attributeName)
         {
             this.attributeValue = attributeValue;
         }
 
-        protected BaseFilterDecorator(IFilter filter, IDictionary<string, string> attributeDictionary)
+        protected BaseExpressionDecorator(IFilter filter, IDictionary<string, string> attributeDictionary)
             : this(filter)
         {
             this.attributeDictionary = attributeDictionary;
         }
 
-        protected BaseFilterDecorator(IFilter filter, ICollection<string> attributeNames)
+        protected BaseExpressionDecorator(IFilter filter, ICollection<string> attributeNames)
             : this(filter)
         {
             this.attributeNames = attributeNames;
         }
 
         public abstract string BuildFilter();
+
+        void IFilter.Add(IFilter filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IFilter.Remove(IFilter filter)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

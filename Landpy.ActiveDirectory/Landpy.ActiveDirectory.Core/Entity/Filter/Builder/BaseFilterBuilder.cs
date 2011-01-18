@@ -63,5 +63,20 @@ namespace Landpy.ActiveDirectory.Entity.Filter
             filter.Append(")");
             return filter.ToString();
         }
+
+        string IFilter.BuildFilter()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IFilter.Add(IFilter filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IFilter.Remove(IFilter filter)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
