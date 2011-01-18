@@ -1,11 +1,14 @@
 ﻿using System;
 using System.DirectoryServices;
+using System.Collections.Generic;
+using Landpy.ActiveDirectory.Entity.Object;
+using Landpy.ActiveDirectory.Core;
 
 namespace Landpy.ActiveDirectory
 {
-    public interface IADObjectReader : IDisposable
+    public interface IADObjectReader<ADObject> where ADObject : BaseADObject
     {
-        SearchResult ReadSearchResultByFilter(string filter);
-        SearchResultCollection ReadSearchResultsByFilter(string filter);
+        ADObject ReadADObjectByFilter(IFilter filter);
+        ICollection<ADObject> ReadADObjectsByFilter(IFilter filter);
     }
 }

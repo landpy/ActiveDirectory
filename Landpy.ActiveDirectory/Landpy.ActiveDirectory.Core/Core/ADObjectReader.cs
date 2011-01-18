@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 using System.DirectoryServices;
+using Landpy.ActiveDirectory.Core;
+using Landpy.ActiveDirectory.Entity.Object;
 
 namespace Landpy.ActiveDirectory
 {
     /// <summary>
     /// The proxy of directory entry.
     /// </summary>
-    public class ADObjectReader : IADObjectReader
+    public class ADObjectReader<ADObject> : IADObjectReader<ADObject>, IDisposable where ADObject : BaseADObject
     {
         #region Field And Property
 
@@ -48,6 +50,32 @@ namespace Landpy.ActiveDirectory
             }
         }
 
+        ICollection<ADObject> IADObjectReader<ADObject>.ReadADObjectsByFilter(IFilter filter)
+        {
+            ICollection<ADObject> adObjects = new List<ADObject>();
+            SearchResultCollection searchResults = this.ReadSearchResultsByFilter(filter.BuildFilter());
+            foreach (SearchResult searchResult in searchResults)
+            {
+                if (searchResult != null)
+                {
+                    ADObject adObject = Activator.CreateInstance(typeof(ADObject), searchResult) as ADObject;
+                    adObjects.Add(adObject);
+                }
+            }
+            return adObjects;
+        }
+
+        ADObject IADObjectReader<ADObject>.ReadADObjectByFilter(IFilter filter)
+        {
+            ADObject adObject = null;
+            SearchResult searchResult = this.ReadSearchResultByFilter(filter.BuildFilter());
+            if (searchResult != null)
+            {
+                adObject = Activator.CreateInstance(typeof(ADObject), searchResult) as ADObject;
+            }
+            return adObject;
+        }
+
         #endregion
 
         #region Custom Method
@@ -57,17 +85,13 @@ namespace Landpy.ActiveDirectory
             return new DirectorySearcher(this.SearchRoot, filter);
         }
 
-        #endregion
-
-        #region IADObjectReader Members
-
-        SearchResult IADObjectReader.ReadSearchResultByFilter(string filter)
+        private SearchResult ReadSearchResultByFilter(string filter)
         {
             DirectorySearcher directorySearcher = this.GetDirectorySearcher(filter);
             return directorySearcher.FindOne();
         }
 
-        SearchResultCollection IADObjectReader.ReadSearchResultsByFilter(string filter)
+        private SearchResultCollection ReadSearchResultsByFilter(string filter)
         {
             DirectorySearcher directorySearcher = this.GetDirectorySearcher(filter);
             return directorySearcher.FindAll();

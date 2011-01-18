@@ -1,5 +1,6 @@
 ﻿using System;
 using System.DirectoryServices;
+using System.Collections.Generic;
 using Landpy.ActiveDirectory.Entity.Attribute;
 using Landpy.ActiveDirectory.CommonParam;
 
@@ -47,5 +48,13 @@ namespace Landpy.ActiveDirectory.Entity.Object
                 return thumbnailPhotoAttribute.Value as byte[];
             }
         }
+
+        //public ICollection<User> Users
+        //{
+        //    get
+        //    {
+                
+        //    }
+        //}
     }
 }

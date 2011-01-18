@@ -14,6 +14,9 @@ namespace Landpy.ActiveDirectory.UnitTest
     [TestClass]
     public class ServiceUnitTest
     {
+        private UserService userService;
+        private OrganizationalUnitService organizationalUnitService;
+
         public ServiceUnitTest()
         {
             OperatorSecurity operatorSecurity = new OperatorSecurity("LDAP://192.168.6.67", "Administrator", "liu-pxl821102");
@@ -22,8 +25,6 @@ namespace Landpy.ActiveDirectory.UnitTest
         }
 
         private TestContext testContextInstance;
-        private UserService userService;
-        private OrganizationalUnitService organizationalUnitService;
 
         /// <summary>
         ///Gets or sets the test context which provides
@@ -64,9 +65,9 @@ namespace Landpy.ActiveDirectory.UnitTest
         #endregion
 
         [TestMethod]
-        public void TestUserService()
+        public void TestADObjectService()
         {
-            User user = this.userService.FindObjectByName("pangxiaoliang");
+            User user = userService.FindObjectByCN("pangxiaoliang");
             Assert.AreEqual<Guid>(new Guid("325d590f-f344-4575-8362-569f47a108ff"), user.ObjectGUID);
             OrganizationalUnit ou = this.organizationalUnitService.FindObjectByName("LandpyTest");
             Assert.AreEqual<Guid>(new Guid("b23f6bf4-b4ad-40bc-8593-3629c5475f49"), ou.ObjectGUID);

@@ -15,12 +15,12 @@ namespace Landpy.ActiveDirectory.UnitTest
     {
         private TestContext testContextInstance;
         private IFilter filter;
-        private IADObjectReader adObjectReader;
+        private IADObjectReader<User> adObjectReader;
 
         public FilterUnitTest()
         {
             OperatorSecurity operatorSecurity = new OperatorSecurity("LDAP://192.168.6.67", "Administrator", "liu-pxl821102");
-            this.adObjectReader = new ADObjectReader(operatorSecurity);
+            this.adObjectReader = new ADObjectReader<User>(operatorSecurity);
         }
 
         public TestContext TestContext
@@ -41,8 +41,8 @@ namespace Landpy.ActiveDirectory.UnitTest
             filter = new UserExpression();
             filter = new IsExpressionDecorator(filter, AttributeNames.CN, "pangxiaoliang");
             filter = new AndExpressionDecorator(filter);
-            System.DirectoryServices.SearchResult searchResult = this.adObjectReader.ReadSearchResultByFilter(filter.BuildFilter());
-            Assert.IsNotNull(searchResult);
+            User user = this.adObjectReader.ReadADObjectByFilter(filter);
+            Assert.IsNotNull(user);
 
             filter = new UserExpression();
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
@@ -50,18 +50,17 @@ namespace Landpy.ActiveDirectory.UnitTest
             dictionary.Add(AttributeNames.CO, "China");
             filter = new IsExpressionDecorator(filter, dictionary);
             filter = new AndExpressionDecorator(filter);
-            searchResult = this.adObjectReader.ReadSearchResultByFilter(filter.BuildFilter());
-            Assert.IsNotNull(searchResult);
+            user = this.adObjectReader.ReadADObjectByFilter(filter);
+            Assert.IsNotNull(user);
 
             filter = new UserExpression();
             filter = new IsNotExpressionDecorator(filter, AttributeNames.CN, "pangxiaoliang");
             filter = new AndExpressionDecorator(filter);
-            System.DirectoryServices.SearchResultCollection searchResults = this.adObjectReader.ReadSearchResultsByFilter(filter.BuildFilter());
+            ICollection<User> users = this.adObjectReader.ReadADObjectsByFilter(filter);
 
-            foreach (System.DirectoryServices.SearchResult result in searchResults)
+            foreach (User tmpUser in users)
             {
-                User user = new User(result);
-                if (user.CN == "pangxiaoliang")
+                if (tmpUser.CN == "pangxiaoliang")
                 {
                     Assert.Fail("The IsFilterDecorator has some issue.");
                 }

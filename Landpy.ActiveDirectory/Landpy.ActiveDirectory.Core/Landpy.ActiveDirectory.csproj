@@ -88,10 +88,8 @@
     <Compile Include="Entity\Filter\Expression\IsExpressionDecorator.cs" />
     <Compile Include="Entity\Filter\Expression\AndExpressionDecorator.cs" />
     <Compile Include="Entity\Filter\Combination\BaseFilter.cs" />
-    <Compile Include="Entity\Filter\Builder\BaseFilterBuilder.cs" />
     <Compile Include="Entity\Filter\Expression\BaseExpressionDecorator.cs" />
     <Compile Include="Entity\Filter\Expression\UserExpression.cs" />
-    <Compile Include="Entity\Filter\Builder\UserFilterBuilder.cs" />
     <Compile Include="Entity\Filter\Expression\IsNotExpressionDecorator.cs" />
     <Compile Include="Entity\Filter\Expression\OrExpressionDecorator.cs" />
     <Compile Include="Entity\Object\BaseADObject.cs" />
@@ -113,14 +111,13 @@
     <Compile Include="LQL\Query.cs" />
     <Compile Include="LQL\Where.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\BaseService.cs" />
-    <Compile Include="Service\OrganizationalUnitService.cs" />
-    <Compile Include="Service\UserService.cs" />
+    <Compile Include="Service\ADObjectService.cs" />
     <Compile Include="Core\OperatorSecurity.cs" />
     <Compile Include="Entity\Attribute\AttributeSet.cs" />
+    <Compile Include="Service\OrganizationalUnitService.cs" />
+    <Compile Include="Service\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entity\Filter\Data\" />
     <Folder Include="ValueObject\" />
   </ItemGroup>
   <ItemGroup>

@@ -6,12 +6,12 @@ using Landpy.ActiveDirectory.Entity.Filter;
 
 namespace Landpy.ActiveDirectory.Service
 {
-    public class UserService : BaseService<User>
+    public class UserService : ADObjectService<User>
     {
         public UserService(OperatorSecurity operatorSecurity)
             : base(operatorSecurity)
         {
-            filter = new UserExpression();
+            this.filter = new UserExpression();
         }
     }
 }
