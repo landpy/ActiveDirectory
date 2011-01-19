@@ -58,7 +58,7 @@ namespace Landpy.ActiveDirectory
             {
                 if (searchResult != null)
                 {
-                    ADObject adObject = Activator.CreateInstance(typeof(ADObject), searchResult) as ADObject;
+                    ADObject adObject = Activator.CreateInstance(typeof(ADObject), searchResult, this.operatorSecurity) as ADObject;
                     adObjects.Add(adObject);
                 }
             }
@@ -71,7 +71,7 @@ namespace Landpy.ActiveDirectory
             SearchResult searchResult = this.ReadSearchResultByFilter(filter.BuildFilter());
             if (searchResult != null)
             {
-                adObject = Activator.CreateInstance(typeof(ADObject), searchResult) as ADObject;
+                adObject = Activator.CreateInstance(typeof(ADObject), searchResult, this.operatorSecurity) as ADObject;
             }
             return adObject;
         }

@@ -12,7 +12,7 @@ namespace Landpy.ActiveDirectory.Entity.Attribute
                 resultPropertyValueCollection.Count > 0 &&
                 resultPropertyValueCollection[0] != null)
             {
-                this.value = resultPropertyValueCollection[0].ToString();
+                this.value = resultPropertyValueCollection[0];
             }
         }
     }

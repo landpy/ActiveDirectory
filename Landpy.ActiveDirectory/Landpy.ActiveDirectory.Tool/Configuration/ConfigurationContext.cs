@@ -15,11 +15,10 @@ namespace Landpy.ActiveDirectory.Tool
 
         private ConfigurationContext()
         {
-            OperatorConfiguration opeatorConfiguration = new OperatorConfiguration();
-            operationSecurity = new OperatorSecurity();
-            operationSecurity.LdapPath = opeatorConfiguration.Path;
-            operationSecurity.UserName = opeatorConfiguration.UserName;
-            operationSecurity.Password = opeatorConfiguration.Password;
+            OperatorConfiguration operatorConfiguration = new OperatorConfiguration();
+            operationSecurity = new OperatorSecurity(operatorConfiguration.Path,
+                operatorConfiguration.UserName,
+                operatorConfiguration.Password);
         }
 
         public static ConfigurationContext CurrentConfigurationContext()

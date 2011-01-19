@@ -13,7 +13,7 @@ namespace Landpy.ActiveDirectory.Entity.Attribute
             this.searchResult = searchResult;
         }
 
-        public  BaseAttribute GetSidAttribute()
+        public BaseAttribute GetSidAttribute()
         {
             return new ByteAttribute(this.searchResult.Properties[AttributeNames.ObjectSid]);
         }
@@ -31,6 +31,16 @@ namespace Landpy.ActiveDirectory.Entity.Attribute
         public BaseAttribute GetThumbnailPhotoAttribute()
         {
             return new ByteAttribute(this.searchResult.Properties[AttributeNames.ThumbnailPhoto]);
+        }
+
+        public BaseAttribute GetDistinguishedNameAttribute()
+        {
+            return new SingleLineAttribute(this.searchResult.Properties[AttributeNames.DistinguishedName]);
+        }
+
+        public BaseAttribute GetNameAttribute()
+        {
+            return new SingleLineAttribute(this.searchResult.Properties[AttributeNames.Name]);
         }
     }
 }

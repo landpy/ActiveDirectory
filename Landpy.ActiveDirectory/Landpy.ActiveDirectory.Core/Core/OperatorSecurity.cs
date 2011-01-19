@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Landpy.ActiveDirectory
 {
-    public struct OperatorSecurity
+    public class OperatorSecurity
     {
         public OperatorSecurity(string ldapPath, string userName, string password)
         {
@@ -13,8 +13,20 @@ namespace Landpy.ActiveDirectory
             this.Password = password;
         }
 
-        public string LdapPath;
-        public string UserName;
-        public string Password;
+        public string LdapPath
+        {
+            get;
+            set;
+        }
+        public string UserName
+        {
+            get;
+            set;
+        }
+        public string Password
+        {
+            internal get;
+            set;
+        }
     }
 }

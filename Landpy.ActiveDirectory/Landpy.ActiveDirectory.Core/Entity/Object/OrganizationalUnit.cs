@@ -8,8 +8,8 @@ namespace Landpy.ActiveDirectory.Entity.Object
 {
     public class OrganizationalUnit : BaseADObject
     {
-        public OrganizationalUnit(SearchResult searchResult)
-            : base(searchResult)
+        public OrganizationalUnit(SearchResult searchResult, OperatorSecurity operatorSecurity)
+            : base(searchResult, operatorSecurity)
         {
         }
 
@@ -49,11 +49,20 @@ namespace Landpy.ActiveDirectory.Entity.Object
             }
         }
 
+        public string Name
+        {
+            get
+            {
+                BaseAttribute nameAttribute = this.attributeProvider.GetNameAttribute();
+                return nameAttribute.Value.ToString();
+            }
+        }
+
         //public ICollection<User> Users
         //{
         //    get
         //    {
-                
+
         //    }
         //}
     }

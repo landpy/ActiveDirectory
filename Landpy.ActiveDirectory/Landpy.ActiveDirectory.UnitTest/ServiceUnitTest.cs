@@ -69,6 +69,7 @@ namespace Landpy.ActiveDirectory.UnitTest
         {
             User user = userService.FindObjectByCN("pangxiaoliang");
             Assert.AreEqual<Guid>(new Guid("325d590f-f344-4575-8362-569f47a108ff"), user.ObjectGUID);
+            Assert.AreEqual<string>("NewOU", user.OrganizationalUnit.Name);
             OrganizationalUnit ou = this.organizationalUnitService.FindObjectByName("LandpyTest");
             Assert.AreEqual<Guid>(new Guid("b23f6bf4-b4ad-40bc-8593-3629c5475f49"), ou.ObjectGUID);
         }

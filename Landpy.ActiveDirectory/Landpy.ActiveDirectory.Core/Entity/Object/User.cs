@@ -3,6 +3,8 @@ using System.DirectoryServices;
 using Landpy.ActiveDirectory.Entity.Attribute;
 using Landpy.ActiveDirectory.CommonParam;
 using System.Security.Principal;
+using Landpy.ActiveDirectory.Core;
+using Landpy.ActiveDirectory.Entity.Filter;
 
 namespace Landpy.ActiveDirectory.Entity.Object
 {
@@ -11,8 +13,8 @@ namespace Landpy.ActiveDirectory.Entity.Object
     /// </summary>
     public class User : BaseADObject
     {
-        public User(SearchResult searchResult)
-            : base(searchResult)
+        public User(SearchResult searchResult, OperatorSecurity operatorSecurity)
+            : base(searchResult, operatorSecurity)
         {
         }
 
@@ -20,6 +22,8 @@ namespace Landpy.ActiveDirectory.Entity.Object
         private Guid objectGUID;
         private string cn;
         private byte[] thumbnailPhoto;
+        private string distinguishedName;
+        private OrganizationalUnit organizationalUnit;
 
         /// <summary>
         /// The objectSid attribute.
@@ -101,6 +105,32 @@ namespace Landpy.ActiveDirectory.Entity.Object
             set
             {
                 this.thumbnailPhoto = value;
+            }
+        }
+
+        public string DistinguishedName
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(this.distinguishedName))
+                {
+                    BaseAttribute distinguishedNameAttribute = this.attributeProvider.GetDistinguishedNameAttribute();
+                    this.distinguishedName = distinguishedNameAttribute.Value.ToString();
+                }
+                return this.distinguishedName;
+            }
+        }
+
+        public OrganizationalUnit OrganizationalUnit
+        {
+            get
+            {
+                string ouDN = this.DistinguishedName.Substring(this.DistinguishedName.IndexOf(',') + 1);
+                IADObjectReader<OrganizationalUnit> adObjectReader = new ADObjectReader<OrganizationalUnit>(this.operatorSecurity);
+                IFilter filter = new OrganizationalUnitExpression();
+                filter = new IsExpressionDecorator(filter, AttributeNames.DistinguishedName, ouDN);
+                filter = new AndExpressionDecorator(filter);
+                return adObjectReader.ReadADObjectByFilter(filter);
             }
         }
     }
