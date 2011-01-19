@@ -72,6 +72,7 @@ namespace Landpy.ActiveDirectory.UnitTest
             Assert.AreEqual<string>("NewOU", user.OrganizationalUnit.Name);
             OrganizationalUnit ou = this.organizationalUnitService.FindObjectByName("LandpyTest");
             Assert.AreEqual<Guid>(new Guid("b23f6bf4-b4ad-40bc-8593-3629c5475f49"), ou.ObjectGUID);
+            OrganizationalUnit userOU = this.organizationalUnitService.FindObjectByName("PangLevel1OU");
         }
     }
 }

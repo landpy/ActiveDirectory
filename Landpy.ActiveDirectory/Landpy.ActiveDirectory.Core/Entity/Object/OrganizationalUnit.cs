@@ -2,7 +2,10 @@
 using System.DirectoryServices;
 using System.Collections.Generic;
 using Landpy.ActiveDirectory.Entity.Attribute;
+using Landpy.ActiveDirectory;
 using Landpy.ActiveDirectory.CommonParam;
+using Landpy.ActiveDirectory.Core;
+using Landpy.ActiveDirectory.Entity.Filter;
 
 namespace Landpy.ActiveDirectory.Entity.Object
 {
@@ -58,12 +61,13 @@ namespace Landpy.ActiveDirectory.Entity.Object
             }
         }
 
-        //public ICollection<User> Users
-        //{
-        //    get
-        //    {
-
-        //    }
-        //}
+        public string DistinguishedName
+        {
+            get
+            {
+                BaseAttribute distinguishedNameAttribute = this.attributeProvider.GetDistinguishedNameAttribute();
+                return distinguishedNameAttribute.Value.ToString();
+            }
+        }
     }
 }

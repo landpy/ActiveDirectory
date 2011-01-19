@@ -84,6 +84,7 @@
     <Compile Include="Entity\Filter\Combination\AndFilter.cs" />
     <Compile Include="Entity\Filter\Combination\OrFilter.cs" />
     <Compile Include="Entity\Filter\Expression\AllExpression.cs" />
+    <Compile Include="Entity\Filter\Expression\EndWithExpressionDecorator.cs" />
     <Compile Include="Entity\Filter\Expression\OrganizationalUnitExpression.cs" />
     <Compile Include="Entity\Filter\Expression\IsExpressionDecorator.cs" />
     <Compile Include="Entity\Filter\Expression\AndExpressionDecorator.cs" />
