@@ -62,10 +62,11 @@
     <Reference Include="System.DirectoryServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SystemTest\ReadADObjectUnitTest.cs" />
     <Compile Include="FilterUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceUnitTest.cs" />
-    <Compile Include="UnitTest.cs" />
+    <Compile Include="SystemTest\WriteADObjectUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AuthoringTests.txt" />

@@ -5,8 +5,8 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Landpy.ActiveDirectory.Core;
 using Landpy.ActiveDirectory.CommonParam;
-using Landpy.ActiveDirectory.Entity.Filter;
-using Landpy.ActiveDirectory.Entity.Object;
+using Landpy.ActiveDirectory.Filter;
+using Landpy.ActiveDirectory.Object;
 
 namespace Landpy.ActiveDirectory.UnitTest
 {

@@ -4,7 +4,7 @@ using System.Text;
 using Landpy.ActiveDirectory.CommonParam;
 using Landpy.ActiveDirectory.Core;
 
-namespace Landpy.ActiveDirectory.Entity.Filter
+namespace Landpy.ActiveDirectory.Filter
 {
     class UserExpression : IFilter
     {

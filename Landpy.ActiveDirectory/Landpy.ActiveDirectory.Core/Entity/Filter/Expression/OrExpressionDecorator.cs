@@ -4,7 +4,7 @@ using System.Text;
 using Landpy.ActiveDirectory.Core;
 using Landpy.ActiveDirectory.CommonParam;
 
-namespace Landpy.ActiveDirectory.Entity.Filter
+namespace Landpy.ActiveDirectory.Filter
 {
     class OrExpressionDecorator : BaseExpressionDecorator
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.DirectoryServices;
 
-namespace Landpy.ActiveDirectory.Entity.Attribute
+namespace Landpy.ActiveDirectory.Attribute
 {
     public class ByteAttribute : BaseAttribute
     {

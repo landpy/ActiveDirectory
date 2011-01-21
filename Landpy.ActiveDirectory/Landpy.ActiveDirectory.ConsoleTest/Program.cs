@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Landpy.ActiveDirectory.Service;
-using Landpy.ActiveDirectory.Entity.Object;
+using Landpy.ActiveDirectory.Object;
 using System.Windows.Forms;
 using System.Drawing;
 using System.IO;

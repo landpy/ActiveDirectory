@@ -1,12 +1,12 @@
 ﻿using System;
 using System.DirectoryServices;
-using Landpy.ActiveDirectory.Entity.Attribute;
+using Landpy.ActiveDirectory.Attribute;
 using Landpy.ActiveDirectory.CommonParam;
 using System.Security.Principal;
 using Landpy.ActiveDirectory.Core;
-using Landpy.ActiveDirectory.Entity.Filter;
+using Landpy.ActiveDirectory.Filter;
 
-namespace Landpy.ActiveDirectory.Entity.Object
+namespace Landpy.ActiveDirectory.Object
 {
     /// <summary>
     /// The user AD object.

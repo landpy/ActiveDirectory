@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Landpy.ActiveDirectory.Entity.Object
+namespace Landpy.ActiveDirectory.Object
 {
     class SharedFolder
     {

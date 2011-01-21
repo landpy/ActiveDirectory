@@ -2,7 +2,7 @@
 using System.DirectoryServices;
 using Landpy.ActiveDirectory.CommonParam;
 
-namespace Landpy.ActiveDirectory.Entity.Attribute
+namespace Landpy.ActiveDirectory.Attribute
 {
     public class AttributeProvider
     {

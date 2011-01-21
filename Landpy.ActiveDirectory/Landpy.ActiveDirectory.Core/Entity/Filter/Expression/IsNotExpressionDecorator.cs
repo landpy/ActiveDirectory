@@ -5,7 +5,7 @@ using Landpy.ActiveDirectory.Core;
 using Landpy.ActiveDirectory.CommonParam;
 using Landpy.ActiveDirectory.Exception;
 
-namespace Landpy.ActiveDirectory.Entity.Filter
+namespace Landpy.ActiveDirectory.Filter
 {
     class IsNotExpressionDecorator : BaseExpressionDecorator
     {

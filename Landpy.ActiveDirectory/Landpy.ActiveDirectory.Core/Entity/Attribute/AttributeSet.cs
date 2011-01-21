@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.DirectoryServices;
 
-namespace Landpy.ActiveDirectory.Entity.Attribute
+namespace Landpy.ActiveDirectory.Attribute
 {
     class AttributeSet : IEnumerable
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Landpy.ActiveDirectory.Core;
 
-namespace Landpy.ActiveDirectory.Entity.Filter
+namespace Landpy.ActiveDirectory.Filter
 {
     abstract class BaseExpressionDecorator : IFilter
     {

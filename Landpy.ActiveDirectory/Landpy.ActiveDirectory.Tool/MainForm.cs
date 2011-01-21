@@ -5,10 +5,10 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using Landpy.ActiveDirectory.Entity.Attribute;
+using Landpy.ActiveDirectory.Attribute;
 using Landpy.ActiveDirectory.CommonParam;
 using Landpy.ActiveDirectory.Service;
-using Landpy.ActiveDirectory.Entity;
+using Landpy.ActiveDirectory;
 using System.IO;
 
 namespace Landpy.ActiveDirectory.Tool

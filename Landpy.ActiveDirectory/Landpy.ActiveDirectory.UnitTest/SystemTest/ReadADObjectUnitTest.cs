@@ -4,9 +4,7 @@ using System.DirectoryServices;
 using System.Text;
 using Landpy.ActiveDirectory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Landpy.ActiveDirectory.Core;
-using Landpy.ActiveDirectory.Entity.Filter;
-using Landpy.ActiveDirectory.CommonParam;
+using Landpy.ActiveDirectory.Object;
 
 namespace Landpy.ActiveDirectory.UnitTest
 {
@@ -14,15 +12,14 @@ namespace Landpy.ActiveDirectory.UnitTest
     /// Summary description for UnitTest1
     /// </summary>
     [TestClass]
-    public class UnitTest
+    public class ReadADObjectUnitTest
     {
-        public UnitTest()
+        public ReadADObjectUnitTest()
         {
-            OperatorSecurity operatorSecurity = new OperatorSecurity("LDAP://192.168.6.67", "Administrator", "liu-pxl821102");
         }
 
+        private OperatorSecurity operatorSecurity;
         private TestContext testContextInstance;
-        private IFilter filter;
 
         /// <summary>
         ///Gets or sets the test context which provides
@@ -53,8 +50,11 @@ namespace Landpy.ActiveDirectory.UnitTest
         // public static void MyClassCleanup() { }
         //
         // Use TestInitialize to run code before running each test 
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
+        [TestInitialize()]
+        public void MyTestInitialize()
+        {
+            operatorSecurity = new OperatorSecurity("LDAP://192.168.6.67", "Administrator", "liu-pxl821102");
+        }
         //
         // Use TestCleanup to run code after each test has run
         // [TestCleanup()]
@@ -65,10 +65,13 @@ namespace Landpy.ActiveDirectory.UnitTest
         [TestMethod]
         public void TestADObjectReader()
         {
-            //filter = new AllFilter();
-            //filter = new IsFilterDecorator(filter, AttributeNames.CN, "Administrator");
-            //SearchResult searchResult = this.adObjectReader.ReadSearchResultByFilter(filter.BuildFilter());
-            //Assert.IsNotNull(searchResult);
+            //IADObjectReader<User> reader = new ADObjectReader<User>(this.operatorSecurity);
+            //IFilter filter = new UserExpression();
+            //filter = new IsExpressionDecorator(filter, AttributeNames.CN, "pangxiaoliang");
+            //filter = new AndExpressionDecorator(filter);
+            //User user = this.adObjectReader.ReadADObjectByFilter(filter);
+            //Assert.IsNotNull(user);
+            //reader.ReadADObjectByFilter(
         }
     }
 }

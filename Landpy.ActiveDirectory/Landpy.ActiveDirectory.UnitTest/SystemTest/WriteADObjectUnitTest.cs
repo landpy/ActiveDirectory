@@ -3,25 +3,20 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Landpy.ActiveDirectory.Service;
-using Landpy.ActiveDirectory.Object;
 
 namespace Landpy.ActiveDirectory.UnitTest
 {
     /// <summary>
-    /// Summary description for ServiceUnitTest
+    /// Summary description for WriteADObjectUnitTest
     /// </summary>
     [TestClass]
-    public class ServiceUnitTest
+    public class WriteADObjectUnitTest
     {
-        private UserService userService;
-        private OrganizationalUnitService organizationalUnitService;
-
-        public ServiceUnitTest()
+        public WriteADObjectUnitTest()
         {
-            OperatorSecurity operatorSecurity = new OperatorSecurity("LDAP://192.168.6.67", "Administrator", "liu-pxl821102");
-            this.userService = new UserService(operatorSecurity);
-            this.organizationalUnitService = new OrganizationalUnitService(operatorSecurity);
+            //
+            // TODO: Add constructor logic here
+            //
         }
 
         private TestContext testContextInstance;
@@ -65,14 +60,11 @@ namespace Landpy.ActiveDirectory.UnitTest
         #endregion
 
         [TestMethod]
-        public void TestADObjectService()
+        public void TestMethod1()
         {
-            User user = userService.FindObjectByCN("pangxiaoliang");
-            Assert.AreEqual<Guid>(new Guid("325d590f-f344-4575-8362-569f47a108ff"), user.ObjectGUID);
-            Assert.AreEqual<string>("NewOU", user.OrganizationalUnit.Name);
-            OrganizationalUnit ou = this.organizationalUnitService.FindObjectByName("LandpyTest");
-            Assert.AreEqual<Guid>(new Guid("b23f6bf4-b4ad-40bc-8593-3629c5475f49"), ou.ObjectGUID);
-            OrganizationalUnit userOU = this.organizationalUnitService.FindObjectByName("PangLevel1OU");
+            //
+            // TODO: Add test logic here
+            //
         }
     }
 }

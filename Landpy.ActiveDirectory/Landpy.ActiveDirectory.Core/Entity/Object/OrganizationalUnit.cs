@@ -1,13 +1,13 @@
 ﻿using System;
 using System.DirectoryServices;
 using System.Collections.Generic;
-using Landpy.ActiveDirectory.Entity.Attribute;
+using Landpy.ActiveDirectory.Attribute;
 using Landpy.ActiveDirectory;
 using Landpy.ActiveDirectory.CommonParam;
 using Landpy.ActiveDirectory.Core;
-using Landpy.ActiveDirectory.Entity.Filter;
+using Landpy.ActiveDirectory.Filter;
 
-namespace Landpy.ActiveDirectory.Entity.Object
+namespace Landpy.ActiveDirectory.Object
 {
     public class OrganizationalUnit : BaseADObject
     {

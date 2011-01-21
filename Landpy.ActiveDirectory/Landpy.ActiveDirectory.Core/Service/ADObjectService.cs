@@ -2,9 +2,9 @@
 using System;
 using System.DirectoryServices;
 using System.Text;
-using Landpy.ActiveDirectory.Entity.Object;
+using Landpy.ActiveDirectory.Object;
 using Landpy.ActiveDirectory.Core;
-using Landpy.ActiveDirectory.Entity.Filter;
+using Landpy.ActiveDirectory.Filter;
 using Landpy.ActiveDirectory.CommonParam;
 
 namespace Landpy.ActiveDirectory.Service
