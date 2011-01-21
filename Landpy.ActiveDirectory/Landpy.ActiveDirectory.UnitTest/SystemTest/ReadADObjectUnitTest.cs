@@ -5,6 +5,8 @@ using System.Text;
 using Landpy.ActiveDirectory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Landpy.ActiveDirectory.Object;
+using Landpy.ActiveDirectory.Filter;
+using Landpy.ActiveDirectory.CommonParam;
 
 namespace Landpy.ActiveDirectory.UnitTest
 {
@@ -65,13 +67,12 @@ namespace Landpy.ActiveDirectory.UnitTest
         [TestMethod]
         public void TestADObjectReader()
         {
-            //IADObjectReader<User> reader = new ADObjectReader<User>(this.operatorSecurity);
-            //IFilter filter = new UserExpression();
-            //filter = new IsExpressionDecorator(filter, AttributeNames.CN, "pangxiaoliang");
-            //filter = new AndExpressionDecorator(filter);
-            //User user = this.adObjectReader.ReadADObjectByFilter(filter);
-            //Assert.IsNotNull(user);
-            //reader.ReadADObjectByFilter(
+            IADObjectReader<User> reader = new ADObjectReader<User>(this.operatorSecurity);
+            IFilter filter = new UserExpression();
+            filter = new IsExpressionDecorator(filter, AttributeNames.CN, "pangxiaoliang");
+            filter = new AndExpressionDecorator(filter);
+            User user = reader.ReadADObjectByFilter(filter);
+            Assert.IsNotNull(user);
         }
     }
 }

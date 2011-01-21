@@ -2,7 +2,7 @@
 using System.DirectoryServices;
 using System.Collections.Generic;
 using Landpy.ActiveDirectory.Object;
-using Landpy.ActiveDirectory.Core;
+using Landpy.ActiveDirectory.Filter;
 
 namespace Landpy.ActiveDirectory
 {

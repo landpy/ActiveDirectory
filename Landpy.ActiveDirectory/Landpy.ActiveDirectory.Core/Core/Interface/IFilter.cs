@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Landpy.ActiveDirectory
+namespace Landpy.ActiveDirectory.Filter
 {
     public interface IFilter
     {
