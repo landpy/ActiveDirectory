@@ -1,9 +1,8 @@
 ﻿using System;
 using System.DirectoryServices;
+using System.Security.Principal;
 using Landpy.ActiveDirectory.Attribute;
 using Landpy.ActiveDirectory.CommonParam;
-using System.Security.Principal;
-using Landpy.ActiveDirectory.Core;
 using Landpy.ActiveDirectory.Filter;
 
 namespace Landpy.ActiveDirectory.Object

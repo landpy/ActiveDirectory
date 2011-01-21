@@ -1,5 +1,4 @@
-﻿using System;
-using System.DirectoryServices;
+﻿using System.DirectoryServices;
 using Landpy.ActiveDirectory.CommonParam;
 
 namespace Landpy.ActiveDirectory.Attribute

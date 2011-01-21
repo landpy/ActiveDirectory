@@ -1,8 +1,5 @@
-﻿using Landpy.ActiveDirectory.Object;
-using System.Collections.Generic;
-using System.DirectoryServices;
-using System;
-using Landpy.ActiveDirectory.Filter;
+﻿using Landpy.ActiveDirectory.Filter;
+using Landpy.ActiveDirectory.Object;
 
 namespace Landpy.ActiveDirectory.Service
 {

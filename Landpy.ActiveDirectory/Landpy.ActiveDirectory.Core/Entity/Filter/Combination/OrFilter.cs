@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 using Landpy.ActiveDirectory.CommonParam;
-using Landpy.ActiveDirectory.Core;
 
 namespace Landpy.ActiveDirectory.Filter
 {

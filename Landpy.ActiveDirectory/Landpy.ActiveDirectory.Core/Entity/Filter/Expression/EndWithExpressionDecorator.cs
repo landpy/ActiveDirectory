@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Landpy.ActiveDirectory.CommonParam;
-using Landpy.ActiveDirectory.Core;
 
 namespace Landpy.ActiveDirectory.Filter
 {
@@ -13,10 +10,14 @@ namespace Landpy.ActiveDirectory.Filter
         {
         }
 
+        public EndWithExpressionDecorator(IFilter filter, IDictionary<string, string> attributeDictionary)
+            : base(filter, attributeDictionary)
+        {
+        }
+
         public override string BuildFilter()
         {
-            string newExpression = String.Format(ExpressionTemplates.EndWithExpression, this.attributeName, this.attributeValue);
-            return String.Format(ExpressionTemplates.Join, this.filter.BuildFilter(), newExpression);
+            return this.BuildTwoParamsFilter(ExpressionTemplates.EndWithExpression);
         }
     }
 }

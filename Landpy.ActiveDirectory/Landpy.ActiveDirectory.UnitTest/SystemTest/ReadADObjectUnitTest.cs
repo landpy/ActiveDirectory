@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Landpy.ActiveDirectory.Object;
 using Landpy.ActiveDirectory.Filter;
 using Landpy.ActiveDirectory.CommonParam;
+using Landpy.ActiveDirectory.Service;
 
 namespace Landpy.ActiveDirectory.UnitTest
 {
@@ -69,10 +70,18 @@ namespace Landpy.ActiveDirectory.UnitTest
         {
             IADObjectReader<User> reader = new ADObjectReader<User>(this.operatorSecurity);
             IFilter filter = new UserExpression();
-            filter = new IsExpressionDecorator(filter, AttributeNames.CN, "pangxiaoliang");
+            filter = new EndWithExpressionDecorator(filter, AttributeNames.CN, "liang");
             filter = new AndExpressionDecorator(filter);
             User user = reader.ReadADObjectByFilter(filter);
             Assert.IsNotNull(user);
+        }
+
+        [TestMethod]
+        public void TestService()
+        {
+            UserService userService = new UserService(this.operatorSecurity);
+            User user = userService.FindObjectByCN("pangxiaoliang");
+            Assert.AreEqual<string>("NewOU", user.OrganizationalUnit.Name);
         }
     }
 }

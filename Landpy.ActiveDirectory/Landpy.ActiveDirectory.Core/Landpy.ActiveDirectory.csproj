@@ -85,11 +85,14 @@
     <Compile Include="Entity\Filter\Combination\OrFilter.cs" />
     <Compile Include="Entity\Filter\Expression\AllExpression.cs" />
     <Compile Include="Entity\Filter\Expression\EndWithExpressionDecorator.cs" />
+    <Compile Include="Entity\Filter\Expression\HasAValueExpressionDecorator.cs" />
+    <Compile Include="Entity\Filter\Expression\HasNoValueExpressionDecorator.cs" />
     <Compile Include="Entity\Filter\Expression\OrganizationalUnitExpression.cs" />
     <Compile Include="Entity\Filter\Expression\IsExpressionDecorator.cs" />
     <Compile Include="Entity\Filter\Expression\AndExpressionDecorator.cs" />
     <Compile Include="Entity\Filter\Combination\BaseFilter.cs" />
     <Compile Include="Entity\Filter\Expression\BaseExpressionDecorator.cs" />
+    <Compile Include="Entity\Filter\Expression\StartWithExpressionDecorator.cs" />
     <Compile Include="Entity\Filter\Expression\UserExpression.cs" />
     <Compile Include="Entity\Filter\Expression\IsNotExpressionDecorator.cs" />
     <Compile Include="Entity\Filter\Expression\OrExpressionDecorator.cs" />

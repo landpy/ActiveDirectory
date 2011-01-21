@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Landpy.ActiveDirectory.Core;
+using Landpy.ActiveDirectory.CommonParam;
+using Landpy.ActiveDirectory.Exception;
 
 namespace Landpy.ActiveDirectory.Filter
 {
@@ -67,6 +68,58 @@ namespace Landpy.ActiveDirectory.Filter
         }
 
         public abstract string BuildFilter();
+
+        protected string BuildTwoParamsFilter(string expressionTemplate)
+        {
+            string newExpression = String.Empty;
+            bool isSingleAttribute = (!String.IsNullOrEmpty(this.attributeName) && !String.IsNullOrEmpty(this.attributeValue));
+            bool isCollectionAttribute = (attributeDictionary != null && attributeDictionary.Count != 0);
+            if (isSingleAttribute)
+            {
+                newExpression = String.Format(expressionTemplate, this.attributeName, this.attributeValue);
+            }
+            else if (isCollectionAttribute)
+            {
+                StringBuilder filterStringBuilder = new StringBuilder();
+                foreach (string key in this.attributeDictionary.Keys)
+                {
+                    string expression = String.Format(expressionTemplate, key, this.attributeDictionary[key]);
+                    filterStringBuilder.Append(expression);
+                }
+                newExpression = filterStringBuilder.ToString();
+            }
+            else
+            {
+                throw new DataMissingException("(AttributeName, AttributeValue) or (AttributeDictionary).");
+            }
+            return String.Format(ExpressionTemplates.Join, this.filter.BuildFilter(), newExpression);
+        }
+
+        protected string BuildOneParamFilter(string expressionTemplate)
+        {
+            string newExpression = String.Empty;
+            bool isSingleAttribute = (!String.IsNullOrEmpty(this.attributeName) && !String.IsNullOrEmpty(this.attributeValue));
+            bool isCollectionAttribute = (attributeDictionary != null && attributeDictionary.Count != 0);
+            if (isSingleAttribute)
+            {
+                newExpression = String.Format(expressionTemplate, this.attributeName);
+            }
+            else if (isCollectionAttribute)
+            {
+                StringBuilder filterStringBuilder = new StringBuilder();
+                foreach (string attributeName in this.attributeNames)
+                {
+                    string expression = String.Format(expressionTemplate, attributeName);
+                    filterStringBuilder.Append(expression);
+                }
+                newExpression = filterStringBuilder.ToString();
+            }
+            else
+            {
+                throw new DataMissingException("(AttributeName) or (AttributeNames).");
+            }
+            return String.Format(ExpressionTemplates.Join, this.filter.BuildFilter(), newExpression);
+        }
 
         void IFilter.Add(IFilter filter)
         {
