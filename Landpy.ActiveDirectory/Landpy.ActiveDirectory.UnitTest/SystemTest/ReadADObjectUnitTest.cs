@@ -80,8 +80,11 @@ namespace Landpy.ActiveDirectory.UnitTest
         public void TestService()
         {
             UserService userService = new UserService(this.operatorSecurity);
-            User user = userService.FindObjectByCN("pangxiaoliang");
+            User user = userService.FindObjectByCNStartWith("pangxiao");
             Assert.AreEqual<string>("NewOU", user.OrganizationalUnit.Name);
+            User newUser = userService.FindObjectBySid(user.ObjectSid);
+            Assert.AreEqual<string>(user.DistinguishedName, newUser.DistinguishedName);
+            userService.Flush();
         }
     }
 }

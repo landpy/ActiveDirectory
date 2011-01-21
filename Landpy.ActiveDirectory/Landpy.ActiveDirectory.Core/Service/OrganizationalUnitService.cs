@@ -10,5 +10,10 @@ namespace Landpy.ActiveDirectory.Service
         {
             this.filter = new OrganizationalUnitExpression();
         }
+
+        public override void Flush()
+        {
+            this.filter = new OrganizationalUnitExpression();
+        }
     }
 }

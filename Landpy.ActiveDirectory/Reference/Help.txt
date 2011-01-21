@@ -18,3 +18,5 @@
 	4. "Share Folder" in "OU" by "Name, Keyword"
 	5. "Organizational Unit" in "OU" by "Name"
 	6. "Message Queuing Queue" in "OU" by "Label, Type ID"
+4) Active Directory Schema
+http://msdn.microsoft.com/en-us/library/ms675085(VS.85).aspx

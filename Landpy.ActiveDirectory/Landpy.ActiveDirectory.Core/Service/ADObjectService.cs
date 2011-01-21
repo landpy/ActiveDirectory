@@ -7,7 +7,7 @@ using Landpy.ActiveDirectory.Object;
 
 namespace Landpy.ActiveDirectory.Service
 {
-    public class ADObjectService<ADObject> where ADObject : BaseADObject
+    public abstract class ADObjectService<ADObject> where ADObject : BaseADObject
     {
         #region Member Data
 
@@ -27,11 +27,18 @@ namespace Landpy.ActiveDirectory.Service
 
         #endregion
 
-        #region Interface Method
+        #region Public Method
 
         public ADObject FindObjectByCN(string cn)
         {
             filter = new IsExpressionDecorator(filter, AttributeNames.CN, cn);
+            filter = new AndExpressionDecorator(filter);
+            return this.adObjectReader.ReadADObjectByFilter(filter);
+        }
+
+        public ADObject FindObjectByCNStartWith(string cnStart)
+        {
+            filter = new StartWithExpressionDecorator(filter, AttributeNames.CN, cnStart);
             filter = new AndExpressionDecorator(filter);
             return this.adObjectReader.ReadADObjectByFilter(filter);
         }
@@ -56,6 +63,8 @@ namespace Landpy.ActiveDirectory.Service
             filter = new AndExpressionDecorator(filter);
             return this.adObjectReader.ReadADObjectsByFilter(filter);
         }
+
+        public abstract void Flush();
 
         #endregion
 

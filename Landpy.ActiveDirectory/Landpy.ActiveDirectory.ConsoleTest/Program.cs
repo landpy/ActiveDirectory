@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Landpy.ActiveDirectory.Service;
 using Landpy.ActiveDirectory.Object;
-using System.Windows.Forms;
-using System.Drawing;
-using System.IO;
+using Landpy.ActiveDirectory.Service;
 
 namespace Landpy.ActiveDirectory.ConsoleTest
 {
