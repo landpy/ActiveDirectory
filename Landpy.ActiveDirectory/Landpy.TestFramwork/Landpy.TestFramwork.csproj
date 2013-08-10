@@ -35,17 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net">
-      <HintPath>..\ReferenceAssembly\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="Spring.Aop, Version=1.3.2.423, Culture=neutral, PublicKeyToken=15fd9ef9a2ec3a95, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ReferenceAssembly\Spring.Aop.dll</HintPath>
-    </Reference>
-    <Reference Include="Spring.Core, Version=1.3.2.423, Culture=neutral, PublicKeyToken=15fd9ef9a2ec3a95, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ReferenceAssembly\Spring.Core.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />

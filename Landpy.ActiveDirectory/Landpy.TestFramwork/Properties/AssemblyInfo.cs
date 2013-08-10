@@ -8,5 +8,3 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Landpy.CruiseControlNet.Infrastructure")]
 [assembly: AssemblyProduct("Landpy.CruiseControlNet.Infrastructure")]
 [assembly: Guid("db5f5b69-b11c-4634-9d07-d21cc9f6d7e3")]
-// Log4net
-[assembly: log4net.Config.XmlConfigurator(Watch = true)]
