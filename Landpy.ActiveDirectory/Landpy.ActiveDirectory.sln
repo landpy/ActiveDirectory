@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reference", "Reference", "{366988A8-0E5F-4C73-9FD1-149CB8B8194B}"
 	ProjectSection(SolutionItems) = preProject
 		Reference\Help.txt = Reference\Help.txt
@@ -8,10 +8,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reference", "Reference", "{
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A1CD4CC0-1B1E-4591-B4F6-7043C6D472ED}"
-	ProjectSection(SolutionItems) = preProject
-		Landpy.ActiveDirectory.vsmdi = Landpy.ActiveDirectory.vsmdi
-		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Landpy.ActiveDirectory", "Landpy.ActiveDirectory.Core\Landpy.ActiveDirectory.csproj", "{B3CA29C4-77CB-4A79-B7F5-66A3D4C3C0F1}"
 EndProject
@@ -22,9 +18,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Landpy.ActiveDirectory.UnitTest", "Landpy.ActiveDirectory.UnitTest\Landpy.ActiveDirectory.UnitTest.csproj", "{D7AE1964-50CE-4D67-BC77-5961DB9CC84E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schema", "Schema", "{2694BB59-08F7-4DC2-B54B-1B898F5AADBC}"
-	ProjectSection(SolutionItems) = preProject
-		Query.xsd = Query.xsd
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -44,9 +37,6 @@ Global
 		SccProjectUniqueName4 = Landpy.ActiveDirectory.UnitTest\\Landpy.ActiveDirectory.UnitTest.csproj
 		SccProjectName4 = Landpy.ActiveDirectory.UnitTest
 		SccLocalPath4 = Landpy.ActiveDirectory.UnitTest
-	EndGlobalSection
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = Landpy.ActiveDirectory.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
