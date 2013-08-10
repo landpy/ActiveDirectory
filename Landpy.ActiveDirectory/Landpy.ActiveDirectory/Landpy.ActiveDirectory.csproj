@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B7E4E414-DD60-45CD-9473-2667DC2684AF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Landpy.ActiveDirectory</RootNamespace>
+    <AssemblyName>Landpy.ActiveDirectory</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <AntlrBuildTaskPath>$(ProjectDir)..\Reference\Antlr</AntlrBuildTaskPath>
+    <!-- Path to the ANTLR Tool itself. -->
+    <AntlrToolPath>$(ProjectDir)..\Reference\Antlr\Antlr3.exe</AntlrToolPath>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Landpy.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\Reference\Antlr\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\ADOperator.cs" />
+    <Compile Include="Core\DirectoryEntryRepository.cs" />
+    <Compile Include="Core\Filter\ExpressionTemplates.cs" />
+    <Compile Include="Core\Filter\Expression\And.cs" />
+    <Compile Include="Core\Filter\Expression\AttributeKeyFilter.cs" />
+    <Compile Include="Core\Filter\Expression\AttributeKeyValueFilter.cs" />
+    <Compile Include="Core\Filter\Expression\Decorator.cs" />
+    <Compile Include="Core\Filter\Expression\EndWith.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Filter\Expression\HasAValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Filter\Expression\HasNoValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Filter\Expression\Is.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Filter\Expression\IsComputer.cs" />
+    <Compile Include="Core\Filter\Expression\IsContact.cs" />
+    <Compile Include="Core\Filter\Expression\IsContainer.cs" />
+    <Compile Include="Core\Filter\Expression\IsDomain.cs" />
+    <Compile Include="Core\Filter\Expression\IsGroup.cs" />
+    <Compile Include="Core\Filter\Expression\IsNot.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Filter\Expression\IsOU.cs" />
+    <Compile Include="Core\Filter\Expression\IsPasswordSettings.cs" />
+    <Compile Include="Core\Filter\Expression\IsPerson.cs" />
+    <Compile Include="Core\Filter\Expression\IsUser.cs" />
+    <Compile Include="Core\Filter\Expression\Or.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Filter\Expression\StartWith.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Filter\FilterStrings.cs" />
+    <Compile Include="Core\Filter\IFilter.cs" />
+    <Compile Include="Core\IADOperator.cs" />
+    <Compile Include="Core\ADOperatorInfo.cs" />
+    <Compile Include="Core\LDAPPath.cs" />
+    <Compile Include="Core\UseNameAdapter.cs" />
+    <Compile Include="Entity\Attribute\Name\AttributeNames.cs" />
+    <Compile Include="Entity\Attribute\Name\ComputerAttributeNames.cs" />
+    <Compile Include="Entity\Attribute\Name\ContactAttributeNames.cs" />
+    <Compile Include="Entity\Attribute\Name\OrganizationalUnitAttributeNames.cs" />
+    <Compile Include="Entity\Attribute\Name\PasswordSettingsAttributeNames.cs" />
+    <Compile Include="Entity\Attribute\Name\PersonAttributeNames.cs" />
+    <Compile Include="Entity\Attribute\Name\DomainAttributeNames.cs" />
+    <Compile Include="Entity\Attribute\Name\PSOAttributeNames.cs" />
+    <Compile Include="Entity\Attribute\Value\AttributeValues.cs" />
+    <Compile Include="Entity\Attribute\Value\ComputerAttributeValues.cs" />
+    <Compile Include="Entity\Attribute\Value\ContactAttributeValues.cs" />
+    <Compile Include="Entity\Attribute\Name\GroupAttributeNames.cs" />
+    <Compile Include="Entity\Attribute\Value\ContainerAttributeValues.cs" />
+    <Compile Include="Entity\Attribute\Value\DomainAttributeValues.cs" />
+    <Compile Include="Entity\Attribute\Value\GroupAttributeValues.cs" />
+    <Compile Include="Entity\Attribute\Value\OrganizationalUnitAttributeValues.cs" />
+    <Compile Include="Entity\Attribute\Name\UserAttributeNames.cs" />
+    <Compile Include="Entity\Attribute\Value\PasswordSettingsAttributeValues.cs" />
+    <Compile Include="Entity\Attribute\Value\PersonAttributeValues.cs" />
+    <Compile Include="Entity\Attribute\Value\UserAttributeValues.cs" />
+    <Compile Include="Entity\Command\UserCommandNames.cs" />
+    <Compile Include="Entity\Object\ADObject.cs" />
+    <Compile Include="Entity\Object\ADObjectType.cs" />
+    <Compile Include="Entity\Object\ComputerObject.cs" />
+    <Compile Include="Entity\Object\ContactObject.cs" />
+    <Compile Include="Entity\Object\ContainerObject.cs" />
+    <Compile Include="Entity\Object\DomainObject.cs" />
+    <Compile Include="Entity\Object\GroupObject.cs" />
+    <Compile Include="Entity\Object\GroupScope.cs" />
+    <Compile Include="Entity\Object\BuildInGroupType.cs" />
+    <Compile Include="Entity\Object\GroupType.cs" />
+    <Compile Include="Entity\Object\InetOrgPersonObject.cs" />
+    <Compile Include="Entity\Object\MsImaging-PSPsObject.cs" />
+    <Compile Include="Entity\Object\MSMQQueueAliasObject.cs" />
+    <Compile Include="Entity\Object\OrganizationalUnitObject.cs" />
+    <Compile Include="Entity\Object\PasswordSettingsObject.cs" />
+    <Compile Include="Entity\Object\PersonObject.cs" />
+    <Compile Include="Entity\Object\PrinterObject.cs" />
+    <Compile Include="Entity\Object\SharedFolderObject.cs" />
+    <Compile Include="Entity\Object\UnknownObject.cs" />
+    <Compile Include="Entity\Object\UserAccountControlType.cs" />
+    <Compile Include="Entity\Object\UserObject.cs" />
+    <Compile Include="Entity\Query\ADObjectQuery.cs" />
+    <Compile Include="Entity\TypeAdapter\BooleanAdapter.cs" />
+    <Compile Include="Entity\TypeAdapter\ByteArrayAdapter.cs" />
+    <Compile Include="Entity\TypeAdapter\DateTimeAdapter.cs" />
+    <Compile Include="Entity\TypeAdapter\IBoolean.cs" />
+    <Compile Include="Entity\TypeAdapter\IByteArray.cs" />
+    <Compile Include="Entity\TypeAdapter\IDateTime.cs" />
+    <Compile Include="Entity\TypeAdapter\IGuid.cs" />
+    <Compile Include="Entity\TypeAdapter\IInteger.cs" />
+    <Compile Include="Entity\TypeAdapter\ILargeInteger.cs" />
+    <Compile Include="Entity\TypeAdapter\IntegerAdapter.cs" />
+    <Compile Include="Entity\TypeAdapter\IString.cs" />
+    <Compile Include="Entity\TypeAdapter\GuidAdapter.cs" />
+    <Compile Include="Entity\TypeAdapter\IStringList.cs" />
+    <Compile Include="Entity\TypeAdapter\LargeIntegerAdapter.cs" />
+    <Compile Include="Entity\TypeAdapter\MultipleLineAdapter.cs" />
+    <Compile Include="Entity\TypeAdapter\SidAdapter.cs" />
+    <Compile Include="Entity\TypeAdapter\SidsAdapter.cs" />
+    <Compile Include="Entity\TypeAdapter\SingleLineAdapter.cs" />
+    <Compile Include="Entity\TypeAdapter\StringAdapter.cs" />
+    <Compile Include="ADException\UserLoginNameBadFormatException.cs" />
+    <Compile Include="Password\PasswordUnity.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Entity\ADQL\ADQL.g" />
+    <None Include="Landpy.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(ProjectDir)..\Reference\Antlr\Antlr3.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

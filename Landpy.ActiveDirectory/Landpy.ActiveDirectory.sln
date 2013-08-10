@@ -1,12 +1,58 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Landpy.ActiveDirectory", "Landpy.ActiveDirectory\Landpy.ActiveDirectory.csproj", "{B7E4E414-DD60-45CD-9473-2667DC2684AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Landpy.ActiveDirectory.TestSuite", "Landpy.ActiveDirectory.TestSuite\Landpy.ActiveDirectory.TestSuite.csproj", "{E2343C4A-E3FB-4A93-B38B-5A199558A32A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Landpy.TestFramwork", "Landpy.TestFramwork\Landpy.TestFramwork.csproj", "{2F17455D-014B-4C9C-AA8E-01D9CCED0170}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schema", "Schema", "{327C32F7-8A0B-4732-A186-04498CA0B989}"
+	ProjectSection(SolutionItems) = preProject
+		Schema\TestFrameWork.xsd = Schema\TestFrameWork.xsd
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReferenceAssembly", "ReferenceAssembly", "{9B00CE38-DF7A-4AC9-B2FE-1E8FEE245AEB}"
+	ProjectSection(SolutionItems) = preProject
+		ReferenceAssembly\Moq.dll = ReferenceAssembly\Moq.dll
+		ReferenceAssembly\Moq.pdb = ReferenceAssembly\Moq.pdb
+		ReferenceAssembly\Moq.xml = ReferenceAssembly\Moq.xml
+		ReferenceAssembly\nunit.framework.dll = ReferenceAssembly\nunit.framework.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 1
+		SccNumberOfProjects = 4
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs18
 		SccLocalPath0 = .
+		SccProjectUniqueName1 = Landpy.ActiveDirectory\\Landpy.ActiveDirectory.csproj
+		SccProjectName1 = Landpy.ActiveDirectory
+		SccLocalPath1 = Landpy.ActiveDirectory
+		SccProjectUniqueName2 = Landpy.ActiveDirectory.TestSuite\\Landpy.ActiveDirectory.TestSuite.csproj
+		SccProjectName2 = Landpy.ActiveDirectory.TestSuite
+		SccLocalPath2 = Landpy.ActiveDirectory.TestSuite
+		SccProjectUniqueName3 = Landpy.TestFramwork\\Landpy.TestFramwork.csproj
+		SccProjectName3 = Landpy.TestFramwork
+		SccLocalPath3 = Landpy.TestFramwork
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B7E4E414-DD60-45CD-9473-2667DC2684AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7E4E414-DD60-45CD-9473-2667DC2684AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7E4E414-DD60-45CD-9473-2667DC2684AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7E4E414-DD60-45CD-9473-2667DC2684AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2343C4A-E3FB-4A93-B38B-5A199558A32A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2343C4A-E3FB-4A93-B38B-5A199558A32A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2343C4A-E3FB-4A93-B38B-5A199558A32A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2343C4A-E3FB-4A93-B38B-5A199558A32A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F17455D-014B-4C9C-AA8E-01D9CCED0170}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F17455D-014B-4C9C-AA8E-01D9CCED0170}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F17455D-014B-4C9C-AA8E-01D9CCED0170}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F17455D-014B-4C9C-AA8E-01D9CCED0170}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

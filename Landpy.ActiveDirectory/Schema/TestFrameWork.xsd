@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema elementFormDefault="unqualified" xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="nonNullString">
+    <xs:annotation>
+      <xs:documentation>
+        Defines a string with a minimum length of 1
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:element name="TFConfiguration">
+    <xs:annotation>
+      <xs:documentation>
+        The document root.  At least one object definition is required.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Properties">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="Property">
+                  <xs:complexType>
+                    <xs:attribute name="Key" use="required" type="nonNullString"></xs:attribute>
+                    <xs:attribute name="Value" use="required" type="nonNullString"></xs:attribute>
+                  </xs:complexType>
+                </xs:element>
+              </xs:choice>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

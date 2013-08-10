@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E2343C4A-E3FB-4A93-B38B-5A199558A32A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Landpy.ActiveDirectory.TestSuite</RootNamespace>
+    <AssemblyName>Landpy.ActiveDirectory.TestSuite</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Moq, Version=4.0.10827.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ReferenceAssembly\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.1.12217, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ReferenceAssembly\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ADObjectModule\ComputerObjectUnitTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ADObjectModule\PasswordSettingsObjectUnitTest.cs" />
+    <Compile Include="ADObjectModule\DomainObjectUnitTest.cs" />
+    <Compile Include="ADObjectModule\GroupObjectUnitTest.cs" />
+    <Compile Include="ADObjectModule\OrganizationalUnitUnitTest.cs" />
+    <Compile Include="ADQLModule\ADQLUnitTest.cs" />
+    <Compile Include="Common\BaseUnitTest.cs" />
+    <Compile Include="FilterModule\AndFilterUnitTest.cs" />
+    <Compile Include="FilterModule\EndWithFilterUnitTest.cs" />
+    <Compile Include="FilterModule\HasNoValueUnitTest.cs" />
+    <Compile Include="FilterModule\HasAValueFilterUnitTest.cs" />
+    <Compile Include="FilterModule\IsNotFilterUnitTest.cs" />
+    <Compile Include="FilterModule\IsFilterUnitTest.cs" />
+    <Compile Include="FilterModule\OrFilterUnitTest.cs" />
+    <Compile Include="FilterModule\StartWithFilterUnitTest.cs" />
+    <Compile Include="PasswordModule\PasswordUnityUnitTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ADObjectModule\UserObjectUnitTest.cs" />
+    <Compile Include="QueryModule\QueryUnitTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestFramework.tfconfig.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Landpy.ActiveDirectory\Landpy.ActiveDirectory.csproj">
+      <Project>{B7E4E414-DD60-45CD-9473-2667DC2684AF}</Project>
+      <Name>Landpy.ActiveDirectory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Landpy.TestFramwork\Landpy.TestFramwork.csproj">
+      <Project>{2F17455D-014B-4C9C-AA8E-01D9CCED0170}</Project>
+      <Name>Landpy.TestFramwork</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

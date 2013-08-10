@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TFConfiguration>
+  <Properties>
+    <!--AD Operator-->
+    <Property Key="DomainName" Value="pang"/>
+    <Property Key="DomainUserName" Value="xxxxxxxxxxx"/>
+    <Property Key="DomainUserPassword" Value="liu-pxl821102"/>
+    <Property Key="AndFilterString" Value="(&amp;(objectClass=organizationalUnit)(objectClass=user))"/>
+    <Property Key="OrFilterString" Value="(|(objectClass=organizationalUnit)(objectClass=user))"/>
+    <!--User Object-->
+    <Property Key="UserCn" Value="pangxiaoliang"/>
+    <Property Key="UserSid" Value="S-1-5-21-3069975210-3933090721-4243971453-1197"/>
+    <Property Key="UserCO" Value="China"/>
+    <Property Key="UserC" Value="CN"/>
+    <Property Key="UserCompany" Value="My Company"/>
+    <Property Key="UserCountryCode" Value="156"/>
+    <Property Key="UserCanonicalName" Value="pang.local/PangLevel1OU/NewOU/pangxiaoliang"/>
+    <Property Key="UserCreateTime" Value="2010-10-15 06:36:37.000"/>
+    <Property Key="UserDepartment" Value="My Department"/>
+    <Property Key="UserDescription" Value="Description"/>
+    <Property Key="UserDirectReport" Value="CN=Landpy2,OU=LandpyOUL4,OU=LandpyOU,DC=pang,DC=local"/>
+    <Property Key="UserDisplayName" Value="pangxiaoliang"/>
+    <Property Key="UserFax" Value="44444444444"/>
+    <Property Key="UserOtherFax" Value="444444444445"/>
+    <Property Key="UserGivenName" Value="pangxiaoliang"/>
+    <Property Key="UserHomePhone" Value="11111111111"/>
+    <Property Key="UserOtherHomePhone" Value="111111111112"/>
+    <Property Key="UserNotes" Value="Notes what."/>
+    <Property Key="UserInitials" Value="pxl"/>
+    <Property Key="UserIpPhone" Value="55555555555"/>
+    <Property Key="UserOtherIpPhone" Value="555555555556"/>
+    <Property Key="UserCity" Value="BeiJing"/>
+    <Property Key="UserManager" Value="CN=Administrator,CN=Users,DC=pang,DC=local"/>
+    <Property Key="UserMemberOf" Value="CN=panggroup,OU=NewOU,OU=PangLevel1OU,DC=pang,DC=local"/>
+    <Property Key="UserMobile" Value="33333333333"/>
+    <Property Key="UserOtherMobile" Value="333333333334"/>
+    <Property Key="UserMsDS_PrincipalName" Value="PANG\pangxiaoliang"/>
+    <Property Key="UserPager" Value="22222222222"/>
+    <Property Key="UserOtherPager" Value="222222222223"/>
+    <Property Key="UserTelephone" Value="66666666666"/>
+    <Property Key="UserOtherTelephone" Value="666666666667"/>
+    <Property Key="UserOffice" Value="landpy studio"/>
+    <Property Key="UserZipOrPostalCode" Value="HB"/>
+    <Property Key="UserPostOfficeBox" Value="POBox"/>
+    <Property Key="UserSAMAccountName" Value="pangxiaoliang"/>
+    <Property Key="UserLastName" Value="pangxiaoliangLastName"/>
+    <Property Key="UserStateOrProvince" Value="Hebei"/>
+    <Property Key="UserStreetAddress" Value="ZGC"/>
+    <Property Key="UserJobTitle" Value="My Title"/>
+    <Property Key="UserWebPage" Value="http://www.cnblogs.com/pangxiaoliang"/>
+    <Property Key="UserOtherWebPage" Value="http://www.cnblogs.com/pangxiaoliang_landpy"/>
+    <Property Key="UserPrincipalName" Value="PANG\pangxiaoliang@pang.local"/>
+    <Property Key="UserTokenGroupSid" Value="S-1-5-32-544"/>
+    <Property Key="UserAccountControlType" Value="PasswordNotRequired, NormalAccount"/>
+    <Property Key="UserIsMustChangePwdNextLogon" Value="true"/>
+    <Property Key="UserIsLocked" Value="false"/>
+    <Property Key="UserIsEnabled" Value="true"/>
+    <Property Key="UserEmail" Value="FFF@mail.braintimes.org"/>
+    <Property Key="UserResetPasswordUserCN" Value="Landpy"/>
+    <Property Key="UserResetPasswordUserPassword" Value="xxxxxxxxxxx"/>
+    <Property Key="UserIsDomainAdmin" Value="true"/>
+    <Property Key="UserIsAccountOperator" Value="false"/>
+    <!--Group Object-->
+    <Property Key="GroupCn" Value="panggroup"/>
+    <Property Key="GroupSid" Value="S-1-5-21-3069975210-3933090721-4243971453-8817"/>
+    <Property Key="GroupSAMAccountName" Value="panggroup"/>
+    <Property Key="GroupDescription" Value="Group Description"/>
+    <Property Key="GroupEmail" Value="panggroup@mail.braintimes.org"/>
+    <Property Key="GroupNotes" Value="Group Notes"/>
+    <Property Key="GroupTokenGroupSid" Value="S-1-5-21-3069975210-3933090721-4243971453-8768"/>
+    <Property Key="GroupMember" Value="CN=pangxiaoliang,OU=NewOU,OU=PangLevel1OU,DC=pang,DC=local"/>
+    <Property Key="GroupType" Value="Security"/>
+    <Property Key="GroupScope" Value="Global"/>
+    <!--Computer Object-->
+    <Property Key="ComputerCn" Value="BR-PXL"/>
+    <Property Key="ComputerOperatingSystemName" Value="Windows Server 2008 R2 Enterprise"/>
+    <Property Key="ComputerOperatingSystemVersion" Value="6.1 (7601)"/>
+    <Property Key="ComputerOperatingSystemServicePack" Value="Service Pack 1"/>
+    <Property Key="ComputerDnsName" Value="br-pxl.pang.local"/>
+    <Property Key="ComputerSiteName" Value="Default-First-Site-Name"/>
+    <!--OrganizaionalUnit Object-->
+    <Property Key="OrganizaionalUnitOU" Value="pangou"/>
+    <Property Key="OrganizaionalUnitStreet" Value="Street."/>
+    <!--Domain Object-->
+    <Property Key="DomainGroupPolicyMinimumPasswordLength" Value="7"/>
+    <Property Key="DomianIsMustMeetComplexityRequirments" Value="true"/>
+    <!--PasswordSettings Object-->
+    <Property Key="PasswordSettingsUserCn" Value="PRTest3"/>
+    <!--Password Unity-->
+    <Property Key="PasswordUnityUserLoginName" Value="pang\administrator"/>
+    <Property Key="PasswordUnityUserPassword" Value="xxxxxxxxxxx"/>
+  </Properties>
+</TFConfiguration>
