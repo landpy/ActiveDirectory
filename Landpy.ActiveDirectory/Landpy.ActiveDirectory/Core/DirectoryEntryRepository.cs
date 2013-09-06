@@ -14,6 +14,11 @@ namespace Landpy.ActiveDirectory.Core
             this.DirectoryEntry = new DirectoryEntry(String.Format(@"LDAP://{0}", adOperatorInfo.OperateDomainName), adOperatorInfo.UserLoginName, adOperatorInfo.Password);
         }
 
+        public DirectoryEntryRepository(DirectoryEntry directoryEntry)
+        {
+            this.DirectoryEntry = directoryEntry;
+        }
+
         public SearchResultCollection GetSearchResultCollection(IFilter filter, string[] propertiesToLoad)
         {
             SearchResultCollection searchResultCollection;
