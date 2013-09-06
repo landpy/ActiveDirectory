@@ -10,12 +10,13 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
     {
         private int DomainGroupPolicyMinimumPasswordLength { get; set; }
         private bool DomianIsMustMeetComplexityRequirments { get; set; }
+        private string CurrentDomainName { get; set; }
 
         protected override void SetUp()
         {
             this.DomainGroupPolicyMinimumPasswordLength = Int32.Parse(TF.GetConfig().Properties["DomainGroupPolicyMinimumPasswordLength"]);
             this.DomianIsMustMeetComplexityRequirments = Boolean.Parse(TF.GetConfig().Properties["DomianIsMustMeetComplexityRequirments"]);
-
+            this.CurrentDomainName = TF.GetConfig().Properties["CurrentDomainName"];
         }
 
         [TestCase]
@@ -25,6 +26,15 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
             {
                 Assert.AreEqual(this.DomainGroupPolicyMinimumPasswordLength, domainObject.GroupPolicyMinimumPasswordLength);
                 Assert.AreEqual(this.DomianIsMustMeetComplexityRequirments, domainObject.IsMustMeetComplexityRequirments);
+            }
+        }
+
+        [TestCase]
+        public void TestGetCurrent()
+        {
+            using (var domainObject = DomainObject.GetCurrent())
+            {
+                Assert.AreEqual(this.CurrentDomainName, domainObject.Name);
             }
         }
     }

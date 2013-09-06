@@ -1,4 +1,5 @@
 ﻿using System.DirectoryServices;
+using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
 using Landpy.ActiveDirectory.Core;
 using Landpy.ActiveDirectory.Core.Filter.Expression;
@@ -52,6 +53,11 @@ namespace Landpy.ActiveDirectory.Entity.Object
             }
         }
 
+        /// <summary>
+        /// The domain object constructure with AD operator and SearchResult params.
+        /// </summary>
+        /// <param name="adOperator">The AD operator.</param>
+        /// <param name="searchResult">The SearchResult.</param>
         public DomainObject(IADOperator adOperator, SearchResult searchResult)
             : base(adOperator, searchResult)
         {
@@ -69,6 +75,28 @@ namespace Landpy.ActiveDirectory.Entity.Object
             {
                 domainObject = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new And(new IsDomain()))
                                 select new DomainObject(adOperator, searchResult)).SingleOrDefault();
+            }
+            return domainObject;
+        }
+
+        /// <summary>
+        /// Get the current domain object with no password.
+        /// </summary>
+        /// <returns></returns>
+        public static DomainObject GetCurrent()
+        {
+            DomainObject domainObject;
+            var directoryContext = new DirectoryContext(DirectoryContextType.Domain);
+            using (Domain domain = Domain.GetDomain(directoryContext))
+            {
+                using (DirectoryEntry domainDirectoryEntry = domain.GetDirectoryEntry())
+                {
+                    using (var directoryEntryRepository = new DirectoryEntryRepository(domainDirectoryEntry))
+                    {
+                        domainObject = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new And(new IsDomain()))
+                                        select new DomainObject(null, searchResult)).SingleOrDefault();
+                    }
+                }
             }
             return domainObject;
         }

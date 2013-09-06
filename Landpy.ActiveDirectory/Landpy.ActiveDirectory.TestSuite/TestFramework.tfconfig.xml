@@ -3,8 +3,8 @@
   <Properties>
     <!--AD Operator-->
     <Property Key="DomainName" Value="pang"/>
-    <Property Key="DomainUserName" Value="xxxxxxxxxxx"/>
-    <Property Key="DomainUserPassword" Value="liu-pxl821102"/>
+    <Property Key="DomainUserName" Value="landpy"/>
+    <Property Key="DomainUserPassword" Value="xxxxxxxxxx"/>
     <Property Key="AndFilterString" Value="(&amp;(objectClass=organizationalUnit)(objectClass=user))"/>
     <Property Key="OrFilterString" Value="(|(objectClass=organizationalUnit)(objectClass=user))"/>
     <!--User Object-->
@@ -84,6 +84,7 @@
     <!--Domain Object-->
     <Property Key="DomainGroupPolicyMinimumPasswordLength" Value="7"/>
     <Property Key="DomianIsMustMeetComplexityRequirments" Value="true"/>
+    <Property Key="CurrentDomainName" Value="pang"/>
     <!--PasswordSettings Object-->
     <Property Key="PasswordSettingsUserCn" Value="PRTest3"/>
     <!--Password Unity-->
