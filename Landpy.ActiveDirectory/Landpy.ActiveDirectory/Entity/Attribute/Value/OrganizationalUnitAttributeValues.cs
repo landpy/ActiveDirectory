@@ -1,7 +1,13 @@
 ﻿namespace Landpy.ActiveDirectory.Entity.Attribute.Value
 {
-    class OrganizationalUnitAttributeValues
+    /// <summary>
+    /// Organizatinal Unit Object Attribute const values.
+    /// </summary>
+    public class OrganizationalUnitAttributeValues
     {
-        public readonly static string OrganizationalUnit = "organizationalUnit";
+        /// <summary>
+        /// Organizational Unit attribute value.
+        /// </summary>
+        public const string OrganizationalUnit = "organizationalUnit";
     }
 }

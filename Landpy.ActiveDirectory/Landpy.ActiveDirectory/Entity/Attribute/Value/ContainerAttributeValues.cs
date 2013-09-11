@@ -1,7 +1,13 @@
 ﻿namespace Landpy.ActiveDirectory.Entity.Attribute.Value
 {
-    class ContainerAttributeValues : AttributeValues
+    /// <summary>
+    /// Container Object Attribute const values.
+    /// </summary>
+    public class ContainerAttributeValues : AttributeValues
     {
-        public readonly static string Container = "container";
+        /// <summary>
+        /// Container attribute value.
+        /// </summary>
+        public const string Container = "container";
     }
 }

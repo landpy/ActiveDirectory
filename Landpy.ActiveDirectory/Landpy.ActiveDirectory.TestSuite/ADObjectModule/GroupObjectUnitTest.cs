@@ -10,6 +10,7 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
 {
     class GroupObjectUnitTest : BaseUnitTest
     {
+        private Guid GroupGuid { get; set; }
         private string GroupCn { get; set; }
         private string GroupSid { get; set; }
         private string GroupSAMAccountName { get; set; }
@@ -22,6 +23,7 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
 
         protected override void SetUp()
         {
+            this.GroupGuid = new Guid(TF.GetConfig().Properties["GroupGuid"]);
             this.GroupCn = TF.GetConfig().Properties["GroupCn"];
             this.GroupSid = TF.GetConfig().Properties["GroupSid"];
             this.GroupSAMAccountName = TF.GetConfig().Properties["GroupSAMAccountName"];
@@ -76,6 +78,12 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
                 Assert.AreEqual(this.GroupMember, groupObject.Members[0]);
                 Assert.AreEqual(this.GroupType, groupObject.GroupType.ToString());
                 Assert.AreEqual(this.GroupScope, groupObject.GroupScope.ToString());
+            }
+            using (var adObject = ADObject.FindOneByObjectGUID(this.ADOperator, this.GroupGuid))
+            {
+                var groupObject = adObject as GroupObject;
+                Assert.NotNull(groupObject);
+                Assert.AreEqual(this.GroupSid, groupObject.ObjectSid);
             }
         }
     }

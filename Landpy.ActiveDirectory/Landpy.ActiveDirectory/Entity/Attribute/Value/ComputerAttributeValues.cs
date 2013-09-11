@@ -1,7 +1,13 @@
 ﻿namespace Landpy.ActiveDirectory.Entity.Attribute.Value
 {
-    class ComputerAttributeValues
+    /// <summary>
+    /// Computer Object Attribute const values.
+    /// </summary>
+    public class ComputerAttributeValues
     {
-        public readonly static string Computer = "computer";
+        /// <summary>
+        /// Computer attribute value.
+        /// </summary>
+        public const string Computer = "computer";
     }
 }
