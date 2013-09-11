@@ -61,6 +61,7 @@
     <Property Key="UserIsDomainAdmin" Value="true"/>
     <Property Key="UserIsAccountOperator" Value="false"/>
     <!--Group Object-->
+    <Property Key="GroupGuid" Value="ac8d3bca-4132-41b1-b29c-9dcfd860f50d"/>
     <Property Key="GroupCn" Value="panggroup"/>
     <Property Key="GroupSid" Value="S-1-5-21-3069975210-3933090721-4243971453-8817"/>
     <Property Key="GroupSAMAccountName" Value="panggroup"/>
