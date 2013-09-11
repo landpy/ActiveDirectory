@@ -1,7 +1,13 @@
 ﻿namespace Landpy.ActiveDirectory.Entity.Attribute.Value
 {
-    class ContactAttributeValues : PersonAttributeValues
+    /// <summary>
+    /// Contact Object Attribute const values.
+    /// </summary>
+    public class ContactAttributeValues : PersonAttributeValues
     {
-        public readonly static string Contact = "contact";
+        /// <summary>
+        /// Contact attribute value.
+        /// </summary>
+        public const string Contact = "contact";
     }
 }

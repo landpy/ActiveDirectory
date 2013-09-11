@@ -91,6 +91,7 @@
     <Compile Include="Core\IADOperator.cs" />
     <Compile Include="Core\ADOperatorInfo.cs" />
     <Compile Include="Core\LDAPPath.cs" />
+    <Compile Include="Core\ObjectGUIDDirectoryEntryRepository.cs" />
     <Compile Include="Core\UseNameAdapter.cs" />
     <Compile Include="Entity\Attribute\Name\AttributeNames.cs" />
     <Compile Include="Entity\Attribute\Name\ComputerAttributeNames.cs" />
@@ -107,10 +108,15 @@
     <Compile Include="Entity\Attribute\Value\ContainerAttributeValues.cs" />
     <Compile Include="Entity\Attribute\Value\DomainAttributeValues.cs" />
     <Compile Include="Entity\Attribute\Value\GroupAttributeValues.cs" />
+    <Compile Include="Entity\Attribute\Value\InetOrgPersonAttributeValues.cs" />
+    <Compile Include="Entity\Attribute\Value\MsImaging_PSPsAttributeValues.cs" />
+    <Compile Include="Entity\Attribute\Value\MSMQQueueAliasAttributeValues.cs" />
     <Compile Include="Entity\Attribute\Value\OrganizationalUnitAttributeValues.cs" />
     <Compile Include="Entity\Attribute\Name\UserAttributeNames.cs" />
     <Compile Include="Entity\Attribute\Value\PasswordSettingsAttributeValues.cs" />
     <Compile Include="Entity\Attribute\Value\PersonAttributeValues.cs" />
+    <Compile Include="Entity\Attribute\Value\PrinterAttributeValues.cs" />
+    <Compile Include="Entity\Attribute\Value\SharedFolderAttributeValues.cs" />
     <Compile Include="Entity\Attribute\Value\UserAttributeValues.cs" />
     <Compile Include="Entity\Command\UserCommandNames.cs" />
     <Compile Include="Entity\Object\ADObject.cs" />

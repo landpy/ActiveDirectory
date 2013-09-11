@@ -343,6 +343,22 @@ namespace Landpy.ActiveDirectory.Entity.Object
         }
 
         /// <summary>
+        /// Find one AD object by objectGUID.
+        /// </summary>
+        /// <param name="adOperator">The AD operator.</param>
+        /// <param name="objectGuid">The objectGUID.</param>
+        /// <returns>One AD object.</returns>
+        public static ADObject FindOneByObjectGUID(IADOperator adOperator, Guid objectGuid)
+        {
+            ADObject adObject;
+            using (var objectGuidDirectoryEntryRepository = new ObjectGUIDDirectoryEntryRepository(adOperator, objectGuid))
+            {
+                adObject = GetADObject(adOperator, objectGuidDirectoryEntryRepository.GetSearchResult());
+            }
+            return adObject;
+        }
+
+        /// <summary>
         /// Save the directory entry.
         /// </summary>
         public void Save()
@@ -370,6 +386,33 @@ namespace Landpy.ActiveDirectory.Entity.Object
                 case ADObjectType.Contact:
                     adObject = new ContactObject(adOperator, searchResult);
                     break;
+                case ADObjectType.Computer:
+                    adObject = new ComputerObject(adOperator, searchResult);
+                    break;
+                case ADObjectType.Container:
+                    adObject = new ContainerObject(adOperator, searchResult);
+                    break;
+                case ADObjectType.Group:
+                    adObject = new GroupObject(adOperator, searchResult);
+                    break;
+                case ADObjectType.InetOrgPerson:
+                    adObject = new InetOrgPersonObject(adOperator, searchResult);
+                    break;
+                case ADObjectType.MSMQQueueAlias:
+                    adObject = new MSMQQueueAliasObject(adOperator, searchResult);
+                    break;
+                case ADObjectType.MsImaging_PSPs:
+                    adObject = new MsImaging_PSPsObject(adOperator, searchResult);
+                    break;
+                case ADObjectType.OrganizationalUnit:
+                    adObject = new OrganizationalUnitObject(adOperator, searchResult);
+                    break;
+                case ADObjectType.Printer:
+                    adObject = new PrinterObject(adOperator, searchResult);
+                    break;
+                case ADObjectType.SharedFolder:
+                    adObject = new SharedFolderObject(adOperator, searchResult);
+                    break;
                 default:
                     adObject = new UnknownObject(adOperator, searchResult);
                     break;
@@ -386,8 +429,26 @@ namespace Landpy.ActiveDirectory.Entity.Object
                 {
                     case UserAttributeValues.User:
                         return ADObjectType.User;
-                    case UserAttributeValues.Contact:
+                    case ContactAttributeValues.Contact:
                         return ADObjectType.Contact;
+                    case ComputerAttributeValues.Computer:
+                        return ADObjectType.Computer;
+                    case ContainerAttributeValues.Container:
+                        return ADObjectType.Container;
+                    case GroupAttributeValues.Group:
+                        return ADObjectType.Group;
+                    case InetOrgPersonAttributeValues.InetOrgPerson:
+                        return ADObjectType.InetOrgPerson;
+                    case MSMQQueueAliasAttributeValues.MSMQQueueAlias:
+                        return ADObjectType.MSMQQueueAlias;
+                    case MsImaging_PSPsAttributeValues.MsImaging_PSPs:
+                        return ADObjectType.MsImaging_PSPs;
+                    case OrganizationalUnitAttributeValues.OrganizationalUnit:
+                        return ADObjectType.OrganizationalUnit;
+                    case PrinterAttributeValues.Printer:
+                        return ADObjectType.Printer;
+                    case SharedFolderAttributeValues.SharedFolder:
+                        return ADObjectType.SharedFolder;
                     default:
                         break;
                 }
