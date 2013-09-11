@@ -1,5 +1,8 @@
 ﻿namespace Landpy.ActiveDirectory.Entity.Attribute.Name
 {
+    /// <summary>
+    /// The names of Organizational Unit AD object common attribute.
+    /// </summary>
     public class OrganizationalUnitAttributeNames : AttributeNames
     {
         /// <summary>

@@ -1,5 +1,8 @@
 ﻿namespace Landpy.ActiveDirectory.Entity.Attribute.Name
 {
+    /// <summary>
+    /// The names of PSO AD object common attribute.
+    /// </summary>
     public class PSOAttributeNames
     {
         /// <summary>

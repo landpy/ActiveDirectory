@@ -1,5 +1,8 @@
 ﻿namespace Landpy.ActiveDirectory.Entity.Attribute.Name
 {
+    /// <summary>
+    /// The names of Computer AD object common attribute.
+    /// </summary>
     public class ComputerAttributeNames : AttributeNames
     {
         /// <summary>

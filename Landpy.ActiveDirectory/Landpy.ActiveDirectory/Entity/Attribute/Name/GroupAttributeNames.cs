@@ -1,5 +1,8 @@
 ﻿namespace Landpy.ActiveDirectory.Entity.Attribute.Name
 {
+    /// <summary>
+    /// The names of Group AD object common attribute.
+    /// </summary>
     public class GroupAttributeNames : AttributeNames
     {
         /// <summary>
