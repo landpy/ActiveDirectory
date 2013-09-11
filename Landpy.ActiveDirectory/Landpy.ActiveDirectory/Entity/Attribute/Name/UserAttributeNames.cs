@@ -1,5 +1,8 @@
 ﻿namespace Landpy.ActiveDirectory.Entity.Attribute.Name
 {
+    /// <summary>
+    /// The names of User AD object common attribute.
+    /// </summary>
     public class UserAttributeNames : PersonAttributeNames
     {
         /// <summary>

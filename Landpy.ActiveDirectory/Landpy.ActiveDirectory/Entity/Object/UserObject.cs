@@ -247,7 +247,24 @@ namespace Landpy.ActiveDirectory.Entity.Object
             UserObject userObject;
             using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
             {
-                userObject = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new Is(UserAttributeNames.ObjectSid, sid))
+                userObject = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new And(new IsUser(), new Is(UserAttributeNames.ObjectSid, sid)))
+                              select new UserObject(adOperator, searchResult)).SingleOrDefault();
+            }
+            return userObject;
+        }
+
+        /// <summary>
+        /// Find one user object by sAMAccountName.
+        /// </summary>
+        /// <param name="adOperator">The AD operator.</param>
+        /// <param name="sAMAccountName">The sAMAccountName.</param>
+        /// <returns>One user object.</returns>
+        public static UserObject FindOneBySAMAccountName(IADOperator adOperator, string sAMAccountName)
+        {
+            UserObject userObject;
+            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
+            {
+                userObject = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new And(new IsUser(), new Is(UserAttributeNames.SAMAccountName, sAMAccountName)))
                               select new UserObject(adOperator, searchResult)).SingleOrDefault();
             }
             return userObject;

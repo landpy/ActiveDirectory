@@ -227,7 +227,10 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
                 Assert.AreEqual(this.UserEmail, userObject.Email);
                 Assert.AreEqual(this.UserIsDomainAdmin, userObject.IsDomainAdmin);
                 Assert.AreEqual(this.UserIsAccountOperator, userObject.IsAccountOperator);
-
+            }
+            using (var userObject = UserObject.FindOneBySAMAccountName(this.ADOperator, this.UserSAMAccountName))
+            {
+                Assert.AreEqual(this.UserCn, userObject.CN);
             }
         }
 

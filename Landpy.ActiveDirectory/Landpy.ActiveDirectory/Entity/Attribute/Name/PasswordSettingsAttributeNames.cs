@@ -1,5 +1,8 @@
 ﻿namespace Landpy.ActiveDirectory.Entity.Attribute.Name
 {
+    /// <summary>
+    /// The names of Password Settings AD object common attribute.
+    /// </summary>
     public class PasswordSettingsAttributeNames : PSOAttributeNames
     {
         /// <summary>
