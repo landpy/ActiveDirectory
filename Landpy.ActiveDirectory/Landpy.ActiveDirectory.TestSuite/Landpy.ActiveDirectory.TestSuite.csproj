@@ -63,6 +63,7 @@
     <Compile Include="ADQLModule\ADQLUnitTest.cs" />
     <Compile Include="Common\BaseUnitTest.cs" />
     <Compile Include="FilterModule\AndFilterUnitTest.cs" />
+    <Compile Include="FilterModule\ComplexFilterUnitTest.cs" />
     <Compile Include="FilterModule\EndWithFilterUnitTest.cs" />
     <Compile Include="FilterModule\HasNoValueUnitTest.cs" />
     <Compile Include="FilterModule\HasAValueFilterUnitTest.cs" />
