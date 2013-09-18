@@ -4,7 +4,7 @@
     <!--AD Operator-->
     <Property Key="DomainName" Value="pang"/>
     <Property Key="DomainUserName" Value="landpy"/>
-    <Property Key="DomainUserPassword" Value="xxxxxxxxxx"/>
+    <Property Key="DomainUserPassword" Value="abc123,./"/>
     <Property Key="AndFilterString" Value="(&amp;(objectClass=organizationalUnit)(objectClass=user))"/>
     <Property Key="OrFilterString" Value="(|(objectClass=organizationalUnit)(objectClass=user))"/>
     <!--User Object-->
@@ -82,6 +82,12 @@
     <!--OrganizaionalUnit Object-->
     <Property Key="OrganizaionalUnitOU" Value="pangou"/>
     <Property Key="OrganizaionalUnitStreet" Value="Street."/>
+    <!--Contact Object-->
+    <Property Key="ContactCN" Value="pangcontact"/>
+    <Property Key="ContactDescription" Value="The contact of pangxiaoliang."/>
+    <!--Container Object-->
+    <Property Key="ContainerCN" Value="Users"/>
+    <Property Key="ContainerDescription" Value="Default container for upgraded user accounts"/>
     <!--Domain Object-->
     <Property Key="DomainGroupPolicyMinimumPasswordLength" Value="7"/>
     <Property Key="DomianIsMustMeetComplexityRequirments" Value="true"/>

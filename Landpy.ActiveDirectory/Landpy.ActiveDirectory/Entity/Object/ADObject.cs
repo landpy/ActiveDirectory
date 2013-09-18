@@ -44,6 +44,10 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// The path of the directory entry.
         /// </summary>
         public string Path { get; private set; }
+
+        /// <summary>
+        /// The AD object type.
+        /// </summary>
         public ADObjectType Type { get; private set; }
 
         /// <summary>

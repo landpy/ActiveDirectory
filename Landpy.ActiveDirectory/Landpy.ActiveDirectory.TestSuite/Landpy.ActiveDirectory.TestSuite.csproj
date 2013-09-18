@@ -56,6 +56,8 @@
     <Compile Include="ADObjectModule\ComputerObjectUnitTest.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ADObjectModule\ContactObjectUnitTest.cs" />
+    <Compile Include="ADObjectModule\ContainerObjectUnitTest.cs" />
     <Compile Include="ADObjectModule\PasswordSettingsObjectUnitTest.cs" />
     <Compile Include="ADObjectModule\DomainObjectUnitTest.cs" />
     <Compile Include="ADObjectModule\GroupObjectUnitTest.cs" />
