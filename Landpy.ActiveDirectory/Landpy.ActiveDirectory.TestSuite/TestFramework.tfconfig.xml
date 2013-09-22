@@ -3,7 +3,7 @@
   <Properties>
     <!--AD Operator-->
     <Property Key="DomainName" Value="pang"/>
-    <Property Key="DomainUserName" Value="landpy"/>
+    <Property Key="DomainUserName" Value="landpy\pangxiaoliang"/>
     <Property Key="DomainUserPassword" Value="abc123,./"/>
     <Property Key="AndFilterString" Value="(&amp;(objectClass=organizationalUnit)(objectClass=user))"/>
     <Property Key="OrFilterString" Value="(|(objectClass=organizationalUnit)(objectClass=user))"/>
