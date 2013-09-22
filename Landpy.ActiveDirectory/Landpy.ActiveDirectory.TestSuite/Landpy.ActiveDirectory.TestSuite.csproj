@@ -62,6 +62,7 @@
     <Compile Include="ADObjectModule\DomainObjectUnitTest.cs" />
     <Compile Include="ADObjectModule\GroupObjectUnitTest.cs" />
     <Compile Include="ADObjectModule\OrganizationalUnitUnitTest.cs" />
+    <Compile Include="ADOperatorModule\ADOperatorUnitTest.cs" />
     <Compile Include="ADQLModule\ADQLUnitTest.cs" />
     <Compile Include="Common\BaseUnitTest.cs" />
     <Compile Include="FilterModule\AndFilterUnitTest.cs" />
