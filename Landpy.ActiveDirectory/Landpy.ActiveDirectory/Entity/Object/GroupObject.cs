@@ -23,7 +23,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         private string notes;
         private IList<string> members;
         private GroupType groupType;
-        private GroupScope groupScope;
+        private GroupScopeType groupScopeType;
 
         /// <summary>
         /// The object sid.
@@ -135,6 +135,9 @@ namespace Landpy.ActiveDirectory.Entity.Object
             }
         }
 
+        /// <summary>
+        /// The members.
+        /// </summary>
         public IList<string> Members
         {
             get
@@ -177,31 +180,31 @@ namespace Landpy.ActiveDirectory.Entity.Object
         }
 
         /// <summary>
-        /// The group scope.
+        /// The group scope type.
         /// </summary>
-        public GroupScope GroupScope
+        public GroupScopeType GroupScopeType
         {
             get
             {
-                if (this.groupScope == GroupScope.Unknow)
+                if (this.groupScopeType == GroupScopeType.Unknow)
                 {
                     int groupTypeValue = new IntegerAdapter(this.SearchResult.Properties[GroupAttributeNames.GroupType]).Value;
                     var buildInGroupType = (BuildInGroupType)groupTypeValue;
                     if ((buildInGroupType & BuildInGroupType.DomainLocalGroup) != BuildInGroupType.None)
                     {
-                        this.groupScope = GroupScope.DomainLocal;
+                        this.groupScopeType = GroupScopeType.DomainLocal;
                     }
                     else if ((buildInGroupType & BuildInGroupType.GlobalGroup) != BuildInGroupType.None)
                     {
-                        this.groupScope = GroupScope.Global;
+                        this.groupScopeType = GroupScopeType.Global;
                     }
                     else if ((buildInGroupType & BuildInGroupType.UniversalGroup) != BuildInGroupType.None)
                     {
-                        this.groupScope = GroupScope.Universal;
+                        this.groupScopeType = GroupScopeType.Universal;
                         ;
                     }
                 }
-                return this.groupScope;
+                return this.groupScopeType;
             }
         }
 

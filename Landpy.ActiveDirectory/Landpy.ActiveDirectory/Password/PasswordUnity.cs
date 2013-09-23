@@ -3,6 +3,9 @@ using Landpy.ActiveDirectory.Entity.Object;
 
 namespace Landpy.ActiveDirectory.Password
 {
+    /// <summary>
+    /// The password unity.
+    /// </summary>
     public class PasswordUnity
     {
         /// <summary>

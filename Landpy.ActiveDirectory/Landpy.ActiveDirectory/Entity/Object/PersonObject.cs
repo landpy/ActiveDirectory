@@ -7,6 +7,9 @@ using Landpy.ActiveDirectory.Entity.TypeAdapter;
 
 namespace Landpy.ActiveDirectory.Entity.Object
 {
+    /// <summary>
+    /// The person AD object.
+    /// </summary>
     public abstract class PersonObject : ADObject
     {
         private byte[] thumbnailPhoto;
@@ -641,6 +644,11 @@ namespace Landpy.ActiveDirectory.Entity.Object
             }
         }
 
+        /// <summary>
+        /// The constructor with AD operator and SearchResult params.
+        /// </summary>
+        /// <param name="adOperator">The AD operator.</param>
+        /// <param name="searchResult"></param>
         protected PersonObject(IADOperator adOperator, SearchResult searchResult)
             : base(adOperator, searchResult)
         {

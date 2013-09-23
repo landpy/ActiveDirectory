@@ -126,7 +126,7 @@
     <Compile Include="Entity\Object\ContainerObject.cs" />
     <Compile Include="Entity\Object\DomainObject.cs" />
     <Compile Include="Entity\Object\GroupObject.cs" />
-    <Compile Include="Entity\Object\GroupScope.cs" />
+    <Compile Include="Entity\Object\GroupScopeType.cs" />
     <Compile Include="Entity\Object\BuildInGroupType.cs" />
     <Compile Include="Entity\Object\GroupType.cs" />
     <Compile Include="Entity\Object\InetOrgPersonObject.cs" />

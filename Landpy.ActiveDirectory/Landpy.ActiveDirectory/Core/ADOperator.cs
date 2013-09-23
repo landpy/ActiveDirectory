@@ -25,7 +25,7 @@
         /// <summary>
         /// Get the ActiveDirectory operator info.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The ActiveDirectory operator info.</returns>
         public ADOperatorInfo GetOperatorInfo()
         {
             return new ADOperatorInfo { UserLoginName = this.UserLoginName, OperateDomainName = this.OperateDomainName, Password = this.Password };

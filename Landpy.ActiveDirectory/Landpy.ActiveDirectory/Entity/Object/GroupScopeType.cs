@@ -1,21 +1,25 @@
 ﻿namespace Landpy.ActiveDirectory.Entity.Object
 {
     /// <summary>
-    /// The group typ.
+    /// Group scope type.
     /// </summary>
-    public enum GroupType
+    public enum GroupScopeType
     {
         /// <summary>
         /// Unknow.
         /// </summary>
         Unknow,
         /// <summary>
-        /// Sercurity group.
+        /// Domain local scope.
         /// </summary>
-        Security,
+        DomainLocal,
         /// <summary>
-        /// Distribution group.
+        /// Global scope.
         /// </summary>
-        Distribution
+        Global,
+        /// <summary>
+        /// Universal scope.
+        /// </summary>
+        Universal
     }
 }
