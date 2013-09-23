@@ -77,7 +77,7 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
                 Assert.GreaterOrEqual(groupObject.Members.Count, 1);
                 Assert.AreEqual(this.GroupMember, groupObject.Members[0]);
                 Assert.AreEqual(this.GroupType, groupObject.GroupType.ToString());
-                Assert.AreEqual(this.GroupScope, groupObject.GroupScope.ToString());
+                Assert.AreEqual(this.GroupScope, groupObject.GroupScopeType.ToString());
             }
             using (var adObject = ADObject.FindOneByObjectGUID(this.ADOperator, this.GroupGuid))
             {

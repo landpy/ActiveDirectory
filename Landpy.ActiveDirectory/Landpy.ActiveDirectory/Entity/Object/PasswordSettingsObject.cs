@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.DirectoryServices;
 using System.Linq;
 using Landpy.ActiveDirectory.Core;
@@ -9,6 +8,9 @@ using Landpy.ActiveDirectory.Entity.TypeAdapter;
 
 namespace Landpy.ActiveDirectory.Entity.Object
 {
+    /// <summary>
+    /// The password settings object.
+    /// </summary>
     public class PasswordSettingsObject : ADObject
     {
         private int customPolicyMinimumPasswordLength;
@@ -44,6 +46,11 @@ namespace Landpy.ActiveDirectory.Entity.Object
             }
         }
 
+        /// <summary>
+        /// The constructor with AD operator and SearchResult params.
+        /// </summary>
+        /// <param name="adOperator">The AD operator.</param>
+        /// <param name="searchResult">The SearchResult.</param>
         public PasswordSettingsObject(IADOperator adOperator, SearchResult searchResult)
             : base(adOperator, searchResult)
         {

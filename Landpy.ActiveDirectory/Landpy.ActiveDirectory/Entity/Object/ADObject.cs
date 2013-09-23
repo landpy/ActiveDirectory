@@ -33,11 +33,22 @@ namespace Landpy.ActiveDirectory.Entity.Object
         private string webPage;
         private IList<string> otherWebPages;
 
+        /// <summary>
+        /// The SearchResult.
+        /// </summary>
         protected SearchResult SearchResult { get; private set; }
+
+        /// <summary>
+        /// The DirectoryEntry.
+        /// </summary>
         protected DirectoryEntry DirectoryEntry
         {
             get { return directoryEntry ?? (directoryEntry = this.SearchResult.GetDirectoryEntry()); }
         }
+
+        /// <summary>
+        /// The AD operator.
+        /// </summary>
         protected IADOperator ADOperator { get; private set; }
 
         /// <summary>
@@ -327,6 +338,11 @@ namespace Landpy.ActiveDirectory.Entity.Object
             }
         }
 
+        /// <summary>
+        /// The constructor with AD operator and SearchResult params.
+        /// </summary>
+        /// <param name="adOperator">The AD operator.</param>
+        /// <param name="searchResult">The SearchResult.</param>
         internal protected ADObject(IADOperator adOperator, SearchResult searchResult)
         {
             this.SearchResult = searchResult;

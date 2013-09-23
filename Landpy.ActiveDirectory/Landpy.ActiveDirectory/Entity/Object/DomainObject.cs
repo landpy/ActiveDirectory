@@ -8,6 +8,9 @@ using Landpy.ActiveDirectory.Entity.TypeAdapter;
 
 namespace Landpy.ActiveDirectory.Entity.Object
 {
+    /// <summary>
+    /// The domain AD object.
+    /// </summary>
     public class DomainObject : ADObject
     {
         private int groupPolicyMinimumPasswordLength;
