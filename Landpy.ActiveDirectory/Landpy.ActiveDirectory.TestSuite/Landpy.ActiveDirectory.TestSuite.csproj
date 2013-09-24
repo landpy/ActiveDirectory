@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADObjectModule\ADObjectCustomAttributeUnitTest.cs" />
     <Compile Include="ADObjectModule\ComputerObjectUnitTest.cs">
       <SubType>Code</SubType>
     </Compile>

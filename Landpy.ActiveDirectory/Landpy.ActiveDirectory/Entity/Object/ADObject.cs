@@ -394,6 +394,62 @@ namespace Landpy.ActiveDirectory.Entity.Object
             this.DirectoryEntry.DeleteTree();
         }
 
+        /// <summary>
+        /// Get the attribute value.
+        /// </summary>
+        /// <typeparam name="TAttributeValue">The attribute value generic type.</typeparam>
+        /// <param name="attributeName">The attribute name.</param>
+        /// <returns>The attribute value.</returns>
+        public TAttributeValue GetAttributeValue<TAttributeValue>(string attributeName) where TAttributeValue : class
+        {
+            TAttributeValue attributeValue = default(TAttributeValue);
+            if (typeof(TAttributeValue) == typeof(string))
+            {
+                attributeValue = new SingleLineAdapter(this.SearchResult.Properties[attributeName]).Value as TAttributeValue;
+            }
+            else if (typeof(TAttributeValue) == typeof(byte[]))
+            {
+                attributeValue = new ByteArrayAdapter(this.SearchResult.Properties[attributeName]).Value as TAttributeValue;
+            }
+            else if (typeof(TAttributeValue) == typeof(DateTime))
+            {
+                attributeValue = new DateTimeAdapter(this.SearchResult, attributeName).Value as TAttributeValue;
+            }
+            else if (typeof(TAttributeValue) == typeof(Guid))
+            {
+                attributeValue = new GuidAdapter(this.SearchResult.Properties[attributeName]).Value as TAttributeValue;
+            }
+            else if (typeof(TAttributeValue) == typeof(int))
+            {
+                attributeValue = new IntegerAdapter(this.SearchResult.Properties[attributeName]).Value as TAttributeValue;
+            }
+            else if (typeof(TAttributeValue) == typeof(IList<string>))
+            {
+                attributeValue = new MultipleLineAdapter(this.SearchResult.Properties[attributeName]).Value as TAttributeValue;
+            }
+            return attributeValue;
+        }
+
+        /// <summary>
+        /// Set the attribute value.
+        /// </summary>
+        /// <typeparam name="TAttributeValue">The attribute value generic type.</typeparam>
+        /// <param name="attributeName">The attribute name.</param>
+        /// <param name="attributeValue">The attribute value.</param>
+        public void SetAttributeValue<TAttributeValue>(string attributeName, TAttributeValue attributeValue)
+        {
+            this.DirectoryEntry.Properties[attributeName].Value = attributeValue;
+        }
+
+        /// <summary>
+        /// Clear the attribute value.
+        /// </summary>
+        /// <param name="attributename">The attribute name.</param>
+        public void ClearAttributeValue(string attributename)
+        {
+            this.DirectoryEntry.Properties[attributename].Clear();
+        }
+
         internal static ADObject GetADObject(IADOperator adOperator, SearchResult searchResult)
         {
             ADObject adObject;

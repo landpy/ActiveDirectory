@@ -94,6 +94,8 @@
     <Property Key="CurrentDomainName" Value="pang"/>
     <!--PasswordSettings Object-->
     <Property Key="PasswordSettingsUserCn" Value="PRTest3"/>
+    <!--AD Object Custom Attribute-->
+    <Property Key="CustomAttributeUserCn" Value="customattributeuser"/>
     <!--Password Unity-->
     <Property Key="PasswordUnityUserLoginName" Value="pang\administrator"/>
     <Property Key="PasswordUnityUserPassword" Value="xxxxxxxxxxx"/>
