@@ -55,6 +55,7 @@
     <Compile Include="Core\Filter\Expression\And.cs" />
     <Compile Include="Core\Filter\Expression\AttributeKeyFilter.cs" />
     <Compile Include="Core\Filter\Expression\AttributeKeyValueFilter.cs" />
+    <Compile Include="Core\Filter\Expression\Custom.cs" />
     <Compile Include="Core\Filter\Expression\Decorator.cs" />
     <Compile Include="Core\Filter\Expression\EndWith.cs">
       <SubType>Code</SubType>
