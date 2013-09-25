@@ -1,4 +1,5 @@
-﻿using Landpy.ActiveDirectory.Entity.Attribute.Name;
+﻿using System;
+using Landpy.ActiveDirectory.Entity.Attribute.Name;
 using Landpy.ActiveDirectory.Entity.Object;
 using Landpy.ActiveDirectory.TestSuite.Common;
 using Landpy.TestFramwork.Configuration;
@@ -23,6 +24,24 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
         {
             using (var containerObject = ContainerObject.FindOneByCN(this.ADOperator, this.ContainerCN))
             {
+                foreach (UserObject userObject in containerObject.Users)
+                {
+                    Console.WriteLine(userObject.Name);
+                    Console.WriteLine(userObject.DistinguishedName);
+                    Console.WriteLine(userObject.Type);
+                }
+                foreach (ContactObject contactObject in containerObject.Contacts)
+                {
+                    Console.WriteLine(contactObject.Name);
+                    Console.WriteLine(contactObject.DistinguishedName);
+                    Console.WriteLine(contactObject.Type);
+                }
+                foreach (ComputerObject computerObject in containerObject.Computers)
+                {
+                    Console.WriteLine(computerObject.Name);
+                    Console.WriteLine(computerObject.DistinguishedName);
+                    Console.WriteLine(computerObject.Type);
+                }
                 Assert.AreEqual(this.ContainerDescription, containerObject.Description);
             }
         }

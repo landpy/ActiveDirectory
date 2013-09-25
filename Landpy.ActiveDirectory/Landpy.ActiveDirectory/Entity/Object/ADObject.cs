@@ -498,38 +498,50 @@ namespace Landpy.ActiveDirectory.Entity.Object
 
         internal static ADObjectType GetADObjectType(SearchResult searchResult)
         {
+            ADObjectType adObjectType = ADObjectType.Unknow;
             var resultPropertyValueCollection = searchResult.Properties[AttributeNames.ObjectClass];
             for (int index = 0; index < resultPropertyValueCollection.Count; index++)
             {
                 switch (resultPropertyValueCollection[index].ToString())
                 {
                     case UserAttributeValues.User:
-                        return ADObjectType.User;
+                        adObjectType = ADObjectType.User;
+                        break;
                     case ContactAttributeValues.Contact:
-                        return ADObjectType.Contact;
+                        adObjectType = ADObjectType.Contact;
+                        break;
                     case ComputerAttributeValues.Computer:
-                        return ADObjectType.Computer;
+                        adObjectType = ADObjectType.Computer;
+                        break;
                     case ContainerAttributeValues.Container:
-                        return ADObjectType.Container;
+                        adObjectType = ADObjectType.Container;
+                        break;
                     case GroupAttributeValues.Group:
-                        return ADObjectType.Group;
+                        adObjectType = ADObjectType.Group;
+                        break;
                     case InetOrgPersonAttributeValues.InetOrgPerson:
-                        return ADObjectType.InetOrgPerson;
+                        adObjectType = ADObjectType.InetOrgPerson;
+                        break;
                     case MSMQQueueAliasAttributeValues.MSMQQueueAlias:
-                        return ADObjectType.MSMQQueueAlias;
+                        adObjectType = ADObjectType.MSMQQueueAlias;
+                        break;
                     case MsImaging_PSPsAttributeValues.MsImaging_PSPs:
-                        return ADObjectType.MsImaging_PSPs;
+                        adObjectType = ADObjectType.MsImaging_PSPs;
+                        break;
                     case OrganizationalUnitAttributeValues.OrganizationalUnit:
-                        return ADObjectType.OrganizationalUnit;
+                        adObjectType = ADObjectType.OrganizationalUnit;
+                        break;
                     case PrinterAttributeValues.Printer:
-                        return ADObjectType.Printer;
+                        adObjectType = ADObjectType.Printer;
+                        break;
                     case SharedFolderAttributeValues.SharedFolder:
-                        return ADObjectType.SharedFolder;
+                        adObjectType = ADObjectType.SharedFolder;
+                        break;
                     default:
                         break;
                 }
             }
-            return ADObjectType.Unknow;
+            return adObjectType;
         }
     }
 }
