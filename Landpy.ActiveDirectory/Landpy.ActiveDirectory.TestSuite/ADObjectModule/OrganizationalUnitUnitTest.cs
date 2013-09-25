@@ -51,6 +51,24 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
         {
             using (var organizationalUnitObject = OrganizationalUnitObject.FindOneByOU(this.ADOperator, this.OrganizaionalUnitOU))
             {
+                foreach (UserObject userObject in organizationalUnitObject.Users)
+                {
+                    Console.WriteLine(userObject.Name);
+                    Console.WriteLine(userObject.DistinguishedName);
+                    Console.WriteLine(userObject.Type);
+                }
+                foreach (ContactObject contactObject in organizationalUnitObject.Contacts)
+                {
+                    Console.WriteLine(contactObject.Name);
+                    Console.WriteLine(contactObject.DistinguishedName);
+                    Console.WriteLine(contactObject.Type);
+                }
+                foreach (ComputerObject computerObject in organizationalUnitObject.Computers)
+                {
+                    Console.WriteLine(computerObject.Name);
+                    Console.WriteLine(computerObject.DistinguishedName);
+                    Console.WriteLine(computerObject.Type);
+                }
                 Assert.AreEqual(this.OrganizaionalUnitStreet, organizationalUnitObject.Street);
             }
         }

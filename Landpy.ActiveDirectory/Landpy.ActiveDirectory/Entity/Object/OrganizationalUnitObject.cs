@@ -23,6 +23,9 @@ namespace Landpy.ActiveDirectory.Entity.Object
         private string co;
         private string c;
         private string managedBy;
+        private IList<UserObject> users;
+        private IList<ContactObject> contacts;
+        private IList<ComputerObject> computers;
 
         /// <summary>
         /// The ou.
@@ -156,6 +159,93 @@ namespace Landpy.ActiveDirectory.Entity.Object
             {
                 this.DirectoryEntry.Properties[ComputerAttributeNames.ManagedBy].Value = value;
                 this.managedBy = value;
+            }
+        }
+
+        /// <summary>
+        /// The child users.
+        /// </summary>
+        public IList<UserObject> Users
+        {
+            get
+            {
+                if (this.users == null)
+                {
+                    this.users = new List<UserObject>();
+                    foreach (DirectoryEntry child in this.DirectoryEntry.Children)
+                    {
+                        using (child)
+                        {
+                            using (var directoryEntryRepository = new DirectoryEntryRepository(this.ADOperator))
+                            {
+                                var searchResult = directoryEntryRepository.GetSearchResult(new Is(AttributeNames.DistinguishedName, child.Properties[AttributeNames.DistinguishedName].Value.ToString()));
+                                if (GetADObjectType(searchResult) == ADObjectType.User)
+                                {
+                                    this.users.Add(new UserObject(this.ADOperator, searchResult));
+                                }
+                            }
+                        }
+                    }
+                }
+                return this.users;
+            }
+        }
+
+        /// <summary>
+        /// The child contacts.
+        /// </summary>
+        public IList<ContactObject> Contacts
+        {
+            get
+            {
+                if (this.contacts == null)
+                {
+                    this.contacts = new List<ContactObject>();
+                    foreach (DirectoryEntry child in this.DirectoryEntry.Children)
+                    {
+                        using (child)
+                        {
+                            using (var directoryEntryRepository = new DirectoryEntryRepository(this.ADOperator))
+                            {
+                                var searchResult = directoryEntryRepository.GetSearchResult(new Is(AttributeNames.DistinguishedName, child.Properties[AttributeNames.DistinguishedName].Value.ToString()));
+                                if (GetADObjectType(searchResult) == ADObjectType.Contact)
+                                {
+                                    this.contacts.Add(new ContactObject(this.ADOperator, searchResult));
+                                }
+                            }
+                        }
+                    }
+                }
+                return this.contacts;
+            }
+        }
+
+        /// <summary>
+        /// The child computers.
+        /// </summary>
+        public IList<ComputerObject> Computers
+        {
+            get
+            {
+                if (this.computers == null)
+                {
+                    this.computers = new List<ComputerObject>();
+                    foreach (DirectoryEntry child in this.DirectoryEntry.Children)
+                    {
+                        using (child)
+                        {
+                            using (var directoryEntryRepository = new DirectoryEntryRepository(this.ADOperator))
+                            {
+                                var searchResult = directoryEntryRepository.GetSearchResult(new Is(AttributeNames.DistinguishedName, child.Properties[AttributeNames.DistinguishedName].Value.ToString()));
+                                if (GetADObjectType(searchResult) == ADObjectType.Computer)
+                                {
+                                    this.computers.Add(new ComputerObject(this.ADOperator, searchResult));
+                                }
+                            }
+                        }
+                    }
+                }
+                return this.computers;
             }
         }
 
