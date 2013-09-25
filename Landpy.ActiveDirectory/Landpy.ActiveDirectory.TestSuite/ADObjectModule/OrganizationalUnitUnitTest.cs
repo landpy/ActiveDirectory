@@ -69,6 +69,12 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
                     Console.WriteLine(computerObject.DistinguishedName);
                     Console.WriteLine(computerObject.Type);
                 }
+                foreach (OrganizationalUnitObject childOrganizationalUnitObject in organizationalUnitObject.OrganizationalUnits)
+                {
+                    Console.WriteLine(childOrganizationalUnitObject.Name);
+                    Console.WriteLine(childOrganizationalUnitObject.DistinguishedName);
+                    Console.WriteLine(childOrganizationalUnitObject.Type);
+                }
                 Assert.AreEqual(this.OrganizaionalUnitStreet, organizationalUnitObject.Street);
             }
         }
