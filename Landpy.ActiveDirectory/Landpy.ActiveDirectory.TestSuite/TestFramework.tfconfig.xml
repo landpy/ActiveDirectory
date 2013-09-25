@@ -3,8 +3,8 @@
   <Properties>
     <!--AD Operator-->
     <Property Key="DomainName" Value="pang"/>
-    <Property Key="DomainUserName" Value="pang\administrator"/>
-    <Property Key="DomainUserPassword" Value="liu-pxl821102"/>
+    <Property Key="DomainUserName" Value="landpy\pangxiaoliang"/>
+    <Property Key="DomainUserPassword" Value="abc123,./"/>
     <Property Key="AndFilterString" Value="(&amp;(objectClass=organizationalUnit)(objectClass=user))"/>
     <Property Key="OrFilterString" Value="(|(objectClass=organizationalUnit)(objectClass=user))"/>
     <!--User Object-->

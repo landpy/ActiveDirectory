@@ -26,6 +26,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         private IList<UserObject> users;
         private IList<ContactObject> contacts;
         private IList<ComputerObject> computers;
+        private IList<OrganizationalUnitObject> organizationalUnits;
 
         /// <summary>
         /// The ou.
@@ -246,6 +247,35 @@ namespace Landpy.ActiveDirectory.Entity.Object
                     }
                 }
                 return this.computers;
+            }
+        }
+
+        /// <summary>
+        /// The child organizational units.
+        /// </summary>
+        public IList<OrganizationalUnitObject> OrganizationalUnits
+        {
+            get
+            {
+                if (this.organizationalUnits == null)
+                {
+                    this.organizationalUnits = new List<OrganizationalUnitObject>();
+                    foreach (DirectoryEntry child in this.DirectoryEntry.Children)
+                    {
+                        using (child)
+                        {
+                            using (var directoryEntryRepository = new DirectoryEntryRepository(this.ADOperator))
+                            {
+                                var searchResult = directoryEntryRepository.GetSearchResult(new Is(AttributeNames.DistinguishedName, child.Properties[AttributeNames.DistinguishedName].Value.ToString()));
+                                if (GetADObjectType(searchResult) == ADObjectType.OrganizationalUnit)
+                                {
+                                    this.organizationalUnits.Add(new OrganizationalUnitObject(this.ADOperator, searchResult));
+                                }
+                            }
+                        }
+                    }
+                }
+                return this.organizationalUnits;
             }
         }
 
