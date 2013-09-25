@@ -8,7 +8,7 @@ namespace Landpy.ActiveDirectory.Core.Filter.Expression
     public class And : Decorator
     {
         /// <summary>
-        /// The constructure with filter collection (Eg: (&amp;{0})).
+        /// The constructure with filter collection param(Eg: (&amp;{0})).
         /// The filter must inherit from IFilter interface.
         /// </summary>
         /// <param name="filters">The filter collection.</param>
