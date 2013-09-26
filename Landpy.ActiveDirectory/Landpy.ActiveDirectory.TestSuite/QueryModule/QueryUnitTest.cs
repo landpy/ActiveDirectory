@@ -84,6 +84,17 @@ namespace Landpy.ActiveDirectory.TestSuite.QueryModule
             }
         }
 
-
+        [TestCase]
+        public void TestQueryIsComputer()
+        {
+            Assert.AreNotEqual(0, ADObjectQuery.List(this.ADOperator, new IsComputer()).Count);
+            foreach (var adObject in ADObjectQuery.List(this.ADOperator, new IsComputer()))
+            {
+                using (adObject)
+                {
+                    Assert.AreEqual(ADObjectType.Computer, adObject.Type, adObject.Path);
+                }
+            }
+        }
     }
 }

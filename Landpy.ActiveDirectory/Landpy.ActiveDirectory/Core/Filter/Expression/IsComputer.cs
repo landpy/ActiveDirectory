@@ -14,7 +14,7 @@ namespace Landpy.ActiveDirectory.Core.Filter.Expression
         /// <returns>The filter string.</returns>
         public string BuildFilter()
         {
-            IFilter filter = new Is(AttributeNames.ObjectClass, UserAttributeValues.User);
+            IFilter filter = new Is(AttributeNames.ObjectClass, ComputerAttributeValues.Computer);
             return filter.BuildFilter();
         }
     }
