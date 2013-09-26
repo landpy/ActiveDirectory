@@ -1,4 +1,7 @@
-﻿namespace Landpy.ActiveDirectory.Core.Filter.Expression
+﻿using Landpy.ActiveDirectory.Entity.Attribute.Name;
+using Landpy.ActiveDirectory.Entity.Attribute.Value;
+
+namespace Landpy.ActiveDirectory.Core.Filter.Expression
 {
     /// <summary>
     /// Is password settings filter (Eg: (objectClass=msDs-PasswordSettings)).
@@ -11,7 +14,8 @@
         /// <returns></returns>
         public string BuildFilter()
         {
-            return FilterStrings.PasswordSettingsFilter;
+            IFilter filter = new Is(AttributeNames.ObjectClass, PasswordSettingsAttributeValues.MsDs_PasswordSettings);
+            return filter.BuildFilter();
         }
     }
 }

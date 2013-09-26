@@ -10,7 +10,7 @@ namespace Landpy.ActiveDirectory.Core
         public ObjectGUIDDirectoryEntryRepository(IADOperator adOperator, Guid objectGuid)
         {
             var adOperatorInfo = adOperator.GetOperatorInfo();
-            this.DirectoryEntry = new DirectoryEntry(String.Format(@"LDAP://<GUID={0}>", objectGuid), adOperatorInfo.UserLoginName, adOperatorInfo.Password);
+            this.DirectoryEntry = new DirectoryEntry(String.Format(@"LDAP://{0}/<GUID={1}>", adOperatorInfo.OperateDomainName, objectGuid), adOperatorInfo.UserLoginName, adOperatorInfo.Password);
         }
 
         public SearchResult GetSearchResult()

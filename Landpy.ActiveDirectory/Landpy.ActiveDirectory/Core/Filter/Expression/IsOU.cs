@@ -1,4 +1,7 @@
-﻿namespace Landpy.ActiveDirectory.Core.Filter.Expression
+﻿using Landpy.ActiveDirectory.Entity.Attribute.Name;
+using Landpy.ActiveDirectory.Entity.Attribute.Value;
+
+namespace Landpy.ActiveDirectory.Core.Filter.Expression
 {
     /// <summary>
     /// Is OU filter (Eg: (objectClass=organizationalUnit)).
@@ -11,7 +14,8 @@
         /// <returns>The filter string.</returns>
         public string BuildFilter()
         {
-            return FilterStrings.OrganizationalUnitFilter;
+            IFilter filter = new Is(AttributeNames.ObjectClass, OrganizationalUnitAttributeValues.OrganizationalUnit);
+            return filter.BuildFilter();
         }
     }
 }

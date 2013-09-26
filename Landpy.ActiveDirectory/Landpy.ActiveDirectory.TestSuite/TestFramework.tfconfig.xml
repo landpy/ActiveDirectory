@@ -3,10 +3,16 @@
   <Properties>
     <!--AD Operator-->
     <Property Key="DomainName" Value="pang"/>
-    <Property Key="DomainUserName" Value="landpy\pangxiaoliang"/>
-    <Property Key="DomainUserPassword" Value="abc123,./"/>
-    <Property Key="AndFilterString" Value="(&amp;(objectClass=organizationalUnit)(objectClass=user))"/>
-    <Property Key="OrFilterString" Value="(|(objectClass=organizationalUnit)(objectClass=user))"/>
+    <Property Key="DomainUserName" Value="pang\administrator"/>
+    <Property Key="DomainUserPassword" Value="liu-pxl821102"/>
+    <!--Filter-->
+    <Property Key="AndFilterString" Value="(&amp;(objectClass=organizationalUnit)(&amp;(objectClass=user)(!objectClass=computer)(!objectClass=inetOrgPerson)))"/>
+    <Property Key="OrFilterString" Value="(|(objectClass=organizationalUnit)(&amp;(objectClass=user)(!objectClass=computer)(!objectClass=inetOrgPerson)))"/>
+    <Property Key="ComplexFilterString" Value="(&amp;(&amp;(objectClass=user)(!objectClass=computer)(!objectClass=inetOrgPerson))(ou=pangxiaoliangOU)(|(cn=pang*)(&amp;(cn=*liu)(mail=mv@live.cn))))"/>
+    <!--IP-->
+    <Property Key="IPDomainName" Value="192.168.6.67"/>
+    <Property Key="IPDomainUserName" Value="192.168.6.67\administrator"/>
+    <Property Key="IPDomainUserPassword" Value="liu-pxl821102"/>
     <!--User Object-->
     <Property Key="UserCn" Value="pangxiaoliang"/>
     <Property Key="UserSid" Value="S-1-5-21-3069975210-3933090721-4243971453-1197"/>
@@ -57,7 +63,7 @@
     <Property Key="UserIsEnabled" Value="true"/>
     <Property Key="UserEmail" Value="FFF@mail.braintimes.org"/>
     <Property Key="UserResetPasswordUserCN" Value="Landpy"/>
-    <Property Key="UserResetPasswordUserPassword" Value="xxxxxxxxxxx"/>
+    <Property Key="UserResetPasswordUserPassword" Value="abc123,./"/>
     <Property Key="UserIsDomainAdmin" Value="true"/>
     <Property Key="UserIsAccountOperator" Value="false"/>
     <!--Group Object-->
@@ -97,7 +103,7 @@
     <!--AD Object Custom Attribute-->
     <Property Key="CustomAttributeUserCn" Value="customattributeuser"/>
     <!--Password Unity-->
-    <Property Key="PasswordUnityUserLoginName" Value="pang\administrator"/>
-    <Property Key="PasswordUnityUserPassword" Value="xxxxxxxxxxx"/>
+    <Property Key="PasswordUnityUserLoginName" Value="pang\landpy"/>
+    <Property Key="PasswordUnityUserPassword" Value="abc123,./"/>
   </Properties>
 </TFConfiguration>

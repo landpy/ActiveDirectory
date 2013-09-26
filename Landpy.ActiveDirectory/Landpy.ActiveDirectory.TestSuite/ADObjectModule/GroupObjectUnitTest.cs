@@ -1,8 +1,10 @@
 ﻿using System;
+using Landpy.ActiveDirectory.Core;
 using Landpy.ActiveDirectory.Entity.Attribute.Name;
 using Landpy.ActiveDirectory.Entity.Object;
 using Landpy.ActiveDirectory.TestSuite.Common;
 using Landpy.TestFramwork.Configuration;
+using Moq;
 using NUnit.Framework;
 using Is = Landpy.ActiveDirectory.Core.Filter.Expression.Is;
 
@@ -20,6 +22,7 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
         private string GroupMember { get; set; }
         private string GroupType { get; set; }
         private string GroupScope { get; set; }
+        private IADOperator IPADOperator { get; set; }
 
         protected override void SetUp()
         {
@@ -33,6 +36,15 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
             this.GroupMember = TF.GetConfig().Properties["GroupMember"];
             this.GroupType = TF.GetConfig().Properties["GroupType"];
             this.GroupScope = TF.GetConfig().Properties["GroupScope"];
+            var mock = new Mock<IADOperator>();
+            var adOperatorInfo = new ADOperatorInfo
+            {
+                UserLoginName = TF.GetConfig().Properties["IPDomainUserName"],
+                Password = TF.GetConfig().Properties["IPDomainUserPassword"],
+                OperateDomainName = TF.GetConfig().Properties["IPDomainName"],
+            };
+            mock.Setup(m => m.GetOperatorInfo()).Returns(adOperatorInfo);
+            this.IPADOperator = mock.Object;
         }
 
         [TestCase]
@@ -80,6 +92,17 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
                 Assert.AreEqual(this.GroupScope, groupObject.GroupScopeType.ToString());
             }
             using (var adObject = ADObject.FindOneByObjectGUID(this.ADOperator, this.GroupGuid))
+            {
+                var groupObject = adObject as GroupObject;
+                Assert.NotNull(groupObject);
+                Assert.AreEqual(this.GroupSid, groupObject.ObjectSid);
+            }
+        }
+
+        [TestCase]
+        public void TestGroupObjectFindOneWithIP()
+        {
+            using (var adObject = ADObject.FindOneByObjectGUID(this.IPADOperator, this.GroupGuid))
             {
                 var groupObject = adObject as GroupObject;
                 Assert.NotNull(groupObject);
