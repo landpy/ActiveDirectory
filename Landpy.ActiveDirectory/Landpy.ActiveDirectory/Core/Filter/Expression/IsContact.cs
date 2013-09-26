@@ -1,4 +1,7 @@
-﻿namespace Landpy.ActiveDirectory.Core.Filter.Expression
+﻿using Landpy.ActiveDirectory.Entity.Attribute.Name;
+using Landpy.ActiveDirectory.Entity.Attribute.Value;
+
+namespace Landpy.ActiveDirectory.Core.Filter.Expression
 {
     /// <summary>
     /// Is contact filter (Eg: (objectClass=contact)).
@@ -11,7 +14,9 @@
         /// <returns>The filter string.</returns>
         public string BuildFilter()
         {
-            return FilterStrings.ContactFilter;
+            IFilter filter = new And(new Is(AttributeNames.ObjectClass, ContactAttributeValues.Contact),
+                new IsNot(AttributeNames.ObjectClass, ComputerAttributeValues.Computer));
+            return filter.BuildFilter();
         }
     }
 }

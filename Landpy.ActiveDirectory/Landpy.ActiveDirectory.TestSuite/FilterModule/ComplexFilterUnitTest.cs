@@ -3,6 +3,7 @@ using Landpy.ActiveDirectory.Core.Filter.Expression;
 using Landpy.ActiveDirectory.Entity.Attribute.Name;
 using Landpy.ActiveDirectory.Entity.Object;
 using Landpy.ActiveDirectory.TestSuite.Common;
+using Landpy.TestFramwork.Configuration;
 using NUnit.Framework;
 using System;
 using Is = Landpy.ActiveDirectory.Core.Filter.Expression.Is;
@@ -11,6 +12,13 @@ namespace Landpy.ActiveDirectory.TestSuite.FilterModule
 {
     class ComplexFilterUnitTest : BaseUnitTest
     {
+        private string ComplexFilterString { get; set; }
+
+        protected override void SetUp()
+        {
+            this.ComplexFilterString = TF.GetConfig().Properties["ComplexFilterString"];
+        }
+
         [TestCase]
         public void TestComplexFilter()
         {
@@ -29,7 +37,7 @@ namespace Landpy.ActiveDirectory.TestSuite.FilterModule
                                 )
                         )
                     );
-            Assert.AreEqual("(&(objectClass=user)(ou=pangxiaoliangOU)(|(cn=pang*)(&(cn=*liu)(mail=mv@live.cn))))", filter.BuildFilter());
+            Assert.AreEqual(this.ComplexFilterString, filter.BuildFilter());
             // Output the user object display name.
             foreach (var userObject in UserObject.FindAll(this.ADOperator, filter))
             {

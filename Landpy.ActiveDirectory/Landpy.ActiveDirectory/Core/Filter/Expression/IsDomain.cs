@@ -1,4 +1,7 @@
-﻿namespace Landpy.ActiveDirectory.Core.Filter.Expression
+﻿using Landpy.ActiveDirectory.Entity.Attribute.Name;
+using Landpy.ActiveDirectory.Entity.Attribute.Value;
+
+namespace Landpy.ActiveDirectory.Core.Filter.Expression
 {
     /// <summary>
     /// Is domain filter (Eg: (objectClass=domainDNS)).
@@ -11,7 +14,8 @@
         /// <returns>The filter string.</returns>
         public string BuildFilter()
         {
-            return FilterStrings.DomainFilter;
+            IFilter filter = new Is(AttributeNames.ObjectClass, DomainAttributeValues.DomainDNS);
+            return filter.BuildFilter();
         }
     }
 }
