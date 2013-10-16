@@ -422,6 +422,11 @@ namespace Landpy.ActiveDirectory.Entity.Object
                 }
                 return this.manager;
             }
+            set
+            {
+                this.DirectoryEntry.Properties[PersonAttributeNames.Manager].Value = value;
+                this.manager = value;
+            }
         }
 
         /// <summary>
@@ -436,6 +441,11 @@ namespace Landpy.ActiveDirectory.Entity.Object
                     this.userObject = FindOneByDN(this.ADOperator, this.Manager) as UserObject;
                 }
                 return this.userObject;
+            }
+            set
+            {
+                this.DirectoryEntry.Properties[PersonAttributeNames.Manager].Value = value.Manager;
+                this.userObject = value;
             }
         }
 
