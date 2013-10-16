@@ -3,8 +3,8 @@
   <Properties>
     <!--AD Operator-->
     <Property Key="DomainName" Value="pang"/>
-    <Property Key="DomainUserName" Value="pang\administrator"/>
-    <Property Key="DomainUserPassword" Value="liu-pxl821102"/>
+    <Property Key="DomainUserName" Value="pang\landpyoperator"/>
+    <Property Key="DomainUserPassword" Value="abc123,./"/>
     <!--Filter-->
     <Property Key="AndFilterString" Value="(&amp;(objectClass=organizationalUnit)(&amp;(objectClass=user)(!objectClass=computer)(!objectClass=inetOrgPerson)))"/>
     <Property Key="OrFilterString" Value="(|(objectClass=organizationalUnit)(&amp;(objectClass=user)(!objectClass=computer)(!objectClass=inetOrgPerson)))"/>
@@ -36,7 +36,7 @@
     <Property Key="UserIpPhone" Value="55555555555"/>
     <Property Key="UserOtherIpPhone" Value="555555555556"/>
     <Property Key="UserCity" Value="BeiJing"/>
-    <Property Key="UserManager" Value="CN=Administrator,CN=Users,DC=pang,DC=local"/>
+    <Property Key="UserManager" Value="CN=Landpy,OU=ADLib,DC=pang,DC=local"/>
     <Property Key="UserMemberOf" Value="CN=panggroup,OU=NewOU,OU=PangLevel1OU,DC=pang,DC=local"/>
     <Property Key="UserMobile" Value="33333333333"/>
     <Property Key="UserOtherMobile" Value="333333333334"/>
@@ -66,6 +66,9 @@
     <Property Key="UserResetPasswordUserPassword" Value="abc123,./"/>
     <Property Key="UserIsDomainAdmin" Value="true"/>
     <Property Key="UserIsAccountOperator" Value="false"/>
+    <Property Key="UserManagerCn" Value="Landpy"/>
+    <Property Key="UserDirectReportUserCn" Value="Landpy2"/>
+    <Property Key="UserDirectReportContactCn" Value="pangcontact"/>
     <!--Group Object-->
     <Property Key="GroupGuid" Value="ac8d3bca-4132-41b1-b29c-9dcfd860f50d"/>
     <Property Key="GroupCn" Value="panggroup"/>
@@ -85,6 +88,12 @@
     <Property Key="ComputerOperatingSystemServicePack" Value="Service Pack 1"/>
     <Property Key="ComputerDnsName" Value="br-pxl.pang.local"/>
     <Property Key="ComputerSiteName" Value="Default-First-Site-Name"/>
+    <Property Key="UserManageComputerCn" Value="BR-PXL"/>
+    <Property Key="ComputerManagedByUserCn" Value="Administrator"/>
+    <Property Key="GroupManageComputerCn" Value="BR-PXL-FRONTEND"/>
+    <Property Key="ComputerManagedByGroupCn" Value="panggroup"/>
+    <Property Key="ContactManageComputerCn" Value="BR-PXL07FRONTEN"/>
+    <Property Key="ComputerManagedByContactCn" Value="pangcontact"/>
     <!--OrganizaionalUnit Object-->
     <Property Key="OrganizaionalUnitOU" Value="pangou"/>
     <Property Key="OrganizaionalUnitStreet" Value="Street."/>
