@@ -9,13 +9,13 @@ namespace Landpy.ActiveDirectory.Entity.TypeAdapter
 
         public MultipleLineAdapter(ResultPropertyValueCollection resultPropertyValueCollection)
         {
+            this.Value = new List<string>();
             if (resultPropertyValueCollection.Count == 0)
             {
-                this.Value = null;
+                // N/A.
             }
             else
             {
-                this.Value = new List<string>();
                 foreach (var resultPropertyValue in resultPropertyValueCollection)
                 {
                     this.Value.Add(resultPropertyValue.ToString());
@@ -28,13 +28,13 @@ namespace Landpy.ActiveDirectory.Entity.TypeAdapter
             using (var directoryEntry = searchResult.GetDirectoryEntry())
             {
                 directoryEntry.RefreshCache(new string[] { propertyName });
+                this.Value = new List<string>();
                 if (directoryEntry.Properties[propertyName].Count == 0)
                 {
-                    this.Value = null;
+                    // N/A.
                 }
                 else
                 {
-                    this.Value = new List<string>();
                     foreach (var resultPropertyValue in directoryEntry.Properties[propertyName])
                     {
                         this.Value.Add(resultPropertyValue.ToString());
