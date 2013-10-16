@@ -150,7 +150,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
             }
             set
             {
-                this.DirectoryEntry.Properties[GroupAttributeNames.Member].Value = value;
+                SetAttributeValue(GroupAttributeNames.Member, value);
                 this.members = value;
             }
         }

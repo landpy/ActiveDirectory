@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Landpy.ActiveDirectory.Core.Filter.Expression;
 using Landpy.ActiveDirectory.Entity.Attribute.Name;
 using Landpy.ActiveDirectory.Entity.Attribute.Value;
@@ -66,6 +68,10 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
         private string UserResetPasswordUserPassword { get; set; }
         private bool UserIsDomainAdmin { get; set; }
         private bool UserIsAccountOperator { get; set; }
+        private string UserManagerCn { get; set; }
+        private string UserDirectReportUserCn { get; set; }
+        private string UserDirectReportContactCn { get; set; }
+        private string CustomAttributeUserCn { get; set; }
 
         protected override void SetUp()
         {
@@ -121,6 +127,10 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
             this.UserResetPasswordUserPassword = TF.GetConfig().Properties["UserResetPasswordUserPassword"];
             this.UserIsDomainAdmin = Boolean.Parse(TF.GetConfig().Properties["UserIsDomainAdmin"]);
             this.UserIsAccountOperator = Boolean.Parse(TF.GetConfig().Properties["UserIsAccountOperator"]);
+            this.UserManagerCn = TF.GetConfig().Properties["UserManagerCn"];
+            this.UserDirectReportUserCn = TF.GetConfig().Properties["UserDirectReportUserCn"];
+            this.UserDirectReportContactCn = TF.GetConfig().Properties["UserDirectReportContactCn"];
+            this.CustomAttributeUserCn = TF.GetConfig().Properties["CustomAttributeUserCn"];
         }
 
         [TestCase]
@@ -155,6 +165,8 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
         {
             using (var userObject = UserObject.FindOneBySid(this.ADOperator, this.UserSid))
             {
+                #region Verify User Object
+
                 Assert.AreEqual(this.UserCn, userObject.CN);
                 Assert.AreEqual(this.UserCO, userObject.CO);
                 Assert.AreEqual(this.UserC, userObject.C);
@@ -167,7 +179,7 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
                 Assert.AreEqual(this.UserDescription, userObject.Description);
                 Assert.IsNotNull(userObject.DirectReports);
                 Assert.GreaterOrEqual(userObject.DirectReports.Count, 1);
-                Assert.AreEqual(this.UserDirectReport, userObject.DirectReports[0]);
+                Assert.IsTrue(userObject.DirectReports.Contains(this.UserDirectReport));
                 Assert.AreEqual(this.UserDisplayName, userObject.DisplayName);
                 Assert.AreEqual(this.UserFax, userObject.Fax);
                 Assert.IsNotNull(userObject.OtherFaxes);
@@ -227,10 +239,20 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
                 Assert.AreEqual(this.UserEmail, userObject.Email);
                 Assert.AreEqual(this.UserIsDomainAdmin, userObject.IsDomainAdmin);
                 Assert.AreEqual(this.UserIsAccountOperator, userObject.IsAccountOperator);
+
+                #endregion
             }
             using (var userObject = UserObject.FindOneBySAMAccountName(this.ADOperator, this.UserSAMAccountName))
             {
                 Assert.AreEqual(this.UserCn, userObject.CN);
+                Assert.AreEqual(this.UserManagerCn, userObject.ManagerUser.CN);
+                Assert.IsNotNull(userObject.DirectReports);
+                Assert.IsTrue((from queryUserObject in userObject.DirectReportObjects
+                               where queryUserObject.CN == this.UserDirectReportUserCn
+                               select queryUserObject).Any());
+                Assert.IsTrue((from queryContactObject in userObject.DirectReportObjects
+                               where queryContactObject.CN == this.UserDirectReportContactCn
+                               select queryContactObject).Any());
             }
         }
 
@@ -252,6 +274,24 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
                 var passwordUnity = new PasswordUnity();
                 var operatorInfo = this.ADOperator.GetOperatorInfo();
                 Assert.IsTrue(passwordUnity.IsPasswordValid(String.Format(@"{0}\{1}", operatorInfo.OperateDomainName, this.UserResetPasswordUserCN), this.UserResetPasswordUserPassword));
+            }
+        }
+
+        [TestCase]
+        public void TestUserObjectUpdate()
+        {
+            using (var userObject = UserObject.FindOneByCN(this.ADOperator, this.CustomAttributeUserCn))
+            {
+                userObject.OtherTelephones = new List<string> { "111", "222", "333" };
+                userObject.Email = "hellokitty@live.cn";
+                userObject.Save();
+            }
+            using (var userObject = UserObject.FindOneByCN(this.ADOperator, this.CustomAttributeUserCn))
+            {
+                Assert.IsTrue(userObject.OtherTelephones.Contains("111"));
+                Assert.IsTrue(userObject.OtherTelephones.Contains("222"));
+                Assert.IsTrue(userObject.OtherTelephones.Contains("333"));
+                Assert.AreEqual("hellokitty@live.cn", userObject.Email);
             }
         }
     }

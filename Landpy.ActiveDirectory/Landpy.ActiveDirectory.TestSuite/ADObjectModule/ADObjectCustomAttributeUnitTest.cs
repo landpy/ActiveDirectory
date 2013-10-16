@@ -1,4 +1,5 @@
-﻿using Landpy.ActiveDirectory.Entity.Object;
+﻿using System.Collections.Generic;
+using Landpy.ActiveDirectory.Entity.Object;
 using Landpy.ActiveDirectory.TestSuite.Common;
 using Landpy.TestFramwork.Configuration;
 using NUnit.Framework;
@@ -20,6 +21,7 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
             using (var userObject = UserObject.FindOneByCN(this.ADOperator, this.CustomAttributeUserCn))
             {
                 userObject.SetAttributeValue("mail", "mv@live.cn");
+                userObject.SetAttributeValue("otherTelephone", new List<string> { "123", "234", "345" });
                 userObject.Save();
             }
             using (var userObject = UserObject.FindOneByCN(this.ADOperator, this.CustomAttributeUserCn))

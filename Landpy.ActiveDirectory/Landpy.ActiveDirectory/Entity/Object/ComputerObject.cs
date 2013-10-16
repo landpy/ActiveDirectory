@@ -23,6 +23,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         private string siteName;
         private IList<string> memberOf;
         private string managedBy;
+        private ADObject managedByObject;
 
         /// <summary>
         /// The object sid.
@@ -129,13 +130,13 @@ namespace Landpy.ActiveDirectory.Entity.Object
             }
             set
             {
-                this.DirectoryEntry.Properties[ComputerAttributeNames.MemberOf].Value = value;
+                SetAttributeValue(ComputerAttributeNames.MemberOf, value);
                 this.memberOf = value;
             }
         }
 
         /// <summary>
-        /// The managed by user distinguish name.
+        /// The managed by user, group or contact distinguish name.
         /// </summary>
         public string ManagedBy
         {
@@ -151,6 +152,21 @@ namespace Landpy.ActiveDirectory.Entity.Object
             {
                 this.DirectoryEntry.Properties[ComputerAttributeNames.ManagedBy].Value = value;
                 this.managedBy = value;
+            }
+        }
+
+        /// <summary>
+        /// The managed by user, group or contact AD object.
+        /// </summary>
+        public ADObject ManagedByObject
+        {
+            get
+            {
+                if (this.managedByObject == null)
+                {
+                    this.managedByObject = FindOneByDN(this.ADOperator, this.ManagedBy);
+                }
+                return this.managedByObject;
             }
         }
 

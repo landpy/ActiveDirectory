@@ -16,6 +16,12 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
         private string ComputerOperatingSystemServicePack { get; set; }
         private string ComputerDnsName { get; set; }
         private string ComputerSiteName { get; set; }
+        private string UserManageComputerCn { get; set; }
+        private string ComputerManagedByUserCn { get; set; }
+        private string GroupManageComputerCn { get; set; }
+        private string ComputerManagedByGroupCn { get; set; }
+        private string ContactManageComputerCn { get; set; }
+        private string ComputerManagedByContactCn { get; set; }
 
         protected override void SetUp()
         {
@@ -25,6 +31,12 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
             this.ComputerOperatingSystemServicePack = TF.GetConfig().Properties["ComputerOperatingSystemServicePack"];
             this.ComputerDnsName = TF.GetConfig().Properties["ComputerDnsName"];
             this.ComputerSiteName = TF.GetConfig().Properties["ComputerSiteName"];
+            this.UserManageComputerCn = TF.GetConfig().Properties["UserManageComputerCn"];
+            this.ComputerManagedByUserCn = TF.GetConfig().Properties["ComputerManagedByUserCn"];
+            this.GroupManageComputerCn = TF.GetConfig().Properties["GroupManageComputerCn"];
+            this.ComputerManagedByGroupCn = TF.GetConfig().Properties["ComputerManagedByGroupCn"];
+            this.ContactManageComputerCn = TF.GetConfig().Properties["ContactManageComputerCn"];
+            this.ComputerManagedByContactCn = TF.GetConfig().Properties["ComputerManagedByContactCn"];
         }
 
         [TestCase]
@@ -64,6 +76,23 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
                 Assert.AreEqual(this.ComputerOperatingSystemServicePack, computerObject.OperatingSystemServicePack);
                 Assert.AreEqual(this.ComputerDnsName, computerObject.DnsName);
                 Assert.AreEqual(this.ComputerSiteName, computerObject.SiteName);
+            }
+        }
+
+        [TestCase]
+        public void TestComputerObjectManagedBy()
+        {
+            using (var computerObject = ComputerObject.FindOneByCN(this.ADOperator, this.UserManageComputerCn))
+            {
+                Assert.AreEqual(this.ComputerManagedByUserCn, computerObject.ManagedByObject.CN);
+            }
+            using (var computerObject = ComputerObject.FindOneByCN(this.ADOperator, this.GroupManageComputerCn))
+            {
+                Assert.AreEqual(this.ComputerManagedByGroupCn, computerObject.ManagedByObject.CN);
+            }
+            using (var computerObject = ComputerObject.FindOneByCN(this.ADOperator, this.ContactManageComputerCn))
+            {
+                Assert.AreEqual(this.ComputerManagedByContactCn, computerObject.ManagedByObject.CN);
             }
         }
     }

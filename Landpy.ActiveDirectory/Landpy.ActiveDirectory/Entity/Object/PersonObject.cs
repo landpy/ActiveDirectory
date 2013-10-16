@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.DirectoryServices;
+using System.Linq;
 using Landpy.ActiveDirectory.Core;
+using Landpy.ActiveDirectory.Core.Filter.Expression;
 using Landpy.ActiveDirectory.Entity.Attribute.Name;
 using Landpy.ActiveDirectory.Entity.TypeAdapter;
 
@@ -42,6 +44,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         private string stateOrProvince;
         private string streetAddress;
         private string jobTitle;
+        private UserObject userObject;
 
         /// <summary>
         /// The thumbnailPhoto.
@@ -241,7 +244,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
             }
             set
             {
-                this.DirectoryEntry.Properties[PersonAttributeNames.OtherFacsimileTelephoneNumber].Value = value;
+                SetAttributeValue(PersonAttributeNames.OtherFacsimileTelephoneNumber, value);
                 this.otherFaxes = value;
             }
         }
@@ -301,7 +304,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
             }
             set
             {
-                this.DirectoryEntry.Properties[PersonAttributeNames.OtherHomePhone].Value = value;
+                SetAttributeValue(PersonAttributeNames.OtherHomePhone, value);
                 this.otherHomePhones = value;
             }
         }
@@ -381,7 +384,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
             }
             set
             {
-                this.DirectoryEntry.Properties[PersonAttributeNames.OtherIpPhone].Value = value;
+                SetAttributeValue(PersonAttributeNames.OtherIpPhone, value);
                 this.otherIpPhones = value;
             }
         }
@@ -422,6 +425,21 @@ namespace Landpy.ActiveDirectory.Entity.Object
         }
 
         /// <summary>
+        /// The manager user object.
+        /// </summary>
+        public UserObject ManagerUser
+        {
+            get
+            {
+                if (this.userObject == null)
+                {
+                    this.userObject = FindOneByDN(this.ADOperator, this.Manager) as UserObject;
+                }
+                return this.userObject;
+            }
+        }
+
+        /// <summary>
         /// The member of groups.
         /// </summary>
         public IList<string> MemberOf
@@ -436,7 +454,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
             }
             set
             {
-                this.DirectoryEntry.Properties[PersonAttributeNames.MemberOf].Value = value;
+                SetAttributeValue(PersonAttributeNames.MemberOf, value);
                 this.memberOf = value;
             }
         }
@@ -476,10 +494,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
             }
             set
             {
-                foreach (var otherMoble in value)
-                {
-                    this.DirectoryEntry.Properties[PersonAttributeNames.OtherMobile].Add(otherMoble);
-                }
+                SetAttributeValue(PersonAttributeNames.OtherMobile, value);
                 this.otherMobiles = value;
             }
         }
@@ -519,7 +534,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
             }
             set
             {
-                this.DirectoryEntry.Properties[PersonAttributeNames.OtherPager].Value = value;
+                SetAttributeValue(PersonAttributeNames.OtherPager, value);
                 this.otherPagers = value;
             }
         }
@@ -559,7 +574,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
             }
             set
             {
-                this.DirectoryEntry.Properties[PersonAttributeNames.OtherTelephone].Value = value;
+                SetAttributeValue(PersonAttributeNames.OtherTelephone, value);
                 this.otherTelephones = value;
             }
         }

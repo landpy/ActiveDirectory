@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using Landpy.ActiveDirectory.Core;
 using Landpy.ActiveDirectory.Core.Filter;
+using Landpy.ActiveDirectory.Core.Filter.Expression;
 using Landpy.ActiveDirectory.Entity.Attribute.Name;
 using Landpy.ActiveDirectory.Entity.Attribute.Value;
 using Landpy.ActiveDirectory.Entity.TypeAdapter;
@@ -32,6 +33,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         private IList<string> postOfficeBoxs;
         private string webPage;
         private IList<string> otherWebPages;
+        private IList<ADObject> directReportObjects;
 
         /// <summary>
         /// The SearchResult.
@@ -204,6 +206,21 @@ namespace Landpy.ActiveDirectory.Entity.Object
         }
 
         /// <summary>
+        /// The direct report AD objects.
+        /// </summary>
+        public IList<ADObject> DirectReportObjects
+        {
+            get
+            {
+                if (this.directReportObjects == null)
+                {
+                    this.directReportObjects = FindAllByDNs(this.ADOperator, this.DirectReports);
+                }
+                return this.directReportObjects;
+            }
+        }
+
+        /// <summary>
         /// The display name.
         /// </summary>
         public string DisplayName
@@ -293,7 +310,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
             }
             set
             {
-                this.DirectoryEntry.Properties[AttributeNames.PostOfficeBox].Value = value;
+                SetAttributeValue(AttributeNames.PostOfficeBox, value);
                 this.postOfficeBoxs = value;
             }
         }
@@ -333,7 +350,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
             }
             set
             {
-                this.DirectoryEntry.Properties[AttributeNames.Url].Value = value;
+                SetAttributeValue(AttributeNames.Url, value);
                 this.otherWebPages = value;
             }
         }
@@ -376,6 +393,42 @@ namespace Landpy.ActiveDirectory.Entity.Object
                 adObject = GetADObject(adOperator, objectGuidDirectoryEntryRepository.GetSearchResult());
             }
             return adObject;
+        }
+
+        /// <summary>
+        /// Fine one AD object by distinguished name.
+        /// </summary>
+        /// <param name="adOperator">The AD operator.</param>
+        /// <param name="distinguishedName">The distinguished name.</param>
+        /// <returns>One AD object.</returns>
+        public static ADObject FindOneByDN(IADOperator adOperator, string distinguishedName)
+        {
+            ADObject adObject;
+            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
+            {
+                adObject = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new Is(AttributeNames.DistinguishedName, distinguishedName))
+                            select GetADObject(adOperator, searchResult)).SingleOrDefault();
+            }
+            return adObject;
+        }
+
+        /// <summary>
+        /// Find all AD objects by distinguished names.
+        /// </summary>
+        /// <param name="adOperator">The AD operator.</param>
+        /// <param name="distinguishedNames">The distinguished names.</param>
+        /// <returns>All AD objects.</returns>
+        public static IList<ADObject> FindAllByDNs(IADOperator adOperator, IList<string> distinguishedNames)
+        {
+            List<ADObject> adObjects;
+            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
+            {
+                var filters = distinguishedNames.Select(distinguishedName => new Is(AttributeNames.DistinguishedName, distinguishedName)).Cast<IFilter>().ToList();
+                IFilter filter = new Or(filters.ToArray());
+                adObjects = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(filter)
+                             select GetADObject(adOperator, searchResult)).ToList();
+            }
+            return adObjects;
         }
 
         /// <summary>
@@ -438,7 +491,22 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <param name="attributeValue">The attribute value.</param>
         public void SetAttributeValue<TAttributeValue>(string attributeName, TAttributeValue attributeValue)
         {
-            this.DirectoryEntry.Properties[attributeName].Value = attributeValue;
+            if (typeof(TAttributeValue) == typeof(IList<string>) || typeof(TAttributeValue) == typeof(List<string>))
+            {
+                var attributeValueItems = attributeValue as IList<string>;
+                if (attributeValueItems != null)
+                {
+                    this.DirectoryEntry.Properties[attributeName].Clear();
+                    foreach (var attributeValueItem in attributeValueItems)
+                    {
+                        this.DirectoryEntry.Properties[attributeName].Add(attributeValueItem);
+                    }
+                }
+            }
+            else
+            {
+                this.DirectoryEntry.Properties[attributeName].Value = attributeValue;
+            }
         }
 
         /// <summary>
