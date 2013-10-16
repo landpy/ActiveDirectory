@@ -476,7 +476,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
             {
                 attributeValue = new IntegerAdapter(this.SearchResult.Properties[attributeName]).Value as TAttributeValue;
             }
-            else if (typeof(TAttributeValue) == typeof(IList<string>))
+            else if (typeof(TAttributeValue) == typeof(IList<string>) || typeof(TAttributeValue) == typeof(List<string>))
             {
                 attributeValue = new MultipleLineAdapter(this.SearchResult.Properties[attributeName]).Value as TAttributeValue;
             }
