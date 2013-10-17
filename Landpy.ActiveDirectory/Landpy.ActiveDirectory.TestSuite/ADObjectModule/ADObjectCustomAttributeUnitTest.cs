@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Landpy.ActiveDirectory.Entity.Object;
 using Landpy.ActiveDirectory.TestSuite.Common;
 using Landpy.TestFramwork.Configuration;
@@ -27,6 +28,11 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
             using (var userObject = UserObject.FindOneByCN(this.ADOperator, this.CustomAttributeUserCn))
             {
                 var mail = userObject.GetAttributeValue<string>("mail");
+                var objectGuid = userObject.GetAttributeValue<Guid>("objectGuid");
+                Assert.NotNull(objectGuid);
+                var otherTelephones = userObject.GetAttributeValue<List<string>>("otherTelephone");
+                Assert.NotNull(otherTelephones);
+                Assert.Greater(otherTelephones.Count, 0);
                 Assert.AreEqual("mv@live.cn", mail);
                 userObject.ClearAttributeValue("mail");
                 userObject.Save();

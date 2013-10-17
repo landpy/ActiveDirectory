@@ -453,34 +453,34 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <typeparam name="TAttributeValue">The attribute value generic type.</typeparam>
         /// <param name="attributeName">The attribute name.</param>
         /// <returns>The attribute value.</returns>
-        public TAttributeValue GetAttributeValue<TAttributeValue>(string attributeName) where TAttributeValue : class
+        public TAttributeValue GetAttributeValue<TAttributeValue>(string attributeName)
         {
-            TAttributeValue attributeValue = default(TAttributeValue);
+            object attributeValue = default(TAttributeValue);
             if (typeof(TAttributeValue) == typeof(string))
             {
-                attributeValue = new SingleLineAdapter(this.SearchResult.Properties[attributeName]).Value as TAttributeValue;
+                attributeValue = new SingleLineAdapter(this.SearchResult.Properties[attributeName]).Value;
             }
             else if (typeof(TAttributeValue) == typeof(byte[]))
             {
-                attributeValue = new ByteArrayAdapter(this.SearchResult.Properties[attributeName]).Value as TAttributeValue;
+                attributeValue = new ByteArrayAdapter(this.SearchResult.Properties[attributeName]).Value;
             }
             else if (typeof(TAttributeValue) == typeof(DateTime))
             {
-                attributeValue = new DateTimeAdapter(this.SearchResult, attributeName).Value as TAttributeValue;
+                attributeValue = new DateTimeAdapter(this.SearchResult, attributeName).Value;
             }
             else if (typeof(TAttributeValue) == typeof(Guid))
             {
-                attributeValue = new GuidAdapter(this.SearchResult.Properties[attributeName]).Value as TAttributeValue;
+                attributeValue = new GuidAdapter(this.SearchResult.Properties[attributeName]).Value;
             }
             else if (typeof(TAttributeValue) == typeof(int))
             {
-                attributeValue = new IntegerAdapter(this.SearchResult.Properties[attributeName]).Value as TAttributeValue;
+                attributeValue = new IntegerAdapter(this.SearchResult.Properties[attributeName]).Value;
             }
             else if (typeof(TAttributeValue) == typeof(IList<string>) || typeof(TAttributeValue) == typeof(List<string>))
             {
-                attributeValue = new MultipleLineAdapter(this.SearchResult.Properties[attributeName]).Value as TAttributeValue;
+                attributeValue = new MultipleLineAdapter(this.SearchResult.Properties[attributeName]).Value;
             }
-            return attributeValue;
+            return (TAttributeValue)attributeValue;
         }
 
         /// <summary>
