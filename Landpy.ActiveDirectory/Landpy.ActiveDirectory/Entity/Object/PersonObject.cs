@@ -444,7 +444,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
             }
             set
             {
-                this.DirectoryEntry.Properties[PersonAttributeNames.Manager].Value = value.Manager;
+                this.DirectoryEntry.Properties[PersonAttributeNames.Manager].Value = value.DistinguishedName;
                 this.userObject = value;
             }
         }
