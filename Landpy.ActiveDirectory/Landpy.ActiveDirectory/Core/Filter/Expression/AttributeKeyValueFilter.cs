@@ -17,7 +17,7 @@ namespace Landpy.ActiveDirectory.Core.Filter.Expression
         protected AttributeKeyValueFilter(string attributeName, string attributeValue)
         {
             this.AttributeName = attributeName;
-            this.AttributeValue = attributeValue;
+            this.AttributeValue = attributeValue.Replace(@"\", @"\5c").Replace(@"*", @"\2a").Replace(@"(", @"\28").Replace(@")", @"\29").Replace(@"/", @"\2f");
         }
 
         /// <summary>

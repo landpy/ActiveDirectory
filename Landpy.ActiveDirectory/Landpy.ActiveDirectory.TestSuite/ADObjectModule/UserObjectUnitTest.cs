@@ -72,6 +72,7 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
         private string UserDirectReportUserCn { get; set; }
         private string UserDirectReportContactCn { get; set; }
         private string CustomAttributeUserCn { get; set; }
+        private string UserSpecialCharCn { get; set; }
 
         protected override void SetUp()
         {
@@ -131,6 +132,7 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
             this.UserDirectReportUserCn = TF.GetConfig().Properties["UserDirectReportUserCn"];
             this.UserDirectReportContactCn = TF.GetConfig().Properties["UserDirectReportContactCn"];
             this.CustomAttributeUserCn = TF.GetConfig().Properties["CustomAttributeUserCn"];
+            this.UserSpecialCharCn = TF.GetConfig().Properties["UserSpecialCharCn"];
         }
 
         [TestCase]
@@ -292,6 +294,15 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
                 Assert.IsTrue(userObject.OtherTelephones.Contains("222"));
                 Assert.IsTrue(userObject.OtherTelephones.Contains("333"));
                 Assert.AreEqual("hellokitty@live.cn", userObject.Email);
+            }
+        }
+
+        [TestCase]
+        public void TestFilterSpecialChar()
+        {
+            using (var userObject = UserObject.FindOneByCN(this.ADOperator, this.UserSpecialCharCn))
+            {
+                Assert.NotNull(userObject);
             }
         }
     }
