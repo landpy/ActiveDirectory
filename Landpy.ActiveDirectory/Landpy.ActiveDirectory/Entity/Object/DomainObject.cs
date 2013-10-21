@@ -1,6 +1,7 @@
 ﻿using System.DirectoryServices;
 using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
+using Landpy.ActiveDirectory.Attributes;
 using Landpy.ActiveDirectory.Core;
 using Landpy.ActiveDirectory.Core.Filter.Expression;
 using Landpy.ActiveDirectory.Entity.Attribute.Name;
@@ -19,6 +20,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The group policy minimum password length.
         /// </summary>
+        [ADOriginalAttributeName(DomainAttributeNames.MinPwdLength)]
         public int GroupPolicyMinimumPasswordLength
         {
             get
@@ -39,6 +41,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// Is must meet complexity requirements policy.
         /// </summary>
+        [ADOriginalAttributeName(DomainAttributeNames.PwdProperties)]
         public bool IsMustMeetComplexityRequirments
         {
             get

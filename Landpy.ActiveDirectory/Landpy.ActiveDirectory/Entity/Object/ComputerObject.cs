@@ -2,6 +2,7 @@
 using System.DirectoryServices;
 using System;
 using System.Linq;
+using Landpy.ActiveDirectory.Attributes;
 using Landpy.ActiveDirectory.Core;
 using Landpy.ActiveDirectory.Core.Filter;
 using Landpy.ActiveDirectory.Core.Filter.Expression;
@@ -28,6 +29,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The object sid.
         /// </summary>
+        [ADOriginalAttributeName(ComputerAttributeNames.ObjectSid)]
         public string ObjectSid
         {
             get
@@ -43,6 +45,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The operating system name.
         /// </summary>
+        [ADOriginalAttributeName(ComputerAttributeNames.OperatingSystem)]
         public string OperatingSystemName
         {
             get
@@ -58,6 +61,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The operating system version.
         /// </summary>
+        [ADOriginalAttributeName(ComputerAttributeNames.OperatingSystemVersion)]
         public string OperatingSystemVersion
         {
             get
@@ -73,6 +77,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The operating system service pack.
         /// </summary>
+        [ADOriginalAttributeName(ComputerAttributeNames.OperatingSystemServicePack)]
         public string OperatingSystemServicePack
         {
             get
@@ -88,6 +93,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The dns name.
         /// </summary>
+        [ADOriginalAttributeName(ComputerAttributeNames.DNSHostName)]
         public string DnsName
         {
             get
@@ -103,6 +109,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The site.
         /// </summary>
+        [ADOriginalAttributeName(ComputerAttributeNames.MsDS_SiteName)]
         public string SiteName
         {
             get
@@ -118,6 +125,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The member of groups.
         /// </summary>
+        [ADOriginalAttributeName(ComputerAttributeNames.MemberOf)]
         public IList<string> MemberOf
         {
             get
@@ -138,6 +146,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The managed by user, group or contact distinguish name.
         /// </summary>
+        [ADOriginalAttributeName(ComputerAttributeNames.ManagedBy)]
         public string ManagedBy
         {
             get

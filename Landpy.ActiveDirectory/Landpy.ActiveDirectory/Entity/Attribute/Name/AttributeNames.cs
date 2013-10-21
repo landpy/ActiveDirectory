@@ -8,91 +8,91 @@
         /// <summary>
         /// The distinguished name.
         /// </summary>
-        public static readonly string DistinguishedName = "distinguishedName";
+        public const string DistinguishedName = "distinguishedName";
 
         /// <summary>
         /// The category.
         /// </summary>
-        public static readonly string ObjectCategory = "objectCategory";
+        public const string ObjectCategory = "objectCategory";
 
         /// <summary>
         /// The class.
         /// </summary>
-        public static readonly string ObjectClass = "objectClass";
+        public const string ObjectClass = "objectClass";
 
         /// <summary>
         /// The common name.
         /// </summary>
-        public static readonly string CN = "cn";
+        public const string CN = "cn";
 
         /// <summary>
         /// The Guid.
         /// </summary>
-        public static readonly string ObjectGuid = "objectGUID";
+        public const string ObjectGuid = "objectGUID";
 
         /// <summary>
         /// The full name.
         /// </summary>
-        public static readonly string Name = "name";
+        public const string Name = "name";
 
         /// <summary>
         /// The canonical name.
         /// </summary>
-        public static readonly string CanonicalName = "canonicalName";
+        public const string CanonicalName = "canonicalName";
 
         /// <summary>
         /// The create time.
         /// </summary>
-        public static readonly string CreateTimeStamp = "createTimeStamp";
+        public const string CreateTimeStamp = "createTimeStamp";
 
         /// <summary>
         /// The modify time.
         /// </summary>
-        public static readonly string ModifyTimeStamp = "modifyTimeStamp";
+        public const string ModifyTimeStamp = "modifyTimeStamp";
 
         /// <summary>
         /// The description.
         /// </summary>
-        public static readonly string Description = "description";
+        public const string Description = "description";
 
         /// <summary>
         /// The direct reports.
         /// </summary>
-        public static readonly string DirectReports = "directReports";
+        public const string DirectReports = "directReports";
 
         /// <summary>
         /// The display name.
         /// </summary>
-        public static readonly string Displayname = "displayName";
+        public const string Displayname = "displayName";
 
         /// <summary>
         /// The Logon name for 2000(eg: [DomainName]\[UserName]).
         /// </summary>
-        public static readonly string MsDS_PrincipalName = "msDS-PrincipalName";
+        public const string MsDS_PrincipalName = "msDS-PrincipalName";
 
         /// <summary>
         /// The office.
         /// </summary>
-        public static readonly string PhysicalDeliveryOfficeName = "physicalDeliveryOfficeName";
+        public const string PhysicalDeliveryOfficeName = "physicalDeliveryOfficeName";
 
         /// <summary>
         /// The zip or postal code.
         /// </summary>
-        public static readonly string PostalCode = "postalCode";
+        public const string PostalCode = "postalCode";
 
         /// <summary>
         /// The P.O.Box.
         /// </summary>
-        public static readonly string PostOfficeBox = "postOfficeBox";
+        public const string PostOfficeBox = "postOfficeBox";
 
         /// <summary>
         /// The web page.
         /// </summary>
-        public static readonly string WWWHomePage = "wWWHomePage";
+        public const string WWWHomePage = "wWWHomePage";
 
         /// <summary>
         /// The other web page.
         /// </summary>
-        public static readonly string Url = "url";
+        public const string Url = "url";
     }
 }

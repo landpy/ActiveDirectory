@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.DirectoryServices;
 using System.Linq;
+using Landpy.ActiveDirectory.Attributes;
 using Landpy.ActiveDirectory.Core;
 using Landpy.ActiveDirectory.Core.Filter;
 using Landpy.ActiveDirectory.Core.Filter.Expression;
@@ -28,6 +29,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The object sid.
         /// </summary>
+        [ADOriginalAttributeName(UserAttributeNames.ObjectSid)]
         public string ObjectSid
         {
             get
@@ -43,6 +45,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The pre Win2000 inditity name.
         /// </summary>
+        [ADOriginalAttributeName(UserAttributeNames.SAMAccountName)]
         public string SAMAccountName
         {
             get
@@ -63,6 +66,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The user logon name(eg: [UserName]@[DomainName]).
         /// </summary>
+        [ADOriginalAttributeName(UserAttributeNames.UserPrincipalName)]
         public string PrincipalName
         {
             get
@@ -83,6 +87,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The group sids.
         /// </summary>
+        [ADOriginalAttributeName(UserAttributeNames.TokenGroups)]
         public IList<string> GroupSids
         {
             get
@@ -98,6 +103,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The user account control type.
         /// </summary>
+        [ADOriginalAttributeName(UserAttributeNames.UserAccountControl)]
         public UserAccountControlType AccountControlType
         {
             get
@@ -144,6 +150,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// Gets or sets whether the user must reset the password when next logon.
         /// </summary>
+        [ADOriginalAttributeName(UserAttributeNames.PwdLastSet)]
         public bool IsMustChangePwdNextLogon
         {
             get
@@ -176,6 +183,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// Gets whether the user is enabled.
         /// </summary>
+        [ADOriginalAttributeName(UserAttributeNames.UserAccountControl)]
         public bool IsEnabled
         {
             get
@@ -202,6 +210,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// Gets or sets whether the user is locked.
         /// </summary>
+        [ADOriginalAttributeName(UserAttributeNames.LockoutTime)]
         public bool IsLocked
         {
             get

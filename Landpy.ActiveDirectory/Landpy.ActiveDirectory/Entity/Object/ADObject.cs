@@ -2,6 +2,7 @@
 using System.DirectoryServices;
 using System;
 using System.Linq;
+using Landpy.ActiveDirectory.Attributes;
 using Landpy.ActiveDirectory.Core;
 using Landpy.ActiveDirectory.Core.Filter;
 using Landpy.ActiveDirectory.Core.Filter.Expression;
@@ -66,6 +67,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The cn attribute.
         /// </summary>
+        [ADOriginalAttributeName(AttributeNames.CN)]
         public string CN
         {
             get
@@ -81,6 +83,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The object guid attribute.
         /// </summary>
+        [ADOriginalAttributeName(AttributeNames.ObjectGuid)]
         public Guid ObjectGuid
         {
             get
@@ -96,6 +99,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The distinguished name attribute.
         /// </summary>
+        [ADOriginalAttributeName(AttributeNames.DistinguishedName)]
         public string DistinguishedName
         {
             get
@@ -112,6 +116,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The full name.
         /// </summary>
+        [ADOriginalAttributeName(AttributeNames.Name)]
         public string Name
         {
             get
@@ -127,6 +132,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The canonical name.
         /// </summary>
+        [ADOriginalAttributeName(AttributeNames.CanonicalName)]
         public string CanonicalName
         {
             get
@@ -142,6 +148,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The create time.
         /// </summary>
+        [ADOriginalAttributeName(AttributeNames.CreateTimeStamp)]
         public DateTime CreateTime
         {
             get
@@ -157,6 +164,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The modify time.
         /// </summary>
+        [ADOriginalAttributeName(AttributeNames.ModifyTimeStamp)]
         public DateTime ModifyTime
         {
             get
@@ -172,6 +180,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The description.
         /// </summary>
+        [ADOriginalAttributeName(AttributeNames.Description)]
         public string Description
         {
             get
@@ -193,6 +202,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The direct reports.
         /// </summary>
+        [ADOriginalAttributeName(AttributeNames.DirectReports)]
         public IList<string> DirectReports
         {
             get
@@ -223,6 +233,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The display name.
         /// </summary>
+        [ADOriginalAttributeName(AttributeNames.Displayname)]
         public string DisplayName
         {
             get
@@ -243,6 +254,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The Logon name for 2000(eg: [DomainName]\[UserName]).
         /// </summary>
+        [ADOriginalAttributeName(AttributeNames.MsDS_PrincipalName)]
         public string MsDS_PrincipalName
         {
             get
@@ -258,6 +270,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The office.
         /// </summary>
+        [ADOriginalAttributeName(AttributeNames.PhysicalDeliveryOfficeName)]
         public string Office
         {
             get
@@ -278,6 +291,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The zip or postal code.
         /// </summary>
+        [ADOriginalAttributeName(AttributeNames.PostalCode)]
         public string ZipOrPostalCode
         {
             get
@@ -298,6 +312,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The P.O.Box.
         /// </summary>
+        [ADOriginalAttributeName(AttributeNames.PostOfficeBox)]
         public IList<string> PostOfficeBoxs
         {
             get
@@ -318,6 +333,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The web page.
         /// </summary>
+        [ADOriginalAttributeName(AttributeNames.WWWHomePage)]
         public string WebPage
         {
             get
@@ -338,6 +354,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The other web pages.
         /// </summary>
+        [ADOriginalAttributeName(AttributeNames.Url)]
         public IList<string> OtherWebPages
         {
             get
@@ -380,6 +397,22 @@ namespace Landpy.ActiveDirectory.Entity.Object
         }
 
         /// <summary>
+        /// Verify whether the AD object with the object guid exists.
+        /// </summary>
+        /// <param name="adOperator">The AD operator.</param>
+        /// <param name="objectGuid">The AD object guid.</param>
+        /// <returns>Whether the AD Object exists.</returns>
+        public static bool DoesADObjectExists(IADOperator adOperator, Guid objectGuid)
+        {
+            bool doesADObjectExists;
+            using (var objectGuidDirectoryEntryRepository = new ObjectGUIDDirectoryEntryRepository(adOperator, objectGuid))
+            {
+                doesADObjectExists = objectGuidDirectoryEntryRepository.Exists;
+            }
+            return doesADObjectExists;
+        }
+
+        /// <summary>
         /// Find one AD object by objectGUID.
         /// </summary>
         /// <param name="adOperator">The AD operator.</param>
@@ -387,10 +420,13 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns>One AD object.</returns>
         public static ADObject FindOneByObjectGUID(IADOperator adOperator, Guid objectGuid)
         {
-            ADObject adObject;
+            ADObject adObject = null;
             using (var objectGuidDirectoryEntryRepository = new ObjectGUIDDirectoryEntryRepository(adOperator, objectGuid))
             {
-                adObject = GetADObject(adOperator, objectGuidDirectoryEntryRepository.GetSearchResult());
+                if (objectGuidDirectoryEntryRepository.Exists)
+                {
+                    adObject = GetADObject(adOperator, objectGuidDirectoryEntryRepository.GetSearchResult());
+                }
             }
             return adObject;
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.DirectoryServices;
 using System.Linq;
+using Landpy.ActiveDirectory.Attributes;
 using Landpy.ActiveDirectory.Core;
 using Landpy.ActiveDirectory.Core.Filter;
 using Landpy.ActiveDirectory.Core.Filter.Expression;
@@ -28,13 +29,14 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The object sid.
         /// </summary>
+        [ADOriginalAttributeName(GroupAttributeNames.ObjectSid)]
         public string ObjectSid
         {
             get
             {
                 if (String.IsNullOrEmpty(this.objectSid))
                 {
-                    this.objectSid = new SidAdapter(this.SearchResult.Properties[UserAttributeNames.ObjectSid]).Value;
+                    this.objectSid = new SidAdapter(this.SearchResult.Properties[GroupAttributeNames.ObjectSid]).Value;
                 }
                 return this.objectSid;
             }
@@ -43,19 +45,20 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The pre Win2000 inditity name.
         /// </summary>
+        [ADOriginalAttributeName(GroupAttributeNames.SAMAccountName)]
         public string SAMAccountName
         {
             get
             {
                 if (String.IsNullOrEmpty(this.sAMAccountName))
                 {
-                    this.sAMAccountName = new SingleLineAdapter(this.SearchResult.Properties[UserAttributeNames.SAMAccountName]).Value;
+                    this.sAMAccountName = new SingleLineAdapter(this.SearchResult.Properties[GroupAttributeNames.SAMAccountName]).Value;
                 }
                 return this.sAMAccountName;
             }
             set
             {
-                this.DirectoryEntry.Properties[UserAttributeNames.SAMAccountName].Value = value;
+                this.DirectoryEntry.Properties[GroupAttributeNames.SAMAccountName].Value = value;
                 this.sAMAccountName = value;
             }
         }
@@ -63,13 +66,14 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The group sids.
         /// </summary>
+        [ADOriginalAttributeName(GroupAttributeNames.TokenGroups)]
         public IList<string> GroupSids
         {
             get
             {
                 if (this.groupSids == null)
                 {
-                    this.groupSids = new SidsAdapter(this.SearchResult, UserAttributeNames.TokenGroups).Value;
+                    this.groupSids = new SidsAdapter(this.SearchResult, GroupAttributeNames.TokenGroups).Value;
                 }
                 return this.groupSids;
             }
@@ -78,6 +82,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The managed by user distinguish name.
         /// </summary>
+        [ADOriginalAttributeName(GroupAttributeNames.ManagedBy)]
         public string ManagedBy
         {
             get
@@ -98,6 +103,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The email.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.Mail)]
         public string Email
         {
             get
@@ -118,6 +124,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The notes.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.Info)]
         public string Notes
         {
             get
@@ -138,6 +145,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The members.
         /// </summary>
+        [ADOriginalAttributeName(GroupAttributeNames.Member)]
         public IList<string> Members
         {
             get
@@ -158,6 +166,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The group type.
         /// </summary>
+        [ADOriginalAttributeName(GroupAttributeNames.GroupType)]
         public GroupType GroupType
         {
             get
@@ -182,6 +191,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The group scope type.
         /// </summary>
+        [ADOriginalAttributeName(GroupAttributeNames.GroupType)]
         public GroupScopeType GroupScopeType
         {
             get
