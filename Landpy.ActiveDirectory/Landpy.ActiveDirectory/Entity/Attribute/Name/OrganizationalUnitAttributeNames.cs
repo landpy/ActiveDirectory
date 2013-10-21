@@ -6,38 +6,38 @@
     public class OrganizationalUnitAttributeNames : AttributeNames
     {
         /// <summary>
+        /// The manged by user.
+        /// </summary>
+        public const string ManagedBy = "managedBy";
+
+        /// <summary>
         /// The Organizational Unit.
         /// </summary>
-        public static readonly string OU = "ou";
+        public const string OU = "ou";
 
         /// <summary>
         /// The state / province.
         /// </summary>
-        public static readonly string ST = "st";
+        public const string ST = "st";
 
         /// <summary>
         /// The street.
         /// </summary>
-        public static readonly string Street = "street";
+        public const string Street = "street";
 
         /// <summary>
         /// The city.
         /// </summary>
-        public static readonly string L = "l";
+        public const string L = "l";
 
         /// <summary>
         /// The country or region.
         /// </summary>
-        public static readonly string CO = "co";
+        public const string CO = "co";
 
         /// <summary>
         /// The country or region abbreviation (eg: CN).
         /// </summary>
-        public static readonly string C = "c";
-
-        /// <summary>
-        /// The managed by user.
-        /// </summary>
-        public static readonly string ManagedBy = "managedBy";
+        public const string C = "c";
     }
 }

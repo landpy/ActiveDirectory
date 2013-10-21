@@ -8,6 +8,6 @@
         /// <summary>
         /// The custom password policy applies to.
         /// </summary>
-        public static readonly string MsDS_PSOAppliesTo = "msDS-PSOAppliesTo";
+        public const string MsDS_PSOAppliesTo = "msDS-PSOAppliesTo";
     }
 }

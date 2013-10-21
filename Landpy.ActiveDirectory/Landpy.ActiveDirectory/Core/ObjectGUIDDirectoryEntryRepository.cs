@@ -7,18 +7,32 @@ namespace Landpy.ActiveDirectory.Core
     {
         private DirectoryEntry DirectoryEntry { get; set; }
 
+        public bool Exists { get; private set; }
+
         public ObjectGUIDDirectoryEntryRepository(IADOperator adOperator, Guid objectGuid)
         {
             var adOperatorInfo = adOperator.GetOperatorInfo();
-            this.DirectoryEntry = new DirectoryEntry(String.Format(@"LDAP://{0}/<GUID={1}>", adOperatorInfo.OperateDomainName, objectGuid), adOperatorInfo.UserLoginName, adOperatorInfo.Password);
+            string path = String.Format(@"LDAP://{0}/<GUID={1}>", adOperatorInfo.OperateDomainName, objectGuid);
+            if (DirectoryEntry.Exists(path))
+            {
+                this.Exists = true;
+                this.DirectoryEntry = new DirectoryEntry(path, adOperatorInfo.UserLoginName, adOperatorInfo.Password);
+            }
+            else
+            {
+                this.Exists = false;
+            }
         }
 
         public SearchResult GetSearchResult()
         {
-            SearchResult searchResult;
-            using (var directorySearcher = new DirectorySearcher(this.DirectoryEntry))
+            SearchResult searchResult = null;
+            if (this.Exists)
             {
-                searchResult = directorySearcher.FindOne();
+                using (var directorySearcher = new DirectorySearcher(this.DirectoryEntry))
+                {
+                    searchResult = directorySearcher.FindOne();
+                }
             }
             return searchResult;
         }

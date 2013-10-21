@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.DirectoryServices;
 using System.Linq;
+using Landpy.ActiveDirectory.Attributes;
 using Landpy.ActiveDirectory.Core;
 using Landpy.ActiveDirectory.Core.Filter;
 using Landpy.ActiveDirectory.Core.Filter.Expression;
@@ -31,6 +32,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The ou.
         /// </summary>
+        [ADOriginalAttributeName(OrganizationalUnitAttributeNames.OU)]
         public string OU
         {
             get
@@ -46,6 +48,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The street.
         /// </summary>
+        [ADOriginalAttributeName(OrganizationalUnitAttributeNames.Street)]
         public string Street
         {
             get
@@ -66,6 +69,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The city.
         /// </summary>
+        [ADOriginalAttributeName(OrganizationalUnitAttributeNames.L)]
         public string City
         {
             get
@@ -86,6 +90,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The state / province.
         /// </summary>
+        [ADOriginalAttributeName(OrganizationalUnitAttributeNames.ST)]
         public string StateOrProvince
         {
             get
@@ -106,6 +111,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The country or region.
         /// </summary>
+        [ADOriginalAttributeName(OrganizationalUnitAttributeNames.CO)]
         public string CO
         {
             get
@@ -126,6 +132,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The country or region abbreviation (eg: CN).
         /// </summary>
+        [ADOriginalAttributeName(OrganizationalUnitAttributeNames.C)]
         public string C
         {
             get
@@ -146,19 +153,20 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The managed by user distinguish name.
         /// </summary>
+        [ADOriginalAttributeName(OrganizationalUnitAttributeNames.ManagedBy)]
         public string ManagedBy
         {
             get
             {
                 if (String.IsNullOrEmpty(this.managedBy))
                 {
-                    this.managedBy = new SingleLineAdapter(this.SearchResult.Properties[ComputerAttributeNames.ManagedBy]).Value;
+                    this.managedBy = new SingleLineAdapter(this.SearchResult.Properties[OrganizationalUnitAttributeNames.ManagedBy]).Value;
                 }
                 return this.managedBy;
             }
             set
             {
-                this.DirectoryEntry.Properties[ComputerAttributeNames.ManagedBy].Value = value;
+                this.DirectoryEntry.Properties[OrganizationalUnitAttributeNames.ManagedBy].Value = value;
                 this.managedBy = value;
             }
         }

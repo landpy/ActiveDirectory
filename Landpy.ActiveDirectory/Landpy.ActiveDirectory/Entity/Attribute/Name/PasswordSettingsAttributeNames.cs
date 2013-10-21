@@ -8,11 +8,11 @@
         /// <summary>
         /// The custom password policy min password length.
         /// </summary>
-        public static readonly string MsDS_MinimumPasswordLength = "msDS-MinimumPasswordLength";
+        public const string MsDS_MinimumPasswordLength = "msDS-MinimumPasswordLength";
 
         /// <summary>
         /// The custom password policy complexity enabled.
         /// </summary>
-        public static readonly string MsDS_PasswordComplexityEnabled = "msDS-PasswordComplexityEnabled";
+        public const string MsDS_PasswordComplexityEnabled = "msDS-PasswordComplexityEnabled";
     }
 }

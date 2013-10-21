@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.DirectoryServices;
 using System.Linq;
+using Landpy.ActiveDirectory.Attributes;
 using Landpy.ActiveDirectory.Core;
 using Landpy.ActiveDirectory.Core.Filter.Expression;
 using Landpy.ActiveDirectory.Entity.Attribute.Name;
@@ -49,6 +50,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The thumbnailPhoto.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.ThumbnailPhoto)]
         public byte[] ThumbnailPhoto
         {
             get
@@ -70,6 +72,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The thumbnailLogo.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.ThumbnailLogo)]
         public byte[] ThumbnailLogo
         {
             get
@@ -91,6 +94,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The email.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.Mail)]
         public string Email
         {
             get
@@ -111,6 +115,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The country or region.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.CO)]
         public string CO
         {
             get
@@ -131,6 +136,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The country or region abbreviation (eg: CN).
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.C)]
         public string C
         {
             get
@@ -151,6 +157,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The company.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.Company)]
         public string Company
         {
             get
@@ -171,6 +178,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The country code;
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.CountryCode)]
         public int CountryCode
         {
             get
@@ -191,6 +199,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The department.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.Department)]
         public string Department
         {
             get
@@ -212,6 +221,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The fax number.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.FacsimileTelephoneNumber)]
         public string Fax
         {
             get
@@ -232,6 +242,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// Other fax numbers.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.OtherFacsimileTelephoneNumber)]
         public IList<string> OtherFaxes
         {
             get
@@ -252,6 +263,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The given name.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.GivenName)]
         public string GivenName
         {
             get
@@ -272,6 +284,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The home phone number.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.HomePhone)]
         public string HomePhone
         {
             get
@@ -292,6 +305,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The other home phone numbers.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.OtherHomePhone)]
         public IList<string> OtherHomePhones
         {
             get
@@ -312,6 +326,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The notes.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.Info)]
         public string Notes
         {
             get
@@ -332,6 +347,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The initals.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.Initials)]
         public string Initials
         {
             get
@@ -352,6 +368,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The IP phone number.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.IpPhone)]
         public string IpPhone
         {
             get
@@ -372,6 +389,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The other IP phone numbers.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.OtherIpPhone)]
         public IList<string> OtherIpPhones
         {
             get
@@ -392,6 +410,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The city.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.L)]
         public string City
         {
             get
@@ -412,6 +431,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The manager.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.Manager)]
         public string Manager
         {
             get
@@ -452,6 +472,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The member of groups.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.MemberOf)]
         public IList<string> MemberOf
         {
             get
@@ -472,6 +493,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The mobile number.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.Mobile)]
         public string Mobile
         {
             get
@@ -492,6 +514,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// Other mobile numbers.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.OtherMobile)]
         public IList<string> OtherMobiles
         {
             get
@@ -512,6 +535,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The pager number.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.Pager)]
         public string Pager
         {
             get
@@ -532,6 +556,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The other pager numbers.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.OtherPager)]
         public IList<string> OtherPagers
         {
             get
@@ -552,6 +577,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The telephone number.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.TelephoneNumber)]
         public string Telephone
         {
             get
@@ -572,6 +598,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The other telephone numbers.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.OtherTelephone)]
         public IList<string> OtherTelephones
         {
             get
@@ -592,6 +619,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The last name.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.SN)]
         public string LastName
         {
             get
@@ -612,6 +640,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The state / province.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.ST)]
         public string StateOrProvince
         {
             get
@@ -632,6 +661,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The address of street.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.StreetAddress)]
         public string StreetAddress
         {
             get
@@ -652,6 +682,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <summary>
         /// The job title.
         /// </summary>
+        [ADOriginalAttributeName(PersonAttributeNames.Title)]
         public string JobTitle
         {
             get

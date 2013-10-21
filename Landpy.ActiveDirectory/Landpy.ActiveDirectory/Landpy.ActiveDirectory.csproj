@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\ADOriginalAttributeNameAttribute.cs" />
     <Compile Include="Core\ADOperator.cs" />
     <Compile Include="Core\DirectoryEntryRepository.cs" />
     <Compile Include="Core\Filter\ExpressionTemplates.cs" />

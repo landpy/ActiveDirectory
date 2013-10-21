@@ -8,16 +8,16 @@
         /// <summary>
         /// The custom password policy precedence.
         /// </summary>
-        public static readonly string MsDS_PasswordSettingsPrecedence = "msDS-PasswordSettingsPrecedence";
+        public const string MsDS_PasswordSettingsPrecedence = "msDS-PasswordSettingsPrecedence";
 
         /// <summary>
         /// The min length of the password.
         /// </summary>
-        public static readonly string MinPwdLength = "minPwdLength";
+        public const string MinPwdLength = "minPwdLength";
 
         /// <summary>
         /// The properties of the password.
         /// </summary>
-        public static readonly string PwdProperties = "pwdProperties";
+        public const string PwdProperties = "pwdProperties";
     }
 }
