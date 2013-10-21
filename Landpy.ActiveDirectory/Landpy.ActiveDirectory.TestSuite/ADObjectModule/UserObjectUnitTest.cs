@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
+using Landpy.ActiveDirectory.Attributes;
 using Landpy.ActiveDirectory.Core.Filter.Expression;
 using Landpy.ActiveDirectory.Entity.Attribute.Name;
 using Landpy.ActiveDirectory.Entity.Attribute.Value;
@@ -303,6 +305,19 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
             using (var userObject = UserObject.FindOneByCN(this.ADOperator, this.UserSpecialCharCn))
             {
                 Assert.NotNull(userObject);
+            }
+        }
+
+        [TestCase]
+        public void TestCustomAttribute()
+        {
+            Type type = typeof(UserObject);
+            foreach (PropertyInfo propertyInfo in type.GetProperties(BindingFlags.Public | BindingFlags.Instance))
+            {
+                foreach (ADOriginalAttributeNameAttribute adOriginalAttributeNameAttribute in propertyInfo.GetCustomAttributes(typeof(ADOriginalAttributeNameAttribute), true))
+                {
+                    Console.WriteLine(@"{0}-{1}", adOriginalAttributeNameAttribute.Name, propertyInfo.Name);
+                }
             }
         }
     }

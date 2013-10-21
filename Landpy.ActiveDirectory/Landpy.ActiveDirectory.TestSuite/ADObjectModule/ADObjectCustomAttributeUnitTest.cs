@@ -38,5 +38,11 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
                 userObject.Save();
             }
         }
+
+        [TestCase]
+        public void TestVerifyADObjectExists()
+        {
+            Assert.IsFalse(ADObject.DoesADObjectExists(this.ADOperator, Guid.Empty));
+        }
     }
 }
