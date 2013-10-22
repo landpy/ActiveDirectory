@@ -37,7 +37,6 @@ namespace Landpy.ActiveDirectory.Entity.TypeAdapter
                     else
                     {
                         this.Value = (DateTime)directoryEntry.Properties[propertyName].Value;
-
                     }
                 }
             }
