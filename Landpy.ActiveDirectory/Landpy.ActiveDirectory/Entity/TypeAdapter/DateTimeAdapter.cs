@@ -30,7 +30,15 @@ namespace Landpy.ActiveDirectory.Entity.TypeAdapter
                 }
                 else
                 {
-                    this.Value = (DateTime)directoryEntry.Properties[propertyName].Value;
+                    if (directoryEntry.Properties[propertyName].Value.ToString() == "System.__ComObject")
+                    {
+                        this.Value = new LargeIntegerAdapter(searchResult, propertyName).Value;
+                    }
+                    else
+                    {
+                        this.Value = (DateTime)directoryEntry.Properties[propertyName].Value;
+
+                    }
                 }
             }
         }
