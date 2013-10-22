@@ -13,12 +13,13 @@ namespace Landpy.ActiveDirectory.Core
         {
             var adOperatorInfo = adOperator.GetOperatorInfo();
             string path = String.Format(@"LDAP://{0}/<GUID={1}>", adOperatorInfo.OperateDomainName, objectGuid);
-            if (DirectoryEntry.Exists(path))
+            try
             {
-                this.Exists = true;
                 this.DirectoryEntry = new DirectoryEntry(path, adOperatorInfo.UserLoginName, adOperatorInfo.Password);
+                var directoryEntryId = this.DirectoryEntry.Guid;
+                this.Exists = true;
             }
-            else
+            catch
             {
                 this.Exists = false;
             }
