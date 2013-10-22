@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Landpy.ActiveDirectory.Entity.Attribute.Name;
 using Landpy.ActiveDirectory.Entity.Object;
 using Landpy.ActiveDirectory.TestSuite.Common;
 using Landpy.TestFramwork.Configuration;
@@ -21,20 +22,24 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
         {
             using (var userObject = UserObject.FindOneByCN(this.ADOperator, this.CustomAttributeUserCn))
             {
-                userObject.SetAttributeValue("mail", "mv@live.cn");
-                userObject.SetAttributeValue("otherTelephone", new List<string> { "123", "234", "345" });
+                userObject.SetAttributeValue(PersonAttributeNames.Mail, "mv@live.cn");
+                userObject.SetAttributeValue(PersonAttributeNames.OtherTelephone, new List<string> { "123", "234", "345" });
                 userObject.Save();
             }
             using (var userObject = UserObject.FindOneByCN(this.ADOperator, this.CustomAttributeUserCn))
             {
-                var mail = userObject.GetAttributeValue<string>("mail");
-                var objectGuid = userObject.GetAttributeValue<Guid>("objectGuid");
+                var mail = userObject.GetAttributeValue<string>(PersonAttributeNames.Mail);
+                var objectGuid = userObject.GetAttributeValue<Guid>(AttributeNames.ObjectGuid);
                 Assert.NotNull(objectGuid);
-                var otherTelephones = userObject.GetAttributeValue<List<string>>("otherTelephone");
+                var passwardLastSetDateTime = userObject.GetAttributeValue<DateTime>(UserAttributeNames.PwdLastSet);
+                Assert.AreNotEqual(passwardLastSetDateTime, DateTime.MinValue);
+                var modifyDateTime = userObject.GetAttributeValue<DateTime>(AttributeNames.ModifyTimeStamp);
+                Assert.AreNotEqual(modifyDateTime, DateTime.MinValue);
+                var otherTelephones = userObject.GetAttributeValue<List<string>>(PersonAttributeNames.OtherTelephone);
                 Assert.NotNull(otherTelephones);
                 Assert.Greater(otherTelephones.Count, 0);
                 Assert.AreEqual("mv@live.cn", mail);
-                userObject.ClearAttributeValue("mail");
+                userObject.ClearAttributeValue(PersonAttributeNames.Mail);
                 userObject.Save();
             }
         }
