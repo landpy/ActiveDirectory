@@ -263,7 +263,7 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
         [TestCase]
         public void TestUserObjectFindOneWithSuffix()
         {
-            foreach (var user in UserObject.FindAll(this.ADOperator, new And(new HasAValue(PersonAttributeNames.TelephoneNumber), new IsNot(String.Format(@"{0}{1}", UserAttributeNames.UserAccountControl, UserAttributeNames.UserAccountControlDisabledSuffix), UserAttributeValues.UserAccountControlDisabled))))
+            foreach (var user in UserObject.FindAll(this.ADOperator, new And(new HasAValue(PersonAttributeNames.TelephoneNumber), new IsNot(String.Format(@"{0}{1}", UserAttributeNames.UserAccountControl, UserAttributeNames.MatchingRuleBitAnd), UserAttributeValues.UserAccountControlDisabled))))
             {
                 Console.WriteLine(user.CN);
             }

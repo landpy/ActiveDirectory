@@ -31,9 +31,19 @@
         public const string UserAccountControl = "userAccountControl";
 
         /// <summary>
-        /// The user account control disbled suffix;
+        /// LDAP_MATCHING_RULE_BIT_AND: A match is found only if all bits from the attribute match the value. This rule is equivalent to a bitwise AND operator.
         /// </summary>
-        public const string UserAccountControlDisabledSuffix = ":1.2.840.113556.1.4.803:";
+        public const string MatchingRuleBitAnd = ":1.2.840.113556.1.4.803:";
+
+        /// <summary>
+        /// LDAP_MATCHING_RULE_BIT_OR: A match is found if any bits from the attribute match the value. This rule is equivalent to a bitwise OR operator.
+        /// </summary>
+        public const string MatchingRuleBitOr = "1.2.840.113556.1.4.804:";
+
+        /// <summary>
+        /// LDAP_MATCHING_RULE_IN_CHAIN: This rule is limited to filters that apply to the DN. This is a special "extended match operator that walks the chain of ancestry in objects all the way to the root until it finds a match.
+        /// </summary>
+        public const string MatchingRuleBitChain = "1.2.840.113556.1.4.1941:";
 
         /// <summary>
         /// The user account control computed.

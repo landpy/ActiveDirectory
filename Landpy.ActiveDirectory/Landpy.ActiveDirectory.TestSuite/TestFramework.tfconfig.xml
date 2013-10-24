@@ -8,7 +8,7 @@
     <!--Filter-->
     <Property Key="AndFilterString" Value="(&amp;(objectClass=organizationalUnit)(&amp;(objectClass=user)(!objectClass=computer)(!objectClass=inetOrgPerson)))"/>
     <Property Key="OrFilterString" Value="(|(objectClass=organizationalUnit)(&amp;(objectClass=user)(!objectClass=computer)(!objectClass=inetOrgPerson)))"/>
-    <Property Key="ComplexFilterString" Value="(&amp;(&amp;(objectClass=user)(!objectClass=computer)(!objectClass=inetOrgPerson))(ou=pangxiaoliangOU)(|(cn=pang*)(&amp;(cn=*liu)(mail=mv@live.cn))))"/>
+    <Property Key="ComplexFilterString" Value="(&amp;(&amp;(objectClass=user)(!objectClass=computer)(!objectClass=inetOrgPerson))(mail=*live*)(title=Dev)(|(cn=pang*)(cn=*liu)))"/>
     <!--IP-->
     <Property Key="IPDomainName" Value="192.168.6.67"/>
     <Property Key="IPDomainUserName" Value="192.168.6.67\administrator"/>
