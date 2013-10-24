@@ -64,16 +64,20 @@
     <Compile Include="ADObjectModule\GroupObjectUnitTest.cs" />
     <Compile Include="ADObjectModule\OrganizationalUnitUnitTest.cs" />
     <Compile Include="ADOperatorModule\ADOperatorUnitTest.cs" />
-    <Compile Include="ADQLModule\ADQLUnitTest.cs" />
+    <Compile Include="Common\ADQLUnitTest.cs" />
     <Compile Include="Common\BaseUnitTest.cs" />
     <Compile Include="FilterModule\AndFilterUnitTest.cs" />
+    <Compile Include="FilterModule\ApproxFilterUnitTest.cs" />
     <Compile Include="FilterModule\ComplexFilterUnitTest.cs" />
+    <Compile Include="FilterModule\ContainsFilterUnitTest.cs" />
     <Compile Include="FilterModule\CustomFilterUnitTest.cs" />
     <Compile Include="FilterModule\EndWithFilterUnitTest.cs" />
+    <Compile Include="FilterModule\GreaterThanFilterUnitTest.cs" />
     <Compile Include="FilterModule\HasNoValueUnitTest.cs" />
     <Compile Include="FilterModule\HasAValueFilterUnitTest.cs" />
     <Compile Include="FilterModule\IsNotFilterUnitTest.cs" />
     <Compile Include="FilterModule\IsFilterUnitTest.cs" />
+    <Compile Include="FilterModule\LessThanFilterUnitTest.cs" />
     <Compile Include="FilterModule\OrFilterUnitTest.cs" />
     <Compile Include="FilterModule\StartWithFilterUnitTest.cs" />
     <Compile Include="PasswordModule\PasswordUnityUnitTest.cs" />
@@ -96,6 +100,9 @@
       <Project>{2F17455D-014B-4C9C-AA8E-01D9CCED0170}</Project>
       <Name>Landpy.TestFramwork</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ADQLModule\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

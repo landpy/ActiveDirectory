@@ -6,6 +6,7 @@ using Landpy.ActiveDirectory.TestSuite.Common;
 using Landpy.TestFramwork.Configuration;
 using NUnit.Framework;
 using System;
+using Contains = Landpy.ActiveDirectory.Core.Filter.Expression.Contains;
 using Is = Landpy.ActiveDirectory.Core.Filter.Expression.Is;
 
 namespace Landpy.ActiveDirectory.TestSuite.FilterModule
@@ -22,19 +23,16 @@ namespace Landpy.ActiveDirectory.TestSuite.FilterModule
         [TestCase]
         public void TestComplexFilter()
         {
-            // Query condition:
-            // 1. Belongs to "pangxiaoliangOU" OU,CN start with "pang", AD object type is user.
-            // 2. Belongs to "pangxiaoliangOU" OU, CN end with "liu" and Mail is "mv@live.cn",  AD object type is user.
+            // 1. CN end with "liu", Mail conatains "live" (Eg: mv@live.cn), job title is "Dev" and AD object type is user.
+            // 2. CN start with "pang", Mail conatains "live" (Eg: mv@live.cn), job title is "Dev" and AD object type is user.
             IFilter filter =
                 new And(
                     new IsUser(),
-                    new Is(OrganizationalUnitAttributeNames.OU, "pangxiaoliangOU"),
+                    new Contains(PersonAttributeNames.Mail, "live"),
+                    new Is(PersonAttributeNames.Title, "Dev"),
                     new Or(
                             new StartWith(AttributeNames.CN, "pang"),
-                            new And(
-                                new EndWith(AttributeNames.CN, "liu"),
-                                new Is(PersonAttributeNames.Mail, "mv@live.cn")
-                                )
+                            new EndWith(AttributeNames.CN, "liu")
                         )
                     );
             Assert.AreEqual(this.ComplexFilterString, filter.BuildFilter());
@@ -43,7 +41,7 @@ namespace Landpy.ActiveDirectory.TestSuite.FilterModule
             {
                 using (userObject)
                 {
-                    Console.WriteLine(userObject.DisplayName);
+                    Console.WriteLine(@"{0}-{1}", userObject.DisplayName, userObject.Email);
                 }
             }
         }

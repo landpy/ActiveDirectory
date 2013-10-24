@@ -53,5 +53,25 @@
         /// The join expression. eg: "{0}{1}".
         /// </summary>
         public readonly static string Join = "{0}{1}";
+
+        /// <summary>
+        /// The contains expression. eg: "({0}=*{1}*)"
+        /// </summary>
+        public static readonly string Contains = "({0}=*{1}*)";
+
+        /// <summary>
+        /// The appox expression. eg: "({0}~={1})"
+        /// </summary>
+        public static readonly string Approx = "({0}~={1})";
+
+        /// <summary>
+        /// The less than expression. eg "({0}&lt;={1})"
+        /// </summary>
+        public static readonly string LessThan = "({0}<={1})";
+
+        /// <summary>
+        /// The greater than expression. eg "({0}>={1})"
+        /// </summary>
+        public static readonly string GreaterThan = "({0}>={1})";
     }
 }
