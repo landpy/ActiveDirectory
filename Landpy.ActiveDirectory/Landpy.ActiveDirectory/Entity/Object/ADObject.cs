@@ -460,9 +460,16 @@ namespace Landpy.ActiveDirectory.Entity.Object
             using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
             {
                 var filters = distinguishedNames.Select(distinguishedName => new Is(AttributeNames.DistinguishedName, distinguishedName)).Cast<IFilter>().ToList();
-                IFilter filter = new Or(filters.ToArray());
-                adObjects = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(filter)
-                             select GetADObject(adOperator, searchResult)).ToList();
+                if (filters.Count != 0)
+                {
+                    IFilter filter = new Or(filters.ToArray());
+                    adObjects = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(filter)
+                                 select GetADObject(adOperator, searchResult)).ToList();
+                }
+                else
+                {
+                    adObjects = new List<ADObject>();
+                }
             }
             return adObjects;
         }
