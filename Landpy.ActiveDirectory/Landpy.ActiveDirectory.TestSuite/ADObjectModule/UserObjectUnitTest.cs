@@ -320,5 +320,15 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
                 }
             }
         }
+
+        [TestCase]
+        public void TestAnonymousOperator()
+        {
+            using (UserObject userObject = UserObject.FindOneByCN(this.AnonymousADOperator, this.UserCn))
+            {
+                Assert.NotNull(userObject);
+                Assert.AreEqual(this.UserCn, userObject.CN);
+            }
+        }
     }
 }

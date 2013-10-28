@@ -1,4 +1,5 @@
-﻿using Landpy.ActiveDirectory.Core;
+﻿using System;
+using Landpy.ActiveDirectory.Core;
 using Landpy.TestFramwork.Configuration;
 using Moq;
 using NUnit.Framework;
@@ -9,6 +10,7 @@ namespace Landpy.ActiveDirectory.TestSuite.Common
     class BaseUnitTest
     {
         protected IADOperator ADOperator { get; set; }
+        protected IADOperator AnonymousADOperator { get; set; }
 
         [TestFixtureSetUp]
         public void FixtureSetUp()
@@ -22,6 +24,15 @@ namespace Landpy.ActiveDirectory.TestSuite.Common
                         };
             mock.Setup(m => m.GetOperatorInfo()).Returns(adOperatorInfo);
             this.ADOperator = mock.Object;
+            var anonymousMock = new Mock<IADOperator>();
+            adOperatorInfo = new ADOperatorInfo
+                        {
+                            UserLoginName = String.Empty,
+                            Password = String.Empty,
+                            OperateDomainName = TF.GetConfig().Properties["DomainName"],
+                        };
+            anonymousMock.Setup(m => m.GetOperatorInfo()).Returns(adOperatorInfo);
+            this.AnonymousADOperator = anonymousMock.Object;
             this.SetUp();
         }
 
