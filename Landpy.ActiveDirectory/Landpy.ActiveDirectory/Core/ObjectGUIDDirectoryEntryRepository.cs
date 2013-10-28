@@ -15,7 +15,14 @@ namespace Landpy.ActiveDirectory.Core
             string path = String.Format(@"LDAP://{0}/<GUID={1}>", adOperatorInfo.OperateDomainName, objectGuid);
             try
             {
-                this.DirectoryEntry = new DirectoryEntry(path, adOperatorInfo.UserLoginName, adOperatorInfo.Password);
+                if (!String.IsNullOrEmpty(adOperatorInfo.UserLoginName) && !String.IsNullOrEmpty(adOperatorInfo.Password))
+                {
+                    this.DirectoryEntry = new DirectoryEntry(path, adOperatorInfo.UserLoginName, adOperatorInfo.Password);
+                }
+                else
+                {
+                    this.DirectoryEntry = new DirectoryEntry(path);
+                }
                 var directoryEntryId = this.DirectoryEntry.Guid;
                 this.Exists = true;
             }
