@@ -42,7 +42,7 @@ namespace Landpy.ActiveDirectory.Entity.TypeAdapter
             int highPart = (int)type.InvokeMember("HighPart", BindingFlags.GetProperty, null, largeInteger, null);
             int lowPart = (int)type.InvokeMember("LowPart", BindingFlags.GetProperty, null, largeInteger, null);
             DateTime lastSetDate = DateTime.FromFileTime((((long)(highPart) << 32) + lowPart));
-            return lastSetDate;
+            return lastSetDate.ToUniversalTime();
         }
     }
 }
