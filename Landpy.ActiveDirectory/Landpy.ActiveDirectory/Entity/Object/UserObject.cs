@@ -156,7 +156,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
             get
             {
                 DateTime largeInteger = new LargeIntegerAdapter(this.SearchResult, UserAttributeNames.PwdLastSet).Value;
-                if (largeInteger == new DateTime(1601, 1, 1, 8, 0, 0))
+                if (largeInteger == new DateTime(1601, 1, 1, 0, 0, 0))
                 {
                     this.isMustChangePwdNextLogon = true;
                 }
@@ -216,7 +216,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
             get
             {
                 DateTime largeInteger = new LargeIntegerAdapter(this.SearchResult, UserAttributeNames.LockoutTime).Value;
-                if (largeInteger == new DateTime(1601, 1, 1, 8, 0, 0))
+                if (largeInteger == new DateTime(1601, 1, 1, 0, 0, 0))
                 {
                     this.isLocked = false;
                 }
