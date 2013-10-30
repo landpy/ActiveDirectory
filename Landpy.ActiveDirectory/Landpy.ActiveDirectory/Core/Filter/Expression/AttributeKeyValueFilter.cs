@@ -1,4 +1,6 @@
 ﻿using System;
+using Landpy.ActiveDirectory.Entity.Attribute.Name;
+
 namespace Landpy.ActiveDirectory.Core.Filter.Expression
 {
     /// <summary>
@@ -17,7 +19,14 @@ namespace Landpy.ActiveDirectory.Core.Filter.Expression
         protected AttributeKeyValueFilter(string attributeName, string attributeValue)
         {
             this.AttributeName = attributeName;
-            this.AttributeValue = attributeValue.Replace(@"\", @"\5c").Replace(@"*", @"\2a").Replace(@"(", @"\28").Replace(@")", @"\29").Replace(@"/", @"\2f");
+            if (attributeName.Equals(AttributeNames.ObjectGuid, StringComparison.CurrentCultureIgnoreCase))
+            {
+                this.AttributeValue = GuidHexConvertor.Convert(new Guid(attributeValue));
+            }
+            else
+            {
+                this.AttributeValue = attributeValue.Replace(@"\", @"\5c").Replace(@"*", @"\2a").Replace(@"(", @"\28").Replace(@")", @"\29").Replace(@"/", @"\2f");
+            }
         }
 
         /// <summary>
