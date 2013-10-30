@@ -379,10 +379,14 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <param name="searchResult">The SearchResult.</param>
         internal protected ADObject(IADOperator adOperator, SearchResult searchResult)
         {
-            this.SearchResult = searchResult;
-            this.Path = searchResult.Path;
-            this.Type = GetADObjectType(searchResult);
             this.ADOperator = adOperator;
+            this.SearchResult = searchResult;
+            if (searchResult != null)
+            {
+                this.Path = searchResult.Path;
+            }
+            this.Type = GetADObjectType(searchResult);
+            
         }
 
         /// <summary>
@@ -610,46 +614,49 @@ namespace Landpy.ActiveDirectory.Entity.Object
         internal static ADObjectType GetADObjectType(SearchResult searchResult)
         {
             ADObjectType adObjectType = ADObjectType.Unknow;
-            var resultPropertyValueCollection = searchResult.Properties[AttributeNames.ObjectClass];
-            for (int index = 0; index < resultPropertyValueCollection.Count; index++)
+            if (searchResult != null)
             {
-                switch (resultPropertyValueCollection[index].ToString())
+                var resultPropertyValueCollection = searchResult.Properties[AttributeNames.ObjectClass];
+                for (int index = 0; index < resultPropertyValueCollection.Count; index++)
                 {
-                    case UserAttributeValues.User:
-                        adObjectType = ADObjectType.User;
-                        break;
-                    case ContactAttributeValues.Contact:
-                        adObjectType = ADObjectType.Contact;
-                        break;
-                    case ComputerAttributeValues.Computer:
-                        adObjectType = ADObjectType.Computer;
-                        break;
-                    case ContainerAttributeValues.Container:
-                        adObjectType = ADObjectType.Container;
-                        break;
-                    case GroupAttributeValues.Group:
-                        adObjectType = ADObjectType.Group;
-                        break;
-                    case InetOrgPersonAttributeValues.InetOrgPerson:
-                        adObjectType = ADObjectType.InetOrgPerson;
-                        break;
-                    case MSMQQueueAliasAttributeValues.MSMQQueueAlias:
-                        adObjectType = ADObjectType.MSMQQueueAlias;
-                        break;
-                    case MsImaging_PSPsAttributeValues.MsImaging_PSPs:
-                        adObjectType = ADObjectType.MsImaging_PSPs;
-                        break;
-                    case OrganizationalUnitAttributeValues.OrganizationalUnit:
-                        adObjectType = ADObjectType.OrganizationalUnit;
-                        break;
-                    case PrinterAttributeValues.Printer:
-                        adObjectType = ADObjectType.Printer;
-                        break;
-                    case SharedFolderAttributeValues.SharedFolder:
-                        adObjectType = ADObjectType.SharedFolder;
-                        break;
-                    default:
-                        break;
+                    switch (resultPropertyValueCollection[index].ToString())
+                    {
+                        case UserAttributeValues.User:
+                            adObjectType = ADObjectType.User;
+                            break;
+                        case ContactAttributeValues.Contact:
+                            adObjectType = ADObjectType.Contact;
+                            break;
+                        case ComputerAttributeValues.Computer:
+                            adObjectType = ADObjectType.Computer;
+                            break;
+                        case ContainerAttributeValues.Container:
+                            adObjectType = ADObjectType.Container;
+                            break;
+                        case GroupAttributeValues.Group:
+                            adObjectType = ADObjectType.Group;
+                            break;
+                        case InetOrgPersonAttributeValues.InetOrgPerson:
+                            adObjectType = ADObjectType.InetOrgPerson;
+                            break;
+                        case MSMQQueueAliasAttributeValues.MSMQQueueAlias:
+                            adObjectType = ADObjectType.MSMQQueueAlias;
+                            break;
+                        case MsImaging_PSPsAttributeValues.MsImaging_PSPs:
+                            adObjectType = ADObjectType.MsImaging_PSPs;
+                            break;
+                        case OrganizationalUnitAttributeValues.OrganizationalUnit:
+                            adObjectType = ADObjectType.OrganizationalUnit;
+                            break;
+                        case PrinterAttributeValues.Printer:
+                            adObjectType = ADObjectType.Printer;
+                            break;
+                        case SharedFolderAttributeValues.SharedFolder:
+                            adObjectType = ADObjectType.SharedFolder;
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
             return adObjectType;

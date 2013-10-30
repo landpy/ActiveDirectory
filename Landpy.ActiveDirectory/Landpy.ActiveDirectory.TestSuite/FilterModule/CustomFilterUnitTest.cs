@@ -11,7 +11,7 @@ namespace Landpy.ActiveDirectory.TestSuite.FilterModule
 
         protected override void SetUp()
         {
-            this.CustomFilter = new Custom("(cn=pangxiaoliang)");
+            this.CustomFilter = new Custom("cn=pangxiaoliang");
         }
 
         [TestCase]

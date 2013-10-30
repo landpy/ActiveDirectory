@@ -1,5 +1,7 @@
-﻿using Landpy.ActiveDirectory.Core.Filter.Expression;
+﻿using System;
+using Landpy.ActiveDirectory.Core.Filter.Expression;
 using Landpy.ActiveDirectory.Entity.Attribute.Name;
+using Landpy.ActiveDirectory.Entity.Attribute.Value;
 using Landpy.TestFramwork.Configuration;
 using NUnit.Framework;
 using Landpy.ActiveDirectory.TestSuite.Common;
@@ -12,10 +14,12 @@ namespace Landpy.ActiveDirectory.TestSuite.QueryModule
     class QueryUnitTest : BaseUnitTest
     {
         private string UserCn { get; set; }
+        private Guid GroupGuid { get; set; }
 
         protected override void SetUp()
         {
             this.UserCn = TF.GetConfig().Properties["UserCn"];
+            this.GroupGuid = new Guid(TF.GetConfig().Properties["GroupGuid"]);
         }
 
         [TestCase]
@@ -94,6 +98,33 @@ namespace Landpy.ActiveDirectory.TestSuite.QueryModule
                 {
                     Assert.AreEqual(ADObjectType.Computer, adObject.Type, adObject.Path);
                 }
+            }
+        }
+
+        [TestCase]
+        public void TestQueryGuid()
+        {
+            var adObject = ADObjectQuery.SingleAndDefault(this.ADOperator, new Is(AttributeNames.ObjectGuid, Guid.Empty.ToString()));
+            Assert.IsInstanceOf(typeof(UnknownObject), adObject);
+            adObject = ADObjectQuery.SingleAndDefault(this.ADOperator, new Is(AttributeNames.ObjectGuid, this.GroupGuid.ToString()));
+            using (adObject)
+            {
+                Assert.IsInstanceOf(typeof(GroupObject), adObject);
+            }
+
+            adObject = ADObjectQuery.SingleAndDefault(this.ADOperator, new Custom(String.Format(@"{0}={1}", AttributeNames.ObjectGuid, this.GroupGuid)));
+            Assert.IsNotInstanceOf(typeof(UnknownObject), adObject);
+            using (adObject)
+            {
+                Assert.IsInstanceOf(typeof(GroupObject), adObject);
+            }
+
+            adObject = ADObjectQuery.SingleAndDefault(this.ADOperator, new Custom(String.Format(@"(&({0}={1})({2}={3}))",
+                AttributeNames.ObjectGuid, this.GroupGuid, AttributeNames.ObjectClass, GroupAttributeValues.Group)));
+            Assert.IsNotInstanceOf(typeof(UnknownObject), adObject);
+            using (adObject)
+            {
+                Assert.IsInstanceOf(typeof(GroupObject), adObject);
             }
         }
     }

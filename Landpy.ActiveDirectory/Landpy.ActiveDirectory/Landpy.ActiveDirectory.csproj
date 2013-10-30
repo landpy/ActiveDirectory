@@ -92,6 +92,7 @@
     <Compile Include="Core\Filter\Expression\StartWith.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Core\Filter\GuidHexConvertor.cs" />
     <Compile Include="Core\Filter\IFilter.cs" />
     <Compile Include="Core\IADOperator.cs" />
     <Compile Include="Core\ADOperatorInfo.cs" />
