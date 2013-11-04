@@ -16,7 +16,11 @@ namespace Landpy.ActiveDirectory.Entity.TypeAdapter
             }
             else
             {
-                this.Value = this.LongFromLargeInteger(resultPropertyValueCollection[0]);
+                var accountExpires = (Int64)resultPropertyValueCollection[0];
+                if (!accountExpires.Equals(Int64.MaxValue))
+                {
+                    this.Value = DateTime.FromFileTimeUtc(accountExpires);
+                }
             }
         }
 
@@ -31,18 +35,13 @@ namespace Landpy.ActiveDirectory.Entity.TypeAdapter
                 }
                 else
                 {
-                    this.Value = this.LongFromLargeInteger(directoryEntry.Properties[propertyName].Value);
+                    var accountExpires = (Int64)searchResult.Properties[propertyName][0];
+                    if (!accountExpires.Equals(Int64.MaxValue))
+                    {
+                        this.Value = DateTime.FromFileTimeUtc(accountExpires);
+                    }
                 }
             }
-        }
-
-        private DateTime LongFromLargeInteger(object largeInteger)
-        {
-            Type type = largeInteger.GetType();
-            int highPart = (int)type.InvokeMember("HighPart", BindingFlags.GetProperty, null, largeInteger, null);
-            int lowPart = (int)type.InvokeMember("LowPart", BindingFlags.GetProperty, null, largeInteger, null);
-            DateTime lastSetDate = DateTime.FromFileTime((((long)(highPart) << 32) + lowPart));
-            return lastSetDate.ToUniversalTime();
         }
     }
 }

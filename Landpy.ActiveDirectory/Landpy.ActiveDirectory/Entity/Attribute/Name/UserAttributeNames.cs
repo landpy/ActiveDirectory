@@ -59,5 +59,10 @@
         /// The use object is locked.
         /// </summary>
         public const string LockoutTime = "lockoutTime";
+
+        /// <summary>
+        /// The user account expires time.
+        /// </summary>
+        public const string AccountExpires = "accountExpires";
     }
 }

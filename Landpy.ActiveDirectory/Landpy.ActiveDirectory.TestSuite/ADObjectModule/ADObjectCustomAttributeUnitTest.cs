@@ -49,5 +49,14 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
         {
             Assert.IsFalse(ADObject.DoesADObjectExists(this.ADOperator, Guid.Empty));
         }
+
+        [TestCase]
+        public void Test()
+        {
+            using (var userObject = UserObject.FindOneByCN(this.ADOperator, this.CustomAttributeUserCn))
+            {
+                Console.WriteLine(userObject.GetAttributeValue<DateTime>("accountExpires"));
+            }
+        }
     }
 }
