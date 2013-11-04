@@ -330,5 +330,24 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
                 Assert.AreEqual(this.UserCn, userObject.CN);
             }
         }
+
+        [TestCase]
+        public void TestAccountExpiresTime()
+        {
+            DateTime accountExpiresTime;
+            using (var userObject = UserObject.FindOneBySid(this.ADOperator, this.UserSid))
+            {
+                accountExpiresTime = userObject.AccountExpiresTime;
+            }
+            using (var userObject = UserObject.FindOneBySid(this.ADOperator, this.UserSid))
+            {
+                userObject.AccountExpiresTime = accountExpiresTime;
+                userObject.Save();
+            }
+            using (var userObject = UserObject.FindOneBySid(this.ADOperator, this.UserSid))
+            {
+                Assert.AreEqual(accountExpiresTime, userObject.AccountExpiresTime);
+            }
+        }
     }
 }

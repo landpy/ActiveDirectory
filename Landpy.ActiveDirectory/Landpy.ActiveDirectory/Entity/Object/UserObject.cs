@@ -25,6 +25,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         private bool isMustChangePwdNextLogon;
         private bool isEnabled;
         private bool isLocked;
+        private DateTime accountExpiresTime;
 
         /// <summary>
         /// The object sid.
@@ -237,6 +238,27 @@ namespace Landpy.ActiveDirectory.Entity.Object
                 {
                     this.DirectoryEntry.Properties[UserAttributeNames.LockoutTime].Value = -1;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the account expires time (UTC) of user.
+        /// </summary>
+        [ADOriginalAttributeName(UserAttributeNames.AccountExpires)]
+        public DateTime AccountExpiresTime
+        {
+            get
+            {
+                if (this.accountExpiresTime == DateTime.MinValue)
+                {
+                    this.accountExpiresTime = new LargeIntegerAdapter(this.SearchResult, UserAttributeNames.AccountExpires).Value;
+                }
+                return this.accountExpiresTime;
+            }
+            set
+            {
+                this.accountExpiresTime = value;
+                this.DirectoryEntry.Properties[UserAttributeNames.AccountExpires].Value = value.ToFileTimeUtc().ToString();
             }
         }
 
