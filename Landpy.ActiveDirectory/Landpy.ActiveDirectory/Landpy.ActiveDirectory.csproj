@@ -63,7 +63,7 @@
     <Compile Include="Core\Filter\Expression\EndWith.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Core\Filter\Expression\GreaterThan.cs" />
+    <Compile Include="Core\Filter\Expression\GreaterThanOrEqualTo.cs" />
     <Compile Include="Core\Filter\Expression\HasAValue.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -85,7 +85,7 @@
     <Compile Include="Core\Filter\Expression\IsPasswordSettings.cs" />
     <Compile Include="Core\Filter\Expression\IsPerson.cs" />
     <Compile Include="Core\Filter\Expression\IsUser.cs" />
-    <Compile Include="Core\Filter\Expression\LessThan.cs" />
+    <Compile Include="Core\Filter\Expression\LessThanOrEqualTo.cs" />
     <Compile Include="Core\Filter\Expression\Or.cs">
       <SubType>Code</SubType>
     </Compile>

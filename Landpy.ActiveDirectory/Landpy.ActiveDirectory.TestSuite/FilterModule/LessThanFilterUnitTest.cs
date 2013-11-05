@@ -11,7 +11,7 @@ namespace Landpy.ActiveDirectory.TestSuite.FilterModule
         [TestCase]
         public void TestLessThanFilter()
         {
-            IFilter filter = new LessThan(AttributeNames.CN, "pang");
+            IFilter filter = new LessThanOrEqualTo(AttributeNames.CN, "pang");
             Assert.AreEqual("(cn<=pang)", filter.BuildFilter());
         }
     }

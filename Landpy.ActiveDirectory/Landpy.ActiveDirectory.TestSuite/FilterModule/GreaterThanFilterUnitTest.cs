@@ -11,7 +11,7 @@ namespace Landpy.ActiveDirectory.TestSuite.FilterModule
         [TestCase]
         public void TestGreaterThanFilter()
         {
-            IFilter filter = new GreaterThan(AttributeNames.CN, "pangxiaoliang");
+            IFilter filter = new GreaterThanOrEqualTo(AttributeNames.CN, "pangxiaoliang");
             Assert.AreEqual("(cn>=pangxiaoliang)", filter.BuildFilter());
         }
     }
