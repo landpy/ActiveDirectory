@@ -65,12 +65,12 @@
         public static readonly string Approx = "({0}~={1})";
 
         /// <summary>
-        /// The less than expression. eg "({0}&lt;={1})"
+        /// The less than or equal to expression. eg "({0}&lt;={1})"
         /// </summary>
         public static readonly string LessThanOrEqualTo = "({0}<={1})";
 
         /// <summary>
-        /// The greater than expression. eg "({0}>={1})"
+        /// The greater than or equal to expression. eg "({0}>={1})"
         /// </summary>
         public static readonly string GreaterThanOrEqualTo = "({0}>={1})";
     }
