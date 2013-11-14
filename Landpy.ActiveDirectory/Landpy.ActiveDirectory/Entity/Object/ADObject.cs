@@ -386,7 +386,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
                 this.Path = searchResult.Path;
             }
             this.Type = GetADObjectType(searchResult);
-            
+
         }
 
         /// <summary>
@@ -398,6 +398,43 @@ namespace Landpy.ActiveDirectory.Entity.Object
             {
                 this.directoryEntry.Close();
             }
+        }
+
+        /// <summary>
+        /// Find one AD object by filter.
+        /// </summary>
+        /// <param name="adOperator">The AD operator.</param>
+        /// <param name="filter">The filter</param>
+        /// <returns>One AD object.</returns>
+        internal static TADObject FindOneByFilter<TADObject>(IADOperator adOperator, IFilter filter) where TADObject : class
+        {
+            TADObject adObject;
+            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
+            {
+                adObject = GetADObject(adOperator, directoryEntryRepository.GetSearchResult(filter)) as TADObject;
+            }
+            return adObject;
+        }
+
+        /// <summary>
+        /// Find all AD objects by filter.
+        /// </summary>
+        /// <param name="adOperator">The AD operator.</param>
+        /// <param name="filter">The filter</param>
+        /// <returns>All AD objects.</returns>
+        internal static List<TADObject> FindAllByFilter<TADObject>(IADOperator adOperator, IFilter filter)
+        {
+            List<TADObject> adObjects;
+            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
+            {
+                using (var searchResultCollection = directoryEntryRepository.GetSearchResultCollection(filter))
+                {
+                    var objects = (from SearchResult searchResult in searchResultCollection
+                                   select GetADObject(adOperator, searchResult)).ToList();
+                    adObjects = objects.Cast<TADObject>().ToList();
+                }
+            }
+            return adObjects;
         }
 
         /// <summary>
@@ -443,13 +480,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns>One AD object.</returns>
         public static ADObject FindOneByDN(IADOperator adOperator, string distinguishedName)
         {
-            ADObject adObject;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                adObject = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new Is(AttributeNames.DistinguishedName, distinguishedName))
-                            select GetADObject(adOperator, searchResult)).SingleOrDefault();
-            }
-            return adObject;
+            return FindOneByFilter<ADObject>(adOperator, new Is(AttributeNames.DistinguishedName, distinguishedName));
         }
 
         /// <summary>
@@ -461,19 +492,15 @@ namespace Landpy.ActiveDirectory.Entity.Object
         public static IList<ADObject> FindAllByDNs(IADOperator adOperator, IList<string> distinguishedNames)
         {
             List<ADObject> adObjects;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
+            var filters = distinguishedNames.Select(distinguishedName => new Is(AttributeNames.DistinguishedName, distinguishedName)).Cast<IFilter>().ToList();
+            if (filters.Count != 0)
             {
-                var filters = distinguishedNames.Select(distinguishedName => new Is(AttributeNames.DistinguishedName, distinguishedName)).Cast<IFilter>().ToList();
-                if (filters.Count != 0)
-                {
-                    IFilter filter = new Or(filters.ToArray());
-                    adObjects = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(filter)
-                                 select GetADObject(adOperator, searchResult)).ToList();
-                }
-                else
-                {
-                    adObjects = new List<ADObject>();
-                }
+                IFilter filter = new Or(filters.ToArray());
+                adObjects = FindAllByFilter<ADObject>(adOperator, filter);
+            }
+            else
+            {
+                adObjects = new List<ADObject>();
             }
             return adObjects;
         }
@@ -604,6 +631,12 @@ namespace Landpy.ActiveDirectory.Entity.Object
                 case ADObjectType.SharedFolder:
                     adObject = new SharedFolderObject(adOperator, searchResult);
                     break;
+                case ADObjectType.Domain:
+                    adObject = new DomainObject(adOperator, searchResult);
+                    break;
+                case ADObjectType.PasswordSettings:
+                    adObject = new PasswordSettingsObject(adOperator, searchResult);
+                    break;
                 default:
                     adObject = new UnknownObject(adOperator, searchResult);
                     break;
@@ -653,6 +686,12 @@ namespace Landpy.ActiveDirectory.Entity.Object
                             break;
                         case SharedFolderAttributeValues.SharedFolder:
                             adObjectType = ADObjectType.SharedFolder;
+                            break;
+                        case DomainAttributeValues.Domain:
+                            adObjectType = ADObjectType.Domain;
+                            break;
+                        case PasswordSettingsAttributeValues.MsDS_PasswordSettings:
+                            adObjectType = ADObjectType.PasswordSettings;
                             break;
                         default:
                             break;

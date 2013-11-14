@@ -66,19 +66,13 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns>One domain object.</returns>
         public static IList<PasswordSettingsObject> FindAll(IADOperator adOperator, string userCn)
         {
-            IList<PasswordSettingsObject> passwordSettingsObjects;
             var userObject = UserObject.FindOneByCN(adOperator, userCn);
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                passwordSettingsObjects = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(
-                                              new And(
-                                                  new IsPasswordSettings(),
-                                                  new Or(
-                                                      new Is(PSOAttributeNames.MsDS_PSOAppliesTo, userObject.DistinguishedName),
-                                                      new Is(PSOAttributeNames.MsDS_PSOAppliesTo, userObject.ObjectSid))))
-                                           select new PasswordSettingsObject(adOperator, searchResult)).ToList();
-            }
-            return passwordSettingsObjects;
+            return FindAllByFilter<PasswordSettingsObject>(adOperator,
+                new And(
+                    new IsPasswordSettings(),
+                    new Or(
+                        new Is(PSOAttributeNames.MsDS_PSOAppliesTo, userObject.DistinguishedName),
+                        new Is(PSOAttributeNames.MsDS_PSOAppliesTo, userObject.ObjectSid))));
         }
     }
 }

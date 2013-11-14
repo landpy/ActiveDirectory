@@ -76,13 +76,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns>One domain object.</returns>
         public static DomainObject FindOne(IADOperator adOperator)
         {
-            DomainObject domainObject;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                domainObject = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new And(new IsDomain()))
-                                select new DomainObject(adOperator, searchResult)).SingleOrDefault();
-            }
-            return domainObject;
+            return FindOneByFilter<DomainObject>(adOperator, new IsDomain());
         }
 
         /// <summary>

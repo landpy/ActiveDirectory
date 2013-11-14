@@ -52,6 +52,14 @@
         /// <summary>
         /// Shared Folder.
         /// </summary>
-        SharedFolder
+        SharedFolder,
+        /// <summary>
+        /// Domain.
+        /// </summary>
+        Domain,
+        /// <summary>
+        /// Password settings.
+        /// </summary>
+        PasswordSettings,
     }
 }

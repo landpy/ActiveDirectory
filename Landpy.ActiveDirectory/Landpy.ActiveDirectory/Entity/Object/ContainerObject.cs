@@ -31,13 +31,14 @@ namespace Landpy.ActiveDirectory.Entity.Object
                     {
                         using (child)
                         {
-                            using (var directoryEntryRepository = new DirectoryEntryRepository(this.ADOperator))
+                            var user = FindOneByFilter<UserObject>(this.ADOperator,
+                                new And(
+                                    new Is(AttributeNames.DistinguishedName, child.Properties[AttributeNames.DistinguishedName].Value.ToString()),
+                                    new IsUser()
+                                    ));
+                            if (user != null)
                             {
-                                var searchResult = directoryEntryRepository.GetSearchResult(new Is(AttributeNames.DistinguishedName, child.Properties[AttributeNames.DistinguishedName].Value.ToString()));
-                                if (GetADObjectType(searchResult) == ADObjectType.User)
-                                {
-                                    this.users.Add(new UserObject(this.ADOperator, searchResult));
-                                }
+                                this.users.Add(user);
                             }
                         }
                     }
@@ -60,13 +61,14 @@ namespace Landpy.ActiveDirectory.Entity.Object
                     {
                         using (child)
                         {
-                            using (var directoryEntryRepository = new DirectoryEntryRepository(this.ADOperator))
+                            var contact = FindOneByFilter<ContactObject>(this.ADOperator,
+                                new And(
+                                    new Is(AttributeNames.DistinguishedName, child.Properties[AttributeNames.DistinguishedName].Value.ToString()),
+                                    new IsContact()
+                                    ));
+                            if (contact != null)
                             {
-                                var searchResult = directoryEntryRepository.GetSearchResult(new Is(AttributeNames.DistinguishedName, child.Properties[AttributeNames.DistinguishedName].Value.ToString()));
-                                if (GetADObjectType(searchResult) == ADObjectType.Contact)
-                                {
-                                    this.contacts.Add(new ContactObject(this.ADOperator, searchResult));
-                                }
+                                this.contacts.Add(contact);
                             }
                         }
                     }
@@ -89,13 +91,13 @@ namespace Landpy.ActiveDirectory.Entity.Object
                     {
                         using (child)
                         {
-                            using (var directoryEntryRepository = new DirectoryEntryRepository(this.ADOperator))
+                            var computer = FindOneByFilter<ComputerObject>(this.ADOperator,
+                                new And(
+                                    new Is(AttributeNames.DistinguishedName, child.Properties[AttributeNames.DistinguishedName].Value.ToString()),
+                                    new IsComputer()));
+                            if (computer != null)
                             {
-                                var searchResult = directoryEntryRepository.GetSearchResult(new Is(AttributeNames.DistinguishedName, child.Properties[AttributeNames.DistinguishedName].Value.ToString()));
-                                if (GetADObjectType(searchResult) == ADObjectType.Computer)
-                                {
-                                    this.computers.Add(new ComputerObject(this.ADOperator, searchResult));
-                                }
+                                this.computers.Add(computer);
                             }
                         }
                     }
@@ -117,13 +119,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns>One container object.</returns>
         public static ContainerObject FindOneByCN(IADOperator adOperator, string cn)
         {
-            ContainerObject containerObject;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                containerObject = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new And(new IsContainer(), new Is(AttributeNames.CN, cn)))
-                                   select new ContainerObject(adOperator, searchResult)).SingleOrDefault();
-            }
-            return containerObject;
+            return FindOneByFilter<ContainerObject>(adOperator, new And(new IsContainer(), new Is(AttributeNames.CN, cn)));
         }
 
         /// <summary>
@@ -133,13 +129,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns>All container objects.</returns>
         public static IList<ContainerObject> FindAll(IADOperator adOperator)
         {
-            IList<ContainerObject> containerObjects;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                containerObjects = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new And(new IsContainer()))
-                                    select new ContainerObject(adOperator, searchResult)).ToList();
-            }
-            return containerObjects;
+            return FindAllByFilter<ContainerObject>(adOperator, new IsContainer());
         }
 
         /// <summary>
@@ -150,13 +140,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns>All container objects with filter.</returns>
         public static IList<ContainerObject> FindAll(IADOperator adOperator, IFilter filter)
         {
-            IList<ContainerObject> containerObjects;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                containerObjects = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new And(new IsContainer(), filter))
-                                    select new ContainerObject(adOperator, searchResult)).ToList();
-            }
-            return containerObjects;
+            return FindAllByFilter<ContainerObject>(adOperator, new And(new IsContainer(), filter));
         }
     }
 }

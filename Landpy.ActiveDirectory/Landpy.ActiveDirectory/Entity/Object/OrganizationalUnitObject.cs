@@ -185,13 +185,14 @@ namespace Landpy.ActiveDirectory.Entity.Object
                     {
                         using (child)
                         {
-                            using (var directoryEntryRepository = new DirectoryEntryRepository(this.ADOperator))
+                            var user = FindOneByFilter<UserObject>(this.ADOperator,
+                                new And(
+                                    new Is(AttributeNames.DistinguishedName, child.Properties[AttributeNames.DistinguishedName].Value.ToString()),
+                                    new IsUser()
+                                    ));
+                            if (user != null)
                             {
-                                var searchResult = directoryEntryRepository.GetSearchResult(new Is(AttributeNames.DistinguishedName, child.Properties[AttributeNames.DistinguishedName].Value.ToString()));
-                                if (GetADObjectType(searchResult) == ADObjectType.User)
-                                {
-                                    this.users.Add(new UserObject(this.ADOperator, searchResult));
-                                }
+                                this.users.Add(user);
                             }
                         }
                     }
@@ -214,13 +215,14 @@ namespace Landpy.ActiveDirectory.Entity.Object
                     {
                         using (child)
                         {
-                            using (var directoryEntryRepository = new DirectoryEntryRepository(this.ADOperator))
+                            var contact = FindOneByFilter<ContactObject>(this.ADOperator,
+                                new And(
+                                    new Is(AttributeNames.DistinguishedName, child.Properties[AttributeNames.DistinguishedName].Value.ToString()),
+                                    new IsContact()
+                                    ));
+                            if (contact != null)
                             {
-                                var searchResult = directoryEntryRepository.GetSearchResult(new Is(AttributeNames.DistinguishedName, child.Properties[AttributeNames.DistinguishedName].Value.ToString()));
-                                if (GetADObjectType(searchResult) == ADObjectType.Contact)
-                                {
-                                    this.contacts.Add(new ContactObject(this.ADOperator, searchResult));
-                                }
+                                this.contacts.Add(contact);
                             }
                         }
                     }
@@ -243,13 +245,13 @@ namespace Landpy.ActiveDirectory.Entity.Object
                     {
                         using (child)
                         {
-                            using (var directoryEntryRepository = new DirectoryEntryRepository(this.ADOperator))
+                            var computer = FindOneByFilter<ComputerObject>(this.ADOperator,
+                                new And(
+                                    new Is(AttributeNames.DistinguishedName, child.Properties[AttributeNames.DistinguishedName].Value.ToString()),
+                                    new IsComputer()));
+                            if (computer != null)
                             {
-                                var searchResult = directoryEntryRepository.GetSearchResult(new Is(AttributeNames.DistinguishedName, child.Properties[AttributeNames.DistinguishedName].Value.ToString()));
-                                if (GetADObjectType(searchResult) == ADObjectType.Computer)
-                                {
-                                    this.computers.Add(new ComputerObject(this.ADOperator, searchResult));
-                                }
+                                this.computers.Add(computer);
                             }
                         }
                     }
@@ -272,13 +274,13 @@ namespace Landpy.ActiveDirectory.Entity.Object
                     {
                         using (child)
                         {
-                            using (var directoryEntryRepository = new DirectoryEntryRepository(this.ADOperator))
+                            var organizationalUnit = FindOneByFilter<OrganizationalUnitObject>(this.ADOperator,
+                                new And(
+                                    new Is(AttributeNames.DistinguishedName, child.Properties[AttributeNames.DistinguishedName].Value.ToString()),
+                                    new IsOU()));
+                            if (organizationalUnit != null)
                             {
-                                var searchResult = directoryEntryRepository.GetSearchResult(new Is(AttributeNames.DistinguishedName, child.Properties[AttributeNames.DistinguishedName].Value.ToString()));
-                                if (GetADObjectType(searchResult) == ADObjectType.OrganizationalUnit)
-                                {
-                                    this.organizationalUnits.Add(new OrganizationalUnitObject(this.ADOperator, searchResult));
-                                }
+                                this.organizationalUnits.Add(organizationalUnit);
                             }
                         }
                     }
@@ -336,13 +338,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns>One ou object.</returns>
         public static OrganizationalUnitObject FindOneByOU(IADOperator adOperator, string ouName)
         {
-            OrganizationalUnitObject organizationalUnitObject;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                organizationalUnitObject = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new And(new IsOU(), new Is(OrganizationalUnitAttributeNames.OU, ouName)))
-                                            select new OrganizationalUnitObject(adOperator, searchResult)).SingleOrDefault();
-            }
-            return organizationalUnitObject;
+            return FindOneByFilter<OrganizationalUnitObject>(adOperator, new And(new IsOU(), new Is(OrganizationalUnitAttributeNames.OU, ouName)));
         }
 
         /// <summary>
@@ -352,13 +348,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns>All ou objects.</returns>
         public static IList<OrganizationalUnitObject> FindAll(IADOperator adOperator)
         {
-            IList<OrganizationalUnitObject> organizationalUnitObjects;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                organizationalUnitObjects = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new And(new IsOU()))
-                                             select new OrganizationalUnitObject(adOperator, searchResult)).ToList();
-            }
-            return organizationalUnitObjects;
+            return FindAllByFilter<OrganizationalUnitObject>(adOperator, new IsOU());
         }
 
         /// <summary>
@@ -369,13 +359,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns>All ou objects by filter.</returns>
         public static IList<OrganizationalUnitObject> FindAll(IADOperator adOperator, IFilter filter)
         {
-            IList<OrganizationalUnitObject> organizationalUnitObjects;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                organizationalUnitObjects = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new And(new IsOU(), filter))
-                                             select new OrganizationalUnitObject(adOperator, searchResult)).ToList();
-            }
-            return organizationalUnitObjects;
+            return FindAllByFilter<OrganizationalUnitObject>(adOperator, new And(new IsOU(), filter));
         }
     }
 }

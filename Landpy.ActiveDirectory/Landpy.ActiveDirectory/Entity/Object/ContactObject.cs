@@ -26,13 +26,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns>One contact object.</returns>
         public static ContactObject FindOneByCN(IADOperator adOperator, string cn)
         {
-            ContactObject contactObject;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                contactObject = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new And(new IsContact(), new Is(AttributeNames.CN, cn)))
-                                 select new ContactObject(adOperator, searchResult)).SingleOrDefault();
-            }
-            return contactObject;
+            return FindOneByFilter<ContactObject>(adOperator, new And(new IsContact(), new Is(AttributeNames.CN, cn)));
         }
 
         /// <summary>
@@ -42,13 +36,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns>All contact objects.</returns>
         public static IList<ContactObject> FindAll(IADOperator adOperator)
         {
-            IList<ContactObject> contactObjects;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                contactObjects = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new And(new IsContact()))
-                                  select new ContactObject(adOperator, searchResult)).ToList();
-            }
-            return contactObjects;
+            return FindAllByFilter<ContactObject>(adOperator, new IsContact());
         }
 
         /// <summary>
@@ -59,13 +47,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns>All contact objects with filter.</returns>
         public static IList<ContactObject> FindAll(IADOperator adOperator, IFilter filter)
         {
-            IList<ContactObject> contactObjects;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                contactObjects = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new And(new IsContact(), filter))
-                                  select new ContactObject(adOperator, searchResult)).ToList();
-            }
-            return contactObjects;
+            return FindAllByFilter<ContactObject>(adOperator, new And(new IsContact(), filter));
         }
     }
 }
