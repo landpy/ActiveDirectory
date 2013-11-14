@@ -275,13 +275,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns>One user object.</returns>
         public static UserObject FindOneBySid(IADOperator adOperator, string sid)
         {
-            UserObject userObject;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                userObject = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new And(new IsUser(), new Is(UserAttributeNames.ObjectSid, sid)))
-                              select new UserObject(adOperator, searchResult)).SingleOrDefault();
-            }
-            return userObject;
+            return FindOneByFilter<UserObject>(adOperator, new And(new IsUser(), new Is(UserAttributeNames.ObjectSid, sid)));
         }
 
         /// <summary>
@@ -292,13 +286,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns>One user object.</returns>
         public static UserObject FindOneBySAMAccountName(IADOperator adOperator, string sAMAccountName)
         {
-            UserObject userObject;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                userObject = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new And(new IsUser(), new Is(UserAttributeNames.SAMAccountName, sAMAccountName)))
-                              select new UserObject(adOperator, searchResult)).SingleOrDefault();
-            }
-            return userObject;
+            return FindOneByFilter<UserObject>(adOperator, new And(new IsUser(), new Is(UserAttributeNames.SAMAccountName, sAMAccountName)));
         }
 
         /// <summary>
@@ -309,13 +297,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns>One user object.</returns>
         public static UserObject FindOneByCN(IADOperator adOperator, string cn)
         {
-            UserObject userObject;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                userObject = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new And(new IsUser(), new Is(AttributeNames.CN, cn)))
-                              select new UserObject(adOperator, searchResult)).SingleOrDefault();
-            }
-            return userObject;
+            return FindOneByFilter<UserObject>(adOperator, new And(new IsUser(), new Is(AttributeNames.CN, cn)));
         }
 
         /// <summary>
@@ -325,13 +307,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns></returns>
         public static IList<UserObject> FindAll(IADOperator adOperator)
         {
-            IList<UserObject> userObjects;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                userObjects = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new IsUser())
-                               select new UserObject(adOperator, searchResult)).ToList();
-            }
-            return userObjects;
+            return FindAllByFilter<UserObject>(adOperator, new IsUser());
         }
 
         /// <summary>
@@ -342,13 +318,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns>All user directory entry by filter.</returns>
         public static IList<UserObject> FindAll(IADOperator adOperator, IFilter filter)
         {
-            IList<UserObject> userObjects;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                userObjects = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new And(new IsUser(), filter))
-                               select new UserObject(adOperator, searchResult)).ToList();
-            }
-            return userObjects;
+            return FindAllByFilter<UserObject>(adOperator, new And(new IsUser(), filter));
         }
 
         /// <summary>

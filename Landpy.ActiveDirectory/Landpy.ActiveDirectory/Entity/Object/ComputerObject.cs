@@ -192,13 +192,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns>One computer object.</returns>
         public static ComputerObject FindOneBySid(IADOperator adOperator, string sid)
         {
-            ComputerObject computerObject;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                computerObject = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new Is(ComputerAttributeNames.ObjectSid, sid))
-                                  select new ComputerObject(adOperator, searchResult)).SingleOrDefault();
-            }
-            return computerObject;
+            return FindOneByFilter<ComputerObject>(adOperator, new Is(ComputerAttributeNames.ObjectSid, sid));
         }
 
         /// <summary>
@@ -209,13 +203,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns>One computer object.</returns>
         public static ComputerObject FindOneByCN(IADOperator adOperator, string cn)
         {
-            ComputerObject computerObject;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                computerObject = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new And(new IsComputer(), new Is(AttributeNames.CN, cn)))
-                                  select new ComputerObject(adOperator, searchResult)).SingleOrDefault();
-            }
-            return computerObject;
+            return FindOneByFilter<ComputerObject>(adOperator, new And(new IsComputer(), new Is(AttributeNames.CN, cn)));
         }
 
         /// <summary>
@@ -225,13 +213,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns>All computer objects.</returns>
         public static IList<ComputerObject> FindAll(IADOperator adOperator)
         {
-            IList<ComputerObject> computerObjects;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                computerObjects = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new And(new IsComputer()))
-                                   select new ComputerObject(adOperator, searchResult)).ToList();
-            }
-            return computerObjects;
+            return FindAllByFilter<ComputerObject>(adOperator, new IsComputer());
         }
 
         /// <summary>
@@ -242,13 +224,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns>All computer objects by filter.</returns>
         public static IList<ComputerObject> FindAll(IADOperator adOperator, IFilter filter)
         {
-            IList<ComputerObject> computerObjects;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                computerObjects = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new And(new IsComputer(), filter))
-                                   select new ComputerObject(adOperator, searchResult)).ToList();
-            }
-            return computerObjects;
+            return FindAllByFilter<ComputerObject>(adOperator, new And(new IsComputer(), filter));
         }
     }
 }

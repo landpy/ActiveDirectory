@@ -14,7 +14,7 @@ namespace Landpy.ActiveDirectory.Core.Filter.Expression
         /// <returns></returns>
         public string BuildFilter()
         {
-            IFilter filter = new Is(AttributeNames.ObjectClass, PasswordSettingsAttributeValues.MsDs_PasswordSettings);
+            IFilter filter = new Is(AttributeNames.ObjectClass, PasswordSettingsAttributeValues.MsDS_PasswordSettings);
             return filter.BuildFilter();
         }
     }

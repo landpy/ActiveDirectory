@@ -20,13 +20,7 @@ namespace Landpy.ActiveDirectory.Entity.Query
         /// <returns>All the AD objects which is matched with the filter.</returns>
         public static IList<ADObject> List(IADOperator adOperator, IFilter filter)
         {
-            List<ADObject> adObjects;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                adObjects = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(filter)
-                             select ADObject.GetADObject(adOperator, searchResult)).ToList();
-            }
-            return adObjects;
+            return ADObject.FindAllByFilter<ADObject>(adOperator, filter);
         }
 
         /// <summary>
@@ -37,12 +31,7 @@ namespace Landpy.ActiveDirectory.Entity.Query
         /// <returns>The single AD object which is matched with the filter.</returns>
         public static ADObject SingleAndDefault(IADOperator adOperator, IFilter filter)
         {
-            ADObject adObject;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                adObject = ADObject.GetADObject(adOperator, directoryEntryRepository.GetSearchResult(filter));
-            }
-            return adObject;
+            return ADObject.FindOneByFilter<ADObject>(adOperator, filter);
         }
     }
 }

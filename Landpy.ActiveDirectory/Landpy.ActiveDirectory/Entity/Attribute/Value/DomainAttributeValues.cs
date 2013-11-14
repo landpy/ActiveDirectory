@@ -8,6 +8,11 @@
         /// <summary>
         /// The domain DNS attribute value.
         /// </summary>
-        public static readonly string DomainDNS = "domainDNS";
+        public const string DomainDNS = "domainDNS";
+
+        /// <summary>
+        /// The domain attribute value.
+        /// </summary>
+        public const string Domain = "domain";
     }
 }

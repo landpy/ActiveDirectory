@@ -8,6 +8,6 @@
         /// <summary>
         /// The custom password setting object class.
         /// </summary>
-        public static readonly string MsDs_PasswordSettings = "msDs-PasswordSettings";
+        public const string MsDS_PasswordSettings = "msDS-PasswordSettings";
     }
 }

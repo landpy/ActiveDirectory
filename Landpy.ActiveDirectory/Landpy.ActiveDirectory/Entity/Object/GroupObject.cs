@@ -231,13 +231,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns></returns>
         public static GroupObject FindOneBySid(IADOperator adOperator, string sid)
         {
-            GroupObject groupObject;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                groupObject = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new Is(GroupAttributeNames.ObjectSid, sid))
-                               select new GroupObject(adOperator, searchResult)).SingleOrDefault();
-            }
-            return groupObject;
+            return FindOneByFilter<GroupObject>(adOperator, new Is(GroupAttributeNames.ObjectSid, sid));
         }
 
         /// <summary>
@@ -248,13 +242,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns>One group object.</returns>
         public static GroupObject FindOneByCN(IADOperator adOperator, string cn)
         {
-            GroupObject groupObject;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                groupObject = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new And(new IsGroup(), new Is(AttributeNames.CN, cn)))
-                               select new GroupObject(adOperator, searchResult)).SingleOrDefault();
-            }
-            return groupObject;
+            return FindOneByFilter<GroupObject>(adOperator, new And(new IsGroup(), new Is(AttributeNames.CN, cn)));
         }
 
         /// <summary>
@@ -264,13 +252,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns>All group objects.</returns>
         public static IList<GroupObject> FindAll(IADOperator adOperator)
         {
-            IList<GroupObject> groupObjects;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                groupObjects = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new And(new IsGroup()))
-                                select new GroupObject(adOperator, searchResult)).ToList();
-            }
-            return groupObjects;
+            return FindAllByFilter<GroupObject>(adOperator, new IsGroup());
         }
 
         /// <summary>
@@ -281,13 +263,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         /// <returns>All group objects by filter.</returns>
         public static IList<GroupObject> FindAll(IADOperator adOperator, IFilter filter)
         {
-            IList<GroupObject> groupObjects;
-            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
-            {
-                groupObjects = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new And(new IsGroup(), filter))
-                                select new GroupObject(adOperator, searchResult)).ToList();
-            }
-            return groupObjects;
+            return FindAllByFilter<GroupObject>(adOperator, new And(new IsGroup(), filter));
         }
     }
 }
