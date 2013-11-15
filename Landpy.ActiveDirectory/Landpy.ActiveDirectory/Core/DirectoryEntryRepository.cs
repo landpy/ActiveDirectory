@@ -41,6 +41,7 @@ namespace Landpy.ActiveDirectory.Core
             }
             using (directorySearcher)
             {
+                directorySearcher.SizeLimit = Int32.MaxValue;
                 searchResultCollection = directorySearcher.FindAll();
             }
             return searchResultCollection;
