@@ -93,8 +93,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
                 {
                     using (var directoryEntryRepository = new DirectoryEntryRepository(domainDirectoryEntry))
                     {
-                        domainObject = (from SearchResult searchResult in directoryEntryRepository.GetSearchResultCollection(new And(new IsDomain()))
-                                        select new DomainObject(null, searchResult)).SingleOrDefault();
+                        domainObject = new DomainObject(null, directoryEntryRepository.GetSearchResult(new IsDomain()));
                     }
                 }
             }

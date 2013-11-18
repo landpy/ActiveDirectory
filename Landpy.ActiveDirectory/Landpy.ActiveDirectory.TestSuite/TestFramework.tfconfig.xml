@@ -5,6 +5,9 @@
     <Property Key="DomainName" Value="pang"/>
     <Property Key="DomainUserName" Value="pang\landpyoperator"/>
     <Property Key="DomainUserPassword" Value="abc123,./"/>
+    <Property Key="LargeAmountDomainName" Value="192.168.6.58"/>
+    <Property Key="LargeAmountDomainUserName" Value="192.168.6.58\administrator"/>
+    <Property Key="LargeAmountDomainUserPassword" Value="abc123,./"/>
     <!--Filter-->
     <Property Key="AndFilterString" Value="(&amp;(objectClass=organizationalUnit)(&amp;(objectClass=user)(!objectClass=computer)(!objectClass=inetOrgPerson)))"/>
     <Property Key="OrFilterString" Value="(|(objectClass=organizationalUnit)(&amp;(objectClass=user)(!objectClass=computer)(!objectClass=inetOrgPerson)))"/>

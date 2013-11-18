@@ -127,5 +127,13 @@ namespace Landpy.ActiveDirectory.TestSuite.QueryModule
                 Assert.IsInstanceOf(typeof(GroupObject), adObject);
             }
         }
+
+        [TestCase]
+        public void TestLargeADObjectAmount()
+        {
+            var adObjects = ADObjectQuery.List(this.LargeAmountADOperator, new IsUser());
+            Assert.Greater(adObjects.Count, 1000);
+            Assert.Pass(String.Format(@"AD object amount is {0}", adObjects.Count));
+        }
     }
 }
