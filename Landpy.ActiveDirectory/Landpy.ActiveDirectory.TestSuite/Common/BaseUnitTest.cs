@@ -11,10 +11,12 @@ namespace Landpy.ActiveDirectory.TestSuite.Common
     {
         protected IADOperator ADOperator { get; set; }
         protected IADOperator AnonymousADOperator { get; set; }
+        protected IADOperator LargeAmountADOperator { get; set; }
 
         [TestFixtureSetUp]
         public void FixtureSetUp()
         {
+            // Normal
             var mock = new Mock<IADOperator>();
             var adOperatorInfo = new ADOperatorInfo
                         {
@@ -24,6 +26,7 @@ namespace Landpy.ActiveDirectory.TestSuite.Common
                         };
             mock.Setup(m => m.GetOperatorInfo()).Returns(adOperatorInfo);
             this.ADOperator = mock.Object;
+            // Anonymous
             var anonymousMock = new Mock<IADOperator>();
             adOperatorInfo = new ADOperatorInfo
                         {
@@ -33,6 +36,16 @@ namespace Landpy.ActiveDirectory.TestSuite.Common
                         };
             anonymousMock.Setup(m => m.GetOperatorInfo()).Returns(adOperatorInfo);
             this.AnonymousADOperator = anonymousMock.Object;
+            // Large amount
+            var largeAmountMock = new Mock<IADOperator>();
+            var largeAmountADOperatorInfo = new ADOperatorInfo
+            {
+                UserLoginName = TF.GetConfig().Properties["LargeAmountDomainUserName"],
+                Password = TF.GetConfig().Properties["LargeAmountDomainUserPassword"],
+                OperateDomainName = TF.GetConfig().Properties["LargeAmountDomainName"],
+            };
+            largeAmountMock.Setup(m => m.GetOperatorInfo()).Returns(largeAmountADOperatorInfo);
+            this.LargeAmountADOperator = largeAmountMock.Object;
             this.SetUp();
         }
 
