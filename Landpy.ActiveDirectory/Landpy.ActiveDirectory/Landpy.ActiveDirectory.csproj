@@ -147,6 +147,7 @@
     <Compile Include="Entity\Object\UserAccountControlType.cs" />
     <Compile Include="Entity\Object\UserObject.cs" />
     <Compile Include="Entity\Query\ADObjectQuery.cs" />
+    <Compile Include="Entity\Query\QueryScopeType.cs" />
     <Compile Include="Entity\TypeAdapter\BooleanAdapter.cs" />
     <Compile Include="Entity\TypeAdapter\ByteArrayAdapter.cs" />
     <Compile Include="Entity\TypeAdapter\DateTimeAdapter.cs" />

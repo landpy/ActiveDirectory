@@ -8,6 +8,7 @@ using Landpy.ActiveDirectory.Core.Filter;
 using Landpy.ActiveDirectory.Core.Filter.Expression;
 using Landpy.ActiveDirectory.Entity.Attribute.Name;
 using Landpy.ActiveDirectory.Entity.Attribute.Value;
+using Landpy.ActiveDirectory.Entity.Query;
 using Landpy.ActiveDirectory.Entity.TypeAdapter;
 
 namespace Landpy.ActiveDirectory.Entity.Object
@@ -426,6 +427,47 @@ namespace Landpy.ActiveDirectory.Entity.Object
         {
             List<TADObject> adObjects;
             using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator))
+            {
+                using (var searchResultCollection = directoryEntryRepository.GetSearchResultCollection(filter))
+                {
+                    var objects = (from SearchResult searchResult in searchResultCollection
+                                   select GetADObject(adOperator, searchResult)).ToList();
+                    adObjects = objects.Cast<TADObject>().ToList();
+                }
+            }
+            return adObjects;
+        }
+
+        /// <summary>
+        /// Find one AD object by filter and path.
+        /// </summary>
+        /// <param name="adOperator">The AD operator.</param>
+        /// <param name="filter">The filter</param>
+        /// <param name="ldapPath">The LDAP path.</param>
+        /// <param name="queryScopeType">The query scope type.</param>
+        /// <returns>One AD object.</returns>
+        internal static TADObject FindOneByFilter<TADObject>(IADOperator adOperator, IFilter filter, string ldapPath, QueryScopeType queryScopeType) where TADObject : class
+        {
+            TADObject adObject;
+            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator, ldapPath, queryScopeType))
+            {
+                adObject = GetADObject(adOperator, directoryEntryRepository.GetSearchResult(filter)) as TADObject;
+            }
+            return adObject;
+        }
+
+        /// <summary>
+        /// Find all AD objects by filter and path.
+        /// </summary>
+        /// <param name="adOperator">The AD operator.</param>
+        /// <param name="filter">The filter</param>
+        /// <param name="ldapPath">The LDAP path.</param>
+        /// <param name="queryScopeType">The query scope type.</param>
+        /// <returns>All AD objects.</returns>
+        internal static List<TADObject> FindAllByFilter<TADObject>(IADOperator adOperator, IFilter filter, string ldapPath, QueryScopeType queryScopeType)
+        {
+            List<TADObject> adObjects;
+            using (var directoryEntryRepository = new DirectoryEntryRepository(adOperator, ldapPath, queryScopeType))
             {
                 using (var searchResultCollection = directoryEntryRepository.GetSearchResultCollection(filter))
                 {

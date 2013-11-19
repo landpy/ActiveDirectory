@@ -119,5 +119,7 @@
     <Property Key="PasswordUnityUserPassword" Value="abc123,./"/>
     <!--Special Char Filter \28\2a\29\2f\5c-->
     <Property Key="UserSpecialCharCn" Value="(*)/\"/>
+    <!--Query-->
+    <Property Key="QueryRootOUName" Value="ADLib"/>
   </Properties>
 </TFConfiguration>
