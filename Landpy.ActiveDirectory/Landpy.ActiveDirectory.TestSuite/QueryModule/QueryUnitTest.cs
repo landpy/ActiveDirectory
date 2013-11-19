@@ -15,11 +15,13 @@ namespace Landpy.ActiveDirectory.TestSuite.QueryModule
     {
         private string UserCn { get; set; }
         private Guid GroupGuid { get; set; }
+        private string QueryRootOUName { get; set; }
 
         protected override void SetUp()
         {
             this.UserCn = TF.GetConfig().Properties["UserCn"];
             this.GroupGuid = new Guid(TF.GetConfig().Properties["GroupGuid"]);
+            this.QueryRootOUName = TF.GetConfig().Properties["QueryRootOUName"];
         }
 
         [TestCase]
@@ -134,6 +136,36 @@ namespace Landpy.ActiveDirectory.TestSuite.QueryModule
             var adObjects = ADObjectQuery.List(this.LargeAmountADOperator, new IsUser());
             Assert.Greater(adObjects.Count, 1000);
             Assert.Pass(String.Format(@"AD object amount is {0}", adObjects.Count));
+            foreach (var adObject in adObjects)
+            {
+                using (adObject)
+                {
+                }
+            }
+        }
+
+        [TestCase]
+        public void TestQueryFromPath()
+        {
+            // The ou must be contains a tree structure children.
+            using (var organizationalUnitObject = OrganizationalUnitObject.FindOneByOU(this.ADOperator, this.QueryRootOUName))
+            {
+                var userObjects = ADObjectQuery.List(this.ADOperator, new IsUser(), organizationalUnitObject.Path, QueryScopeType.OneLevel);
+                Assert.Greater(userObjects.Count, 0);
+                foreach (var userObject in userObjects)
+                {
+                    Assert.AreEqual(ADObjectType.User, userObject.Type);
+                    Console.WriteLine(userObject.CN);
+                }
+                var allUserObjects = ADObjectQuery.List(this.ADOperator, new IsUser(), organizationalUnitObject.Path, QueryScopeType.Subtree);
+                Assert.Greater(allUserObjects.Count, 0);
+                foreach (var userObject in allUserObjects)
+                {
+                    Assert.AreEqual(ADObjectType.User, userObject.Type);
+                    Console.WriteLine(userObject.CN);
+                }
+                Assert.Greater(allUserObjects.Count, userObjects.Count);
+            }
         }
     }
 }
