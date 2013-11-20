@@ -1,4 +1,6 @@
-﻿using Landpy.ActiveDirectory.Core;
+﻿using System;
+using System.Runtime.InteropServices;
+using Landpy.ActiveDirectory.Core;
 using Landpy.ActiveDirectory.Entity.Object;
 
 namespace Landpy.ActiveDirectory.Password
@@ -19,10 +21,23 @@ namespace Landpy.ActiveDirectory.Password
             bool isPasswordValid = false;
             var userNameAdpter = new UseNameAdapter(userLoginName);
             IADOperator adOperator = new ADOperator(userLoginName, password, userNameAdpter.UserDomainName);
-            var userObject = UserObject.FindOneByCN(adOperator, userNameAdpter.UserName);
-            if (userObject != null)
+            try
             {
-                isPasswordValid = true;
+                var userObject = UserObject.FindOneByCN(adOperator, userNameAdpter.UserName);
+                if (userObject != null)
+                {
+                    isPasswordValid = true;
+                }
+            }
+            catch (COMException comException)
+            {
+                if (comException.Message.Equals("Logon failure: unknown user name or bad password.\r\n", StringComparison.CurrentCultureIgnoreCase))
+                {
+                }
+                else
+                {
+                    throw;
+                }
             }
             return isPasswordValid;
         }
