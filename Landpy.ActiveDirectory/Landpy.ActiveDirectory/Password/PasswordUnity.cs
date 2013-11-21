@@ -29,9 +29,10 @@ namespace Landpy.ActiveDirectory.Password
                     isPasswordValid = true;
                 }
             }
-            catch (COMException comException)
+            catch (Exception exception)
             {
-                if (comException.Message.Equals("Logon failure: unknown user name or bad password.\r\n", StringComparison.CurrentCultureIgnoreCase))
+                if (exception.Message.Contains("Logon failure: unknown user name or bad password.") ||
+                    exception.Message.Contains("The user name or password is incorrect."))
                 {
                 }
                 else
