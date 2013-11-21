@@ -23,7 +23,7 @@ namespace Landpy.ActiveDirectory.Password
             IADOperator adOperator = new ADOperator(userLoginName, password, userNameAdpter.UserDomainName);
             try
             {
-                var userObject = UserObject.FindOneByCN(adOperator, userNameAdpter.UserName);
+                var userObject = UserObject.FindOneBySAMAccountName(adOperator, userNameAdpter.UserName);
                 if (userObject != null)
                 {
                     isPasswordValid = true;
