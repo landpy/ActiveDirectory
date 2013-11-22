@@ -135,13 +135,13 @@ namespace Landpy.ActiveDirectory.TestSuite.QueryModule
         {
             var adObjects = ADObjectQuery.List(this.LargeAmountADOperator, new IsUser());
             Assert.Greater(adObjects.Count, 1000);
-            Assert.Pass(String.Format(@"AD object amount is {0}", adObjects.Count));
             foreach (var adObject in adObjects)
             {
                 using (adObject)
                 {
                 }
             }
+            Assert.Pass(String.Format(@"AD object amount is {0}", adObjects.Count));
         }
 
         [TestCase]
