@@ -12,7 +12,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
     /// <summary>
     /// The domain AD object.
     /// </summary>
-    public class DomainObject : ADObject
+    public class DomainObject : PackObject
     {
         private int groupPolicyMinimumPasswordLength;
         private bool? isMustMeetComplexityRequirments;

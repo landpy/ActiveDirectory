@@ -15,7 +15,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
     /// <summary>
     /// The organizational unit AD object.
     /// </summary>
-    public class OrganizationalUnitObject : ADObject
+    public class OrganizationalUnitObject : PackObject
     {
         private string ou;
         private string street;
@@ -24,10 +24,6 @@ namespace Landpy.ActiveDirectory.Entity.Object
         private string co;
         private string c;
         private string managedBy;
-        private IList<UserObject> users;
-        private IList<ContactObject> contacts;
-        private IList<ComputerObject> computers;
-        private IList<OrganizationalUnitObject> organizationalUnits;
 
         /// <summary>
         /// The ou.
@@ -168,124 +164,6 @@ namespace Landpy.ActiveDirectory.Entity.Object
             {
                 this.DirectoryEntry.Properties[OrganizationalUnitAttributeNames.ManagedBy].Value = value;
                 this.managedBy = value;
-            }
-        }
-
-        /// <summary>
-        /// The child users.
-        /// </summary>
-        public IList<UserObject> Users
-        {
-            get
-            {
-                if (this.users == null)
-                {
-                    this.users = new List<UserObject>();
-                    foreach (DirectoryEntry child in this.DirectoryEntry.Children)
-                    {
-                        using (child)
-                        {
-                            var user = FindOneByFilter<UserObject>(this.ADOperator,
-                                new And(
-                                    new Is(AttributeNames.DistinguishedName, child.Properties[AttributeNames.DistinguishedName].Value.ToString()),
-                                    new IsUser()
-                                    ));
-                            if (user != null)
-                            {
-                                this.users.Add(user);
-                            }
-                        }
-                    }
-                }
-                return this.users;
-            }
-        }
-
-        /// <summary>
-        /// The child contacts.
-        /// </summary>
-        public IList<ContactObject> Contacts
-        {
-            get
-            {
-                if (this.contacts == null)
-                {
-                    this.contacts = new List<ContactObject>();
-                    foreach (DirectoryEntry child in this.DirectoryEntry.Children)
-                    {
-                        using (child)
-                        {
-                            var contact = FindOneByFilter<ContactObject>(this.ADOperator,
-                                new And(
-                                    new Is(AttributeNames.DistinguishedName, child.Properties[AttributeNames.DistinguishedName].Value.ToString()),
-                                    new IsContact()
-                                    ));
-                            if (contact != null)
-                            {
-                                this.contacts.Add(contact);
-                            }
-                        }
-                    }
-                }
-                return this.contacts;
-            }
-        }
-
-        /// <summary>
-        /// The child computers.
-        /// </summary>
-        public IList<ComputerObject> Computers
-        {
-            get
-            {
-                if (this.computers == null)
-                {
-                    this.computers = new List<ComputerObject>();
-                    foreach (DirectoryEntry child in this.DirectoryEntry.Children)
-                    {
-                        using (child)
-                        {
-                            var computer = FindOneByFilter<ComputerObject>(this.ADOperator,
-                                new And(
-                                    new Is(AttributeNames.DistinguishedName, child.Properties[AttributeNames.DistinguishedName].Value.ToString()),
-                                    new IsComputer()));
-                            if (computer != null)
-                            {
-                                this.computers.Add(computer);
-                            }
-                        }
-                    }
-                }
-                return this.computers;
-            }
-        }
-
-        /// <summary>
-        /// The child organizational units.
-        /// </summary>
-        public IList<OrganizationalUnitObject> OrganizationalUnits
-        {
-            get
-            {
-                if (this.organizationalUnits == null)
-                {
-                    this.organizationalUnits = new List<OrganizationalUnitObject>();
-                    foreach (DirectoryEntry child in this.DirectoryEntry.Children)
-                    {
-                        using (child)
-                        {
-                            var organizationalUnit = FindOneByFilter<OrganizationalUnitObject>(this.ADOperator,
-                                new And(
-                                    new Is(AttributeNames.DistinguishedName, child.Properties[AttributeNames.DistinguishedName].Value.ToString()),
-                                    new IsOU()));
-                            if (organizationalUnit != null)
-                            {
-                                this.organizationalUnits.Add(organizationalUnit);
-                            }
-                        }
-                    }
-                }
-                return this.organizationalUnits;
             }
         }
 

@@ -139,6 +139,8 @@
     <Compile Include="Entity\Object\MsImaging-PSPsObject.cs" />
     <Compile Include="Entity\Object\MSMQQueueAliasObject.cs" />
     <Compile Include="Entity\Object\OrganizationalUnitObject.cs" />
+    <Compile Include="Entity\Object\PackContainerObject.cs" />
+    <Compile Include="Entity\Object\PackObject.cs" />
     <Compile Include="Entity\Object\PasswordSettingsObject.cs" />
     <Compile Include="Entity\Object\PersonObject.cs" />
     <Compile Include="Entity\Object\PrinterObject.cs" />
