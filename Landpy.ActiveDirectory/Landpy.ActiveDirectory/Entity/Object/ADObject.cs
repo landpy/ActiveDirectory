@@ -79,6 +79,10 @@ namespace Landpy.ActiveDirectory.Entity.Object
                 }
                 return this.cn;
             }
+            set
+            {
+                this.DirectoryEntry.Rename(String.Format(@"{0}={1}", AttributeNames.CN, value));
+            }
         }
 
         /// <summary>

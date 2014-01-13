@@ -45,13 +45,27 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
         }
 
         [TestCase]
+        public void TestClearAttributeValue()
+        {
+            using (var userObject = UserObject.FindOneByCN(this.ADOperator, this.CustomAttributeUserCn))
+            {
+                userObject.ClearAttributeValue(PersonAttributeNames.Info);
+                userObject.Save();
+            }
+            using (var userObject = UserObject.FindOneByCN(this.ADOperator, this.CustomAttributeUserCn))
+            {
+                Assert.IsNullOrEmpty(userObject.Notes);
+            }
+        }
+
+        [TestCase]
         public void TestVerifyADObjectExists()
         {
             Assert.IsFalse(ADObject.DoesADObjectExists(this.ADOperator, Guid.Empty));
         }
 
         [TestCase]
-        public void Test()
+        public void TestGetDateTime()
         {
             using (var userObject = UserObject.FindOneByCN(this.ADOperator, this.CustomAttributeUserCn))
             {
