@@ -1,4 +1,5 @@
-﻿using Landpy.ActiveDirectory.TestSuite.Common;
+﻿using System;
+using Landpy.ActiveDirectory.TestSuite.Common;
 using NUnit.Framework;
 using Landpy.TestFramwork.Configuration;
 using Landpy.ActiveDirectory.Entity.Object;
@@ -46,6 +47,28 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
         {
             var contactObjects = ContactObject.FindAll(this.ADOperator, new Is(AttributeNames.CN, this.ContactCN));
             Assert.AreEqual(1, contactObjects.Count);
+        }
+
+        [TestCase]
+        public void TestChangeCN()
+        {
+            Guid contactId = Guid.Empty;
+            string newCN = "pangcontactnew";
+            using (var contactObject = ContactObject.FindOneByCN(this.ADOperator, this.ContactCN))
+            {
+                contactObject.CN = newCN;
+                contactId = contactObject.ObjectGuid;
+                contactObject.Save();
+            }
+            using (var contactObject = ADObject.FindOneByObjectGUID(this.ADOperator, contactId))
+            {
+                Assert.AreEqual(newCN, contactObject.CN);
+            }
+            using (var contactObject = ContactObject.FindOneByCN(this.ADOperator, newCN))
+            {
+                contactObject.CN = this.ContactCN;
+                contactObject.Save();
+            }
         }
     }
 }
