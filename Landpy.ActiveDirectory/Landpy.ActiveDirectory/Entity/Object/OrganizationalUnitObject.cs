@@ -181,7 +181,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         {
             var ouDirectoryEntry = this.DirectoryEntry.Children.Add(String.Format(@"{0}={1}", OrganizationalUnitAttributeNames.OU, ouName), OrganizationalUnitAttributeValues.OrganizationalUnit);
             ouDirectoryEntry.CommitChanges();
-            return FindOneByOU(this.ADOperator, ouName);
+            return FindOneByDN(this.ADOperator, ouDirectoryEntry.Properties[AttributeNames.DistinguishedName].Value.ToString()) as OrganizationalUnitObject;
         }
 
         /// <summary>
