@@ -2,12 +2,12 @@
 <TFConfiguration>
   <Properties>
     <!--AD Operator-->
-    <Property Key="DomainName" Value="pang"/>
-    <Property Key="DomainUserName" Value="pang\landpyoperator"/>
-    <Property Key="DomainUserPassword" Value="abc123,./"/>
+    <Property Key="DomainName" Value="LANDPY"/>
+    <Property Key="DomainUserName" Value="LANDPY\administrator"/>
+    <Property Key="DomainUserPassword" Value="123!@#qwe"/>
     <Property Key="LargeAmountDomainName" Value="192.168.6.58"/>
     <Property Key="LargeAmountDomainUserName" Value="192.168.6.58\administrator"/>
-    <Property Key="LargeAmountDomainUserPassword" Value="abc123,./"/>
+    <Property Key="LargeAmountDomainUserPassword" Value="123!@#qwe"/>
     <!--Filter-->
     <Property Key="AndFilterString" Value="(&amp;(objectClass=organizationalUnit)(&amp;(objectClass=user)(!objectClass=computer)(!objectClass=inetOrgPerson)))"/>
     <Property Key="OrFilterString" Value="(|(objectClass=organizationalUnit)(&amp;(objectClass=user)(!objectClass=computer)(!objectClass=inetOrgPerson)))"/>
@@ -15,7 +15,7 @@
     <!--IP-->
     <Property Key="IPDomainName" Value="192.168.6.67"/>
     <Property Key="IPDomainUserName" Value="192.168.6.67\administrator"/>
-    <Property Key="IPDomainUserPassword" Value="liu-pxl821102"/>
+    <Property Key="IPDomainUserPassword" Value="123!@#qwe"/>
     <!--User Object-->
     <Property Key="UserCn" Value="pangxiaoliang"/>
     <Property Key="UserSid" Value="S-1-5-21-3069975210-3933090721-4243971453-1197"/>
@@ -100,6 +100,9 @@
     <!--OrganizaionalUnit Object-->
     <Property Key="OrganizaionalUnitOU" Value="pangou"/>
     <Property Key="OrganizaionalUnitStreet" Value="Street."/>
+    <Property Key="OrganizationalUnitDN" Value="OU=landpyou,OU=pangou,OU=ADLib,DC=landpy,DC=local"/>
+    <Property Key="SameOrganizationalUnitDN" Value="OU=landpyou,OU=landpyou,OU=pangou,OU=ADLib,DC=landpy,DC=local"/>
+    <Property Key="SameOrganizationalUnitName" Value="landpyou"/>
     <!--Contact Object-->
     <Property Key="ContactCN" Value="pangcontact"/>
     <Property Key="ContactDescription" Value="The contact of pangxiaoliang."/>

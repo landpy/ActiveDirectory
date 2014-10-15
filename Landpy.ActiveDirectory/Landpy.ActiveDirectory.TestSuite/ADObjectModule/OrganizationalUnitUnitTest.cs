@@ -92,6 +92,29 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
         }
 
         [TestCase]
+        public void TestAddSameNameOrganizationalUnitObject()
+        {
+            using (var organizationalUnitObject = ADObject.FindOneByDN(this.ADOperator,
+                                                                       TF.GetConfig().Properties[
+                                                                           "SameOrganizationalUnitDN"]) as
+                                                  OrganizationalUnitObject)
+            {
+                if (organizationalUnitObject != null)
+                {
+                    organizationalUnitObject.Delete();
+                }
+            }
+            using (var organizationalUnitObject = ADObject.FindOneByDN(this.ADOperator,
+                                                     TF.GetConfig().Properties["OrganizationalUnitDN"]) as OrganizationalUnitObject)
+            {
+                using (var addOrganizationalUnitObject = organizationalUnitObject.AddOrganizationalUnit(TF.GetConfig().Properties["SameOrganizationalUnitName"]))
+                {
+                    Assert.AreEqual(TF.GetConfig().Properties["SameOrganizationalUnitDN"], addOrganizationalUnitObject.DistinguishedName);
+                }
+            }
+        }
+
+        [TestCase]
         public void TestAddGroupObject()
         {
             using (var organizationalUnitObject = OrganizationalUnitObject.FindOneByOU(this.ADOperator, this.OrganizaionalUnitOU))
