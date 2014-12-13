@@ -130,7 +130,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
             get
             {
                 return (from groupSid in this.GroupSids
-                        where groupSid.EndsWith("512")
+                        where groupSid.EndsWith("-512")
                         select groupSid).Any();
             }
         }
@@ -143,7 +143,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
             get
             {
                 return (from groupSid in this.GroupSids
-                        where groupSid.EndsWith("548")
+                        where groupSid.EndsWith("-548")
                         select groupSid).Any();
             }
         }
