@@ -204,6 +204,10 @@ namespace Landpy.ActiveDirectory.Entity.Object
                 {
                     this.DirectoryEntry.Properties[UserAttributeNames.UserAccountControl].Value = userAccountControlType ^ UserAccountControlType.AccountDisabled;
                 }
+                else
+                {
+                    this.DirectoryEntry.Properties[UserAttributeNames.UserAccountControl].Value = userAccountControlType | UserAccountControlType.AccountDisabled;
+                }
                 this.isEnabled = value;
             }
         }
