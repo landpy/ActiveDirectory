@@ -219,6 +219,11 @@ namespace Landpy.ActiveDirectory.Entity.Object
             return FindOneByFilter<OrganizationalUnitObject>(adOperator, new And(new IsOU(), new Is(OrganizationalUnitAttributeNames.OU, ouName)));
         }
 
+        public static OrganizationalUnitObject FindOneByDN(IADOperator adOperator, string distinguishedName)
+        {
+            return FindOneByFilter<OrganizationalUnitObject>(adOperator, new And(new IsOU(), new Is(AttributeNames.DistinguishedName, distinguishedName)));
+        }
+
         /// <summary>
         /// Find all ou objects.
         /// </summary>
