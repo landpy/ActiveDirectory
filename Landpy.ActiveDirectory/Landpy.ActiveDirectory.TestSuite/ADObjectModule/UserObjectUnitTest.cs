@@ -75,6 +75,7 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
         private string UserDirectReportContactCn { get; set; }
         private string CustomAttributeUserCn { get; set; }
         private string UserSpecialCharCn { get; set; }
+        private string ToOrganizationalUnitDN { get; set; }
 
         protected override void SetUp()
         {
@@ -135,6 +136,7 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
             this.UserDirectReportContactCn = TF.GetConfig().Properties["UserDirectReportContactCn"];
             this.CustomAttributeUserCn = TF.GetConfig().Properties["CustomAttributeUserCn"];
             this.UserSpecialCharCn = TF.GetConfig().Properties["UserSpecialCharCn"];
+            this.ToOrganizationalUnitDN = TF.GetConfig().Properties["ToOrganizationalUnitDN"];
         }
 
         [TestCase]
@@ -347,6 +349,25 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
             using (var userObject = UserObject.FindOneBySid(this.ADOperator, this.UserSid))
             {
                 Assert.AreEqual(accountExpiresTime, userObject.AccountExpiresTime);
+            }
+        }
+
+        [TestCase]
+        public void TestChangeOU()
+        {
+            using (var userObject = UserObject.FindOneBySAMAccountName(this.ADOperator, this.UserSAMAccountName))
+            {
+                using (var ouObject = OrganizationalUnitObject.FindOneByDN(this.ADOperator, this.ToOrganizationalUnitDN))
+                {
+                    userObject.ChangeOrganizationalUnit(ouObject);
+                }
+            }
+            using (var userObject = UserObject.FindOneBySAMAccountName(this.ADOperator, this.UserSAMAccountName))
+            {
+                using (var ouObject = OrganizationalUnitObject.FindOneByDN(this.ADOperator, this.ToOrganizationalUnitDN))
+                {
+                    Assert.IsTrue(userObject.DistinguishedName.EndsWith(ouObject.DistinguishedName));
+                }
             }
         }
     }

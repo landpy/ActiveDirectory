@@ -54,7 +54,7 @@ namespace Landpy.ActiveDirectory.TestSuite.ADObjectModule
             }
             using (var userObject = UserObject.FindOneByCN(this.ADOperator, this.CustomAttributeUserCn))
             {
-                Assert.IsNullOrEmpty(userObject.Notes);
+                Assert.IsNull(userObject.Notes);
             }
         }
 

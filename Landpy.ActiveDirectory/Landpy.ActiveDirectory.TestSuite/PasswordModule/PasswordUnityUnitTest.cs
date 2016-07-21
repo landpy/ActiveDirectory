@@ -28,10 +28,9 @@ namespace Landpy.ActiveDirectory.TestSuite.PasswordModule
         }
 
         [TestCase]
-        [ExpectedException(typeof(UserLoginNameBadFormatException))]
         public void TestUserLoginNameBadFormat()
         {
-            this.PasswordUnity.IsPasswordValid("Landpy", "Landpy");
+            Assert.Throws<UserLoginNameBadFormatException>(() => this.PasswordUnity.IsPasswordValid("Landpy", "Landpy"));
         }
 
         [TestCase]
