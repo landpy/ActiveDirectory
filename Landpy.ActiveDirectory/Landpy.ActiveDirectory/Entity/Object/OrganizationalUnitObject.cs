@@ -209,7 +209,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         }
 
         /// <summary>
-        /// Fine one ou object by common name.
+        /// Fine one ou object by ou name.
         /// </summary>
         /// <param name="adOperator">The AD operator.</param>
         /// <param name="ouName">The OU name.</param>
@@ -219,6 +219,12 @@ namespace Landpy.ActiveDirectory.Entity.Object
             return FindOneByFilter<OrganizationalUnitObject>(adOperator, new And(new IsOU(), new Is(OrganizationalUnitAttributeNames.OU, ouName)));
         }
 
+        /// <summary>
+        /// Fine one ou object by distinguished name.
+        /// </summary>
+        /// <param name="adOperator">The AD operator.</param>
+        /// <param name="distinguishedName">The distinguished name</param>
+        /// <returns></returns>
         public static OrganizationalUnitObject FindOneByDN(IADOperator adOperator, string distinguishedName)
         {
             return FindOneByFilter<OrganizationalUnitObject>(adOperator, new And(new IsOU(), new Is(AttributeNames.DistinguishedName, distinguishedName)));

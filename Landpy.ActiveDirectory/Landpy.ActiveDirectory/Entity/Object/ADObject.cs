@@ -746,5 +746,15 @@ namespace Landpy.ActiveDirectory.Entity.Object
             }
             return adObjectType;
         }
+
+        /// <summary>
+        /// Change to new OU from current OU.
+        /// </summary>
+        /// <param name="orgnizationalUnit">The new OU.</param>
+        public void ChangeOrganizationalUnit(OrganizationalUnitObject orgnizationalUnit)
+        {
+            this.DirectoryEntry.MoveTo(orgnizationalUnit.DirectoryEntry);
+            orgnizationalUnit.DirectoryEntry.CommitChanges();
+        }
     }
 }
