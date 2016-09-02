@@ -272,7 +272,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         }
 
         /// <summary>
-        /// Fine one user object by sid.
+        /// Find one user object by sid.
         /// </summary>
         /// <param name="adOperator">The AD operator.</param>
         /// <param name="sid">The sid.</param>
@@ -294,7 +294,7 @@ namespace Landpy.ActiveDirectory.Entity.Object
         }
 
         /// <summary>
-        /// Fine one user object by common name.
+        /// Find one user object by common name.
         /// </summary>
         /// <param name="adOperator">The AD operator.</param>
         /// <param name="cn">The common name.</param>
@@ -302,6 +302,17 @@ namespace Landpy.ActiveDirectory.Entity.Object
         public static UserObject FindOneByCN(IADOperator adOperator, string cn)
         {
             return FindOneByFilter<UserObject>(adOperator, new And(new IsUser(), new Is(AttributeNames.CN, cn)));
+        }
+
+        /// <summary>
+        /// Find one user object by display name.
+        /// </summary>
+        /// <param name="adOperator">The AD operator.</param>
+        /// <param name="displayName">The display name.</param>
+        /// <returns></returns>
+        public static UserObject FindOneByDisplayName(IADOperator adOperator, string displayName)
+        {
+            return FindOneByFilter<UserObject>(adOperator, new And(new IsUser(), new Is(AttributeNames.Displayname, displayName)));
         }
 
         /// <summary>
