@@ -15,8 +15,10 @@ E.G: Update a user AD object.
 
 E.G: Query user AD objects.
 
-    // 1. CN end with "liu", Mail conatains "live" (Eg: marketing@fewbox.com), job title is "Dev" and AD object type is user.
-    // 2. CN start with "pang", Mail conatains "live" (Eg: marketing@fewbox.com), job title is "Dev" and AD object type is user.
+    // 1. CN end with "liu", Mail conatains "live" (Eg: marketing@fewbox.com),
+    // job title is "Dev" and AD object type is user.
+    // 2. CN start with "pang", Mail conatains "live" (Eg: marketing@fewbox.com),
+    // job title is "Dev" and AD object type is user.
                 IFilter filter =
                     new And(
                         new IsUser(),
