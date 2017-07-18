@@ -2,11 +2,10 @@
 > This library has been used in **Lenovo**, **Tempursealy**, **Sony**, **BoostSolutions** and other corporations. Enjoy it!
 > I have started my biz! [http://fewbox.com](http://fewbox.com)
 
-Get From Nuget: [https://www.nuget.org/packages/Landpy.ActiveDirectory/](https://www.nuget.org/packages/Landpy.ActiveDirectory/)
+> Get From Nuget: [https://www.nuget.org/packages/Landpy.ActiveDirectory/](https://www.nuget.org/packages/Landpy.ActiveDirectory/)
 
 ![FewBox](http://www.fewbox.com/images/chicActiveDirectory.png)
 
-Get from Nuget [https://www.nuget.org/packages/Landpy.ActiveDirectory/](https://www.nuget.org/packages/Landpy.ActiveDirectory/)
 ## [For more information plz click here to visit the "Getting Start"](https://github.com/landpy/ActiveDirectory/wiki/Getting-Start)
 E.G: Update a user AD object.
 
