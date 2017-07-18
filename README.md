@@ -1,6 +1,9 @@
 > About 7 years history - start from 2010 (https://landpyactivedirectory.codeplex.com/), which will help you to manage Active Directory easily! 
 > This library has been used in **Lenovo**, **Tempursealy**, **Sony**, **BoostSolutions** and other corporations. Enjoy it!
 > I have started my biz! [http://fewbox.com](http://fewbox.com)
+
+Get From Nuget: [https://www.nuget.org/packages/Landpy.ActiveDirectory/](https://www.nuget.org/packages/Landpy.ActiveDirectory/)
+
 ![FewBox](http://www.fewbox.com/images/chicActiveDirectory.png)
 
 Get from Nuget [https://www.nuget.org/packages/Landpy.ActiveDirectory/](https://www.nuget.org/packages/Landpy.ActiveDirectory/)
